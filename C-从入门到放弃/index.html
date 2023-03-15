@@ -16,24 +16,24 @@
   <meta name="author" content="Harker_Hand.">
   <meta name="keywords" content="Harker C++">
   
-    <meta name="description" content="Vika简介 vika 维格表 是一种支持 API 的连接型智能多维表格 是新一代团队数据协作和项目管理工具 通过 vika 维格表, 你可以：  轻松实现项目管理与团队协作 不用写 1 行代码, 就可以做出适配业务发展需要的 IT 系统 不懂编程也能搭建自己的数据库 支持图片 视频 文档等数据存储, 将个人工作碎片化的信息结构化地整理起来 开放 API, 连通一切   Picgo简介 一个用于快">
+    <meta name="description" content="写在前面下文代码中会用到一些函数 在此处做出声明 1234567891011121314151617181920212223242526272829303132333435363738394041void swap01(int *a, int *b) &#x2F;&#x2F; 传入地址&amp;#123;    int temp &#x3D; *a; &#x2F;&#x2F; *解引用    *a &#x3D; *b;    *b &#x3D; temp;&amp;#125;voi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="国内高速图床解决方案--Vika">
-<meta property="og:url" content="https://harker299.gitee.io/%E5%9B%BD%E5%86%85%E9%AB%98%E9%80%9F%E5%9B%BE%E5%BA%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Vika/index.html">
+<meta property="og:title" content="C++从入门到放弃">
+<meta property="og:url" content="https://harker299.gitee.io/C-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/index.html">
 <meta property="og:site_name" content="Where Is Mountain">
-<meta property="og:description" content="Vika简介 vika 维格表 是一种支持 API 的连接型智能多维表格 是新一代团队数据协作和项目管理工具 通过 vika 维格表, 你可以：  轻松实现项目管理与团队协作 不用写 1 行代码, 就可以做出适配业务发展需要的 IT 系统 不懂编程也能搭建自己的数据库 支持图片 视频 文档等数据存储, 将个人工作碎片化的信息结构化地整理起来 开放 API, 连通一切   Picgo简介 一个用于快">
+<meta property="og:description" content="写在前面下文代码中会用到一些函数 在此处做出声明 1234567891011121314151617181920212223242526272829303132333435363738394041void swap01(int *a, int *b) &#x2F;&#x2F; 传入地址&amp;#123;    int temp &#x3D; *a; &#x2F;&#x2F; *解引用    *a &#x3D; *b;    *b &#x3D; temp;&amp;#125;voi">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s1.vika.cn/space/2023/03/14/1c444f74017f4e0e87bbf099da18386e">
-<meta property="article:published_time" content="2023-03-14T10:07:16.000Z">
-<meta property="article:modified_time" content="2023-03-14T10:34:34.362Z">
+<meta property="og:image" content="https://s1.vika.cn/space/2023/03/11/cab6f40f861240bfa11ce28386cc9f0a">
+<meta property="article:published_time" content="2023-03-14T14:44:37.000Z">
+<meta property="article:modified_time" content="2023-03-14T14:58:18.110Z">
 <meta property="article:author" content="Harker_Hand.">
-<meta property="article:tag" content="图床">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s1.vika.cn/space/2023/03/14/1c444f74017f4e0e87bbf099da18386e">
+<meta name="twitter:image" content="https://s1.vika.cn/space/2023/03/11/cab6f40f861240bfa11ce28386cc9f0a">
   
   
   
-  <title>国内高速图床解决方案--Vika - Where Is Mountain</title>
+  <title>C++从入门到放弃 - Where Is Mountain</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,13 +193,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://s1.vika.cn/space/2023/03/14/1c444f74017f4e0e87bbf099da18386e') no-repeat center center; background-size: cover;">
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="国内高速图床解决方案--Vika"></span>
+            <span id="subtitle" data-typed-text="C++从入门到放弃"></span>
           
         </div>
 
@@ -210,7 +210,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-14 18:07" pubdate>
+        <time datetime="2023-03-14 22:44" pubdate>
           2023年3月14日 晚上
         </time>
       </span>
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          585 字
+          1.5k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          5 分钟
+          13 分钟
         
       </span>
     
@@ -271,55 +271,40 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">国内高速图床解决方案--Vika</h1>
+            <h1 style="display: none">C++从入门到放弃</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Vika简介"><a href="#Vika简介" class="headerlink" title="Vika简介"></a>Vika简介</h1><blockquote>
-<p>vika 维格表</p>
-<p>是一种支持 API 的连接型智能多维表格</p>
-<p>是新一代团队数据协作和项目管理工具</p>
-<p>通过 vika 维格表, 你可以：</p>
-<ul>
-<li>轻松实现项目管理与团队协作</li>
-<li>不用写 1 行代码, 就可以做出适配业务发展需要的 IT 系统</li>
-<li>不懂编程也能搭建自己的数据库</li>
-<li>支持图片 视频 文档等数据存储, 将个人工作碎片化的信息结构化地整理起来</li>
-<li>开放 API, 连通一切</li>
-</ul>
-</blockquote>
-<h1 id="Picgo简介"><a href="#Picgo简介" class="headerlink" title="Picgo简介"></a>Picgo简介</h1><blockquote>
-<p><strong>一个用于快速上传图片并获取图片 URL 链接的工具</strong></p>
-<ul>
-<li><p>灵活上传主窗口支持拖拽 选择图片上传; 支持读取剪贴板的第一张图片快捷上传</p>
-</li>
-<li><p>上传成功后自动复制链接地址到剪贴板, 支持5种复制粘贴格式, 让你的文本编辑极致高效</p>
-</li>
-<li><p>支持JavaScript开发的插件, 给予插件极大自由度，让PicGo更加强大, 成为你得手的效率工具</p>
-</li>
-</ul>
-</blockquote>
-<h1 id="配置Picgo"><a href="#配置Picgo" class="headerlink" title="配置Picgo"></a>配置Picgo</h1><h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><p>官方有翔实的用户文档, 点击<a target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/zh/">PicGo</a>来阅读</p>
-<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><p>如图</p>
-<p><img src="https://s1.vika.cn/space/2023/03/14/af994dc0dca649bbb76d8d6d6b561805" srcset="/img/loading.gif" lazyload alt="插件设置"></p>
-<h2 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h2><p>进入 <strong>图床设置</strong> <strong>vika维格表</strong></p>
-<p>需要配置的有 <strong>API Token</strong> 和 <strong>维格表ID</strong></p>
-<p>进入<a target="_blank" rel="noopener" href="https://vika.cn/">Vika维格表</a>, 注册账号并登录</p>
-<p>新建一个空白维格表, 如图</p>
-<p><img src="https://s1.vika.cn/space/2023/03/14/4e1c4136bd3b4c539e0e1ca01fbaec39" srcset="/img/loading.gif" lazyload></p>
-<p>完成后点击右上角 <strong>高级功能</strong> <strong>API</strong> <strong>Get获取</strong> **显示API Token **如图</p>
-<p><img src="https://s1.vika.cn/space/2023/03/14/d5f4ebf745554c36883bf296f6ac5838" srcset="/img/loading.gif" lazyload></p>
-<p>上面的是 <strong>维格表ID</strong></p>
-<p>下面的是 <strong>API Token</strong></p>
-<p>其他配置项不需要更改</p>
-<h1 id="额外说明"><a href="#额外说明" class="headerlink" title="额外说明"></a>额外说明</h1><p>Vika维格表每张提供1G空间</p>
-<p>总共可以建十张表</p>
-<p>推荐配合<a target="_blank" rel="noopener" href="https://tinypng.com/">TinyPNG</a>压缩图片后上传</p>
-<p>另外 你可以通过点击我的<a target="_blank" rel="noopener" href="https://vika.cn/?inviteCode=91063604">Vika邀请</a>链接</p>
-<p>或 输入我的邀请码<code>91063604</code>来获取1000V币</p>
-<p>3000V币即可扩充空间</p>
+                <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>下文代码中会用到一些函数</p>
+<p>在此处做出声明</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap01</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span> <span class="hljs-comment">// 传入地址</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> temp = *a; <span class="hljs-comment">// *解引用</span><br>    *a = *b;<br>    *b = temp;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bubble</span><span class="hljs-params">(<span class="hljs-type">int</span> *arr, <span class="hljs-type">int</span> len)</span> <span class="hljs-comment">// 对数组进行冒泡排序</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; len - i - <span class="hljs-number">1</span>; j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (arr[j] &gt; arr[j + <span class="hljs-number">1</span>])<br>            &#123;<br>                <span class="hljs-built_in">swap01</span>(arr + j, arr + j + <span class="hljs-number">1</span>);<br>                <span class="hljs-comment">// 数组的变量名可以直接加法表示后面的某一位</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">person</span><br>&#123;<br>    <span class="hljs-comment">// 结构体 自定义数据类型</span><br>    <span class="hljs-comment">// 例子</span><br>    string name;<br>    <span class="hljs-type">short</span> age;<br>    <span class="hljs-type">bool</span> sex;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap02</span><span class="hljs-params">(person *a, person *b)</span> <span class="hljs-comment">// 交换结构体</span></span><br><span class="hljs-function"></span>&#123;<br>    person temp = *a;<br>    *a = *b;<br>    *b = temp;<br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">person</span> people[<span class="hljs-number">2</span>] = &#123;<br>    &#123;<span class="hljs-string">&quot;boy&quot;</span>, <span class="hljs-number">16</span>, <span class="hljs-number">1</span>&#125;,<br>    &#123;<span class="hljs-string">&quot;girl&quot;</span>, <span class="hljs-number">14</span>, <span class="hljs-number">0</span>&#125;&#125;;<br></code></pre></td></tr></table></figure>
 
+
+
+
+
+
+
+<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><h2 id="一般"><a href="#一般" class="headerlink" title="一般"></a>一般</h2><p>int *p;</p>
+<p>声明一个指针, 指针保存的是地址</p>
+<p>声明时 * 表示指针, 引用时 * 表示解引用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>;<br><span class="hljs-built_in">swap01</span>(&amp;a, &amp;b); <span class="hljs-comment">// &amp; 表示取地址</span><br>cout &lt;&lt; <span class="hljs-string">&quot;a = &quot;</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot; b = &quot;</span> &lt;&lt; b &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
+
+<h2 id="const修饰"><a href="#const修饰" class="headerlink" title="const修饰"></a>const修饰</h2><p>  const修饰指针, 指向可以改, 值不能改</p>
+<p>  const修饰常量, 指向不可改, 值可以改</p>
+<p>  const也可以两者都修饰</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> *p1 = &amp;a;<br>p1 = &amp;b;<br><span class="hljs-type">int</span> *<span class="hljs-type">const</span> p2 = &amp;b;<br>*p2 = a;<br></code></pre></td></tr></table></figure>
+
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>指针和数组</p>
+<p>int arr[4] &#x3D; {1, 2, 3, 4};</p>
+<p>arr即为首个元素的地址</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> arr[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>&#125;;<br><span class="hljs-type">int</span> len = <span class="hljs-built_in">sizeof</span>(arr) / <span class="hljs-built_in">sizeof</span>(arr[<span class="hljs-number">0</span>]);<br><span class="hljs-built_in">bubble</span>(arr, len);<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>&#123;<br>    cout &lt;&lt; <span class="hljs-string">&quot;arr[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span> &lt;&lt; arr[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><p>创建一个函数,  交换两个人的信息</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">swap02</span>(people, people + <span class="hljs-number">1</span>); <span class="hljs-comment">// 传入地址 people是数组</span><br>cout &lt;&lt; <span class="hljs-string">&quot;people[0].name = &quot;</span> &lt;&lt; people[<span class="hljs-number">0</span>].name &lt;&lt; <span class="hljs-string">&quot; people[1].name = &quot;</span> &lt;&lt; people[<span class="hljs-number">1</span>].name &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
+<p>指针使用 -&gt; 访问结构体中的元素</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout &lt;&lt; <span class="hljs-string">&quot;people[0].name = &quot;</span> &lt;&lt; people-&gt;name &lt;&lt; <span class="hljs-string">&quot; people[1].name = &quot;</span> &lt;&lt; (people + <span class="hljs-number">1</span>)-&gt;name &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -352,7 +337,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%9B%BE%E5%BA%8A/">#图床</a>
+        <a href="/tags/C/">#C++</a>
       
     </div>
   
@@ -364,8 +349,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>国内高速图床解决方案--Vika</div>
-      <div>https://harker299.gitee.io/国内高速图床解决方案-Vika/</div>
+      <div>C++从入门到放弃</div>
+      <div>https://harker299.gitee.io/C-从入门到放弃/</div>
     </div>
     <div class="license-meta">
       
@@ -393,9 +378,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/C-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" title="C++从入门到放弃">
+                      <a href="/%E7%99%BE%E6%97%A5-%E5%86%B2%E5%88%BA-%E6%94%B9%E9%94%99/" title="百日-冲刺-改错">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">C++从入门到放弃</span>
+                        <span class="hidden-mobile">百日-冲刺-改错</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -403,8 +388,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Hexo%E6%8F%90%E4%BA%A4%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%94%B6%E5%BD%95/" title="Hexo提交百度搜索引擎收录">
-                        <span class="hidden-mobile">Hexo提交百度搜索引擎收录</span>
+                      <a href="/%E5%9B%BD%E5%86%85%E9%AB%98%E9%80%9F%E5%9B%BE%E5%BA%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Vika/" title="国内高速图床解决方案--Vika">
+                        <span class="hidden-mobile">国内高速图床解决方案--Vika</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
