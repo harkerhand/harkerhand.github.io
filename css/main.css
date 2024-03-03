@@ -1631,7 +1631,7 @@ post-custom {
   margin-left: 0.5rem;
 }
 #seo-header {
-  display: none;
+  display: none !important;
   color: var(--post-heading-color);
   font-weight: bold;
   margin-top: 0.5em;
