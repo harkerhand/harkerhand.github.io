@@ -1640,6 +1640,9 @@ post-custom {
   border-bottom-width: 2px;
   line-height: 1.5;
 }
+#gitee-fix {
+  display: none !important;
+}
 .custom,
 #comments {
   margin-top: 2rem;
