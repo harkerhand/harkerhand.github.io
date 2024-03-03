@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>基于Twikoo的博客评论搭建</title>
+    <link href="/%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/"/>
+    <url>/%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>寒假期间，好友章隐基于<a href="https://cn.wordpress.org/">WordPress</a>搭建了自己的博客<a href="http://117.72.35.48/">彰隐的个人博客</a>，包含有评论系统，十分有趣，故决定给自己的站点也增加这一服务。</p><p>本站基于<a href="https://hexo.io/zh-cn/index.html">Hexo</a>搭建，在GitHub Pages和Gitee Pages双端部署，使用<a href="https://fluid-dev.github.io/hexo-fluid-docs/">Fluid</a>主题进行美化，功能丰富，内置了许多主题插件使用。</p><p>打开 node_modules&#x2F;hexo-theme-fluid&#x2F;_config.yml 并查找 comment 字段，可以看到</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># 评论插件</span><br><span class="hljs-comment"># Comment plugin</span><br><span class="hljs-attr">comments:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-comment"># 指定的插件，需要同时设置对应插件的必要参数</span><br>  <span class="hljs-comment"># Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">twikoo</span><br></code></pre></td></tr></table></figure><p>将<code>enable</code>字段改为<code>true</code>并将<code>type</code>字段改为对应的评论服务即可</p><h1 id="评论系统的挑选"><a href="#评论系统的挑选" class="headerlink" title="评论系统的挑选"></a>评论系统的挑选</h1><h2 id="Valine"><a href="#Valine" class="headerlink" title="Valine"></a>Valine</h2><p><a href="https://valine.js.org/">Valine</a>诞生于2017年8月7日，是一款基于<a href="https://leancloud.cn/">LeanCloud</a>的快速、简洁且高效的无后端评论系统。</p><p>其无后端的性质导致了评论难以管理，故放弃</p><h2 id="Waline"><a href="#Waline" class="headerlink" title="Waline"></a>Waline</h2><p>显然，<a href="https://waline.js.org/">Waline</a>是对Valine的一个继承，它具有后端。</p><p>推荐的后端部署渠道有Vercel，CloudeBase等，在我的账号与设备上出现了不可预知的错误，另外vecel.app域名在国内无法正常访问，会出现Failed to fetch错误。</p><p>较为繁琐但免费高效的Netlify部署，以我无法注册账号宣告失败。</p><p>很可惜，Waline也无法使用。</p><h2 id="Twikoo"><a href="#Twikoo" class="headerlink" title="Twikoo"></a>Twikoo</h2><p>这便是本文的主角，<a href="https://twikoo.js.org/">Twikoo | 一个简洁、安全、免费的静态网站评论系统</a>。</p><p>我选择了 <a href="https://www.hugging-face.org/">Hugging Face</a> 部署，与Netlify类似，完全免费并且在国内拥有不错的访问速度，其数据库位于 <a href="https://www.mongodb.com/zh-cn">MongoDB</a> ，可以使用 Google 账号快速登陆，不存在注册账号问题，并且同样免费。</p><p>获取环境ID后填入_config.yml中的</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">twikoo:</span><br>  <span class="hljs-attr">envID:</span> <span class="hljs-string">Here!!!</span><br></code></pre></td></tr></table></figure><h1 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h1><p><img src="/./%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/comment.png" alt="comment"></p><p>本文下方的评论区同理，如果你使用的是移动设备，布局会略有不同</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Blog</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>浅尝Github Actions</title>
     <link href="/%E6%B5%85%E5%B0%9DGithub-Actions/"/>
     <url>/%E6%B5%85%E5%B0%9DGithub-Actions/</url>
@@ -100,6 +125,8 @@
     <tags>
       
       <tag>图床</tag>
+      
+      <tag>Blog</tag>
       
     </tags>
     
