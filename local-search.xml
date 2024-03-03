@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>进行Hexo大版本更新</title>
+    <link href="/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/"/>
+    <url>/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Blog</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CloudFlare+telegraph图床部署</title>
     <link href="/CloudFlare-telegraph%E5%9B%BE%E5%BA%8A%E9%83%A8%E7%BD%B2/"/>
     <url>/CloudFlare-telegraph%E5%9B%BE%E5%BA%8A%E9%83%A8%E7%BD%B2/</url>
