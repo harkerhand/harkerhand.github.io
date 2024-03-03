@@ -1434,11 +1434,11 @@ i.iconfont {
   }
 }
 
-@media not print {
-  #seo-header {
-    display: none;
-  }
+
+#seo-header {
+  display: none;
 }
+
 
 .index-card {
   margin-bottom: 2.5rem;
@@ -1948,14 +1948,6 @@ post-custom {
 
 #seo-header {
   display: none;
-  color: var(--post-heading-color);
-  font-weight: bold;
-  margin-top: 0.5em;
-  margin-bottom: 0.75em;
-  border-bottom-color: var(--line-color);
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  line-height: 1.5;
 }
 
 .custom,
