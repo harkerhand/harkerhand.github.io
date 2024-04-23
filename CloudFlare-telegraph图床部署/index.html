@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Where Is Mountain">
 <meta property="og:description" content="提醒本文封面及所涉及的所有图片均来自云端图床，故随时存在无法访问的风险 部署Fork 项目将此项目Fork进自己的仓库 Telegraph-Image 部署CloudFlare使用 Pages 服务部署该仓库 创建KV : img_url 命名空间 img_url &#x3D; img_url 环境变量 BASIC_USER BASIC_PASS 后台管理用户名，密码 部署后得到前端网址 后缀 &amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://telegraph-image-bhq.pages.dev/file/5d0e3cb00e7e03672e347.png">
+<meta property="og:image" content="https://image.harkerhand.online/file/5d0e3cb00e7e03672e347.png">
 <meta property="article:published_time" content="2024-03-03T10:59:43.000Z">
-<meta property="article:modified_time" content="2024-03-03T11:35:08.802Z">
+<meta property="article:modified_time" content="2024-04-23T05:12:02.918Z">
 <meta property="article:author" content="harkerhand">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="图床">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://telegraph-image-bhq.pages.dev/file/5d0e3cb00e7e03672e347.png">
+<meta name="twitter:image" content="https://image.harkerhand.online/file/5d0e3cb00e7e03672e347.png">
   
   
   
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          111 字
+          116 字
         
       </span>
     
@@ -426,12 +426,13 @@
 <p>部署后得到前端网址</p>
 <p>后缀 &#x2F;admin 进入后台管理</p>
 <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>公开使用：</p>
-<p><a target="_blank" rel="noopener" href="https://telegraph-image-bhq.pages.dev/">Pic-Url</a></p>
+<p><a target="_blank" rel="noopener" href="https://telegraph-image-bhq.pages.dev/">Pic-Url</a> <em>源链</em></p>
+<p><a target="_blank" rel="noopener" href="https://image.harkerhand.online/">Image</a> <em>转发链</em></p>
 <table>
 <thead>
 <tr>
-<th align="center"><img src="https://telegraph-image-bhq.pages.dev/file/d75a74b5acb3470accf7c.jpg" srcset="/img/loading.gif" lazyload  /><strong>Knife is short, I use python</strong></th>
-<th align="center"><img src="https://telegraph-image-bhq.pages.dev/file/1e6d8b6f0f776fb6d77c2.jpg" srcset="/img/loading.gif" lazyload style="zoom:90%;" /></th>
+<th align="center"><img src="https://image.harkerhand.online/file/d75a74b5acb3470accf7c.jpg" srcset="/img/loading.gif" lazyload  /><strong>Knife is short, I use python</strong></th>
+<th align="center"><img src="https://image.harkerhand.online/file/1e6d8b6f0f776fb6d77c2.jpg" srcset="/img/loading.gif" lazyload style="zoom:90%;" /></th>
 </tr>
 </thead>
 </table>
@@ -565,25 +566,24 @@
   
     <article id="comments" lazyload>
       
-  <div id="twikoo"></div>
+  <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#comments', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
         var options = Object.assign(
-          {"envId":"https://harkerhand-twikoo.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {"serverURL":"https://waline.harkerhand.online/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
           {
-            el: '#twikoo',
-            path: 'window.location.pathname',
-            onCommentLoaded: function() {
-              Fluid.utils.listenDOMLoaded(function() {
-                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
-                Fluid.plugins.imageCaption(imgSelector);
-                Fluid.plugins.fancyBox(imgSelector);
-              });
-            }
+            el: '#waline',
+            path: window.location.pathname
           }
         )
-        twikoo.init(options)
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
       });
     });
   </script>
