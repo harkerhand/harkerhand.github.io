@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>申请域名相关</title>
+    <link href="/%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/"/>
+    <url>/%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>个人开设网站已经三年有余了，从最开始的本地部署、Gitee部署到现在的Github + 域名部署，不断遇到各种问题，最大的问题是各种服务的链接各不相同，难以统一记忆与管理，遂需要一个域名，通过二级转发来解决这些问题。</p><p>前几日听俱乐部的小伙伴说首年的域名都很便宜，那么 <strong>域名，启动！</strong></p><h1 id="平台选择"><a href="#平台选择" class="headerlink" title="平台选择"></a>平台选择</h1>    <div class="fold">      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-f40a3fac" role="button" aria-expanded="false" aria-controls="collapse-f40a3fac">        <div class="fold-arrow">▶</div>各种平台      </div>      <div class="fold-collapse collapse" id="collapse-f40a3fac">        <div class="fold-content">          <div class="note note-success">            <p><a href="https://cloud.tencent.com/">腾讯云 产业智变·云启未来 - 腾讯 (tencent.com)</a></p>          </div><div class="note note-success">            <p><a href="https://cn.aliyun.com/">阿里云-计算，为了无法计算的价值 (aliyun.com)</a></p>          </div>        </div>      </div>    </div><p><em>不一一列举了，有很多</em></p><p>我选择了腾讯云，国内使用体验较好。<span class="label label-primary">.online</span>的顶级域名首年只需要不到10元。</p><p>购买后及时完成认证，备案与否自由选择。</p><h1 id="配置DNS解析"><a href="#配置DNS解析" class="headerlink" title="配置DNS解析"></a>配置DNS解析</h1><p>可配置值有一下几种</p><table><thead><tr><th align="center">主机记录</th><th align="center">记录类型</th><th align="center">线路类型</th><th align="center">记录值</th><th align="center">权重</th><th align="center">TTL</th><th align="center">备注</th></tr></thead></table><h2 id="主机记录"><a href="#主机记录" class="headerlink" title="主机记录"></a>主机记录</h2><p>即二级域名，比如<code>www</code>.baidu.com与<code>pan</code>.baidu.com的区别就是前缀的二级域名，这样可以使一个域名被多个服务使用。</p><h2 id="记录类型"><a href="#记录类型" class="headerlink" title="记录类型"></a>记录类型</h2><p>常用的只有以下三种</p><ul><li><span class="label label-primary">A</span> ：指向一个IPv4地址</li><li><span class="label label-primary">CNAME</span> ：指向一个域名</li><li><span class="label label-primary">AAAA</span> ：指向一个IPv6地址</li></ul><h2 id="线路类型"><a href="#线路类型" class="headerlink" title="线路类型"></a>线路类型</h2><p>与转发路径与转发服务器偏好有关，一般默认即可。</p><h2 id="记录值"><a href="#记录值" class="headerlink" title="记录值"></a>记录值</h2><p><code>主机记录</code>.<code>域名</code>指向的地址，类型由<code>记录类型</code>决定。</p><h2 id="权重"><a href="#权重" class="headerlink" title="权重"></a>权重</h2><p>范围1-100，数字越大优先级越高。</p><h2 id="TTL"><a href="#TTL" class="headerlink" title="TTL"></a>TTL</h2><p>生存时间，一般设置为600。</p><h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>字面意思，就是备注，似乎没有字数限制，也就是说你可以在这里发癫！</p><h2 id="本人DNS备份"><a href="#本人DNS备份" class="headerlink" title="本人DNS备份"></a>本人DNS备份</h2><table><thead><tr><th align="center">主机记录</th><th align="center">记录类型</th><th align="center">线路类型</th><th align="center">记录值</th><th align="center">权重</th><th align="center">TTL</th><th align="center">备注</th></tr></thead><tbody><tr><td align="center">@</td><td align="center">CNAME</td><td align="center">默认</td><td align="center">harkerhand.github.io.</td><td align="center">99</td><td align="center">600</td><td align="center"></td></tr><tr><td align="center">www</td><td align="center">CNAME</td><td align="center">默认</td><td align="center">harkerhand.github.io.</td><td align="center">100</td><td align="center">600</td><td align="center"></td></tr><tr><td align="center">waline</td><td align="center">CNAME</td><td align="center">默认</td><td align="center">cname.vercel-dns.com.</td><td align="center">3</td><td align="center">600</td><td align="center">waline评论</td></tr><tr><td align="center">image</td><td align="center">CNAME</td><td align="center">默认</td><td align="center">telegraph-image-bhq.pages.dev.</td><td align="center">4</td><td align="center">600</td><td align="center">tele图床</td></tr><tr><td align="center"><code>Bing认证</code></td><td align="center">CNAME</td><td align="center">默认</td><td align="center">verify.bing.com.</td><td align="center">1</td><td align="center">600</td><td align="center"></td></tr></tbody></table><p><a href="https://www.harkerhand.online/">Where Is Mountain</a></p><p><a href="https://waline.harkerhand.online/">Waline Example</a></p><p><a href="https://image.harkerhand.online/">Telegraph-Image|免费图床</a></p><p><em>所有服务均无内容审查，请勿传播非法内容</em></p><h1 id="一些问题的解决"><a href="#一些问题的解决" class="headerlink" title="一些问题的解决"></a>一些问题的解决</h1><h2 id="waline评论"><a href="#waline评论" class="headerlink" title="waline评论"></a>waline评论</h2><p>服务运行在Vercel，其域名<code>vercel.app</code>在国内无法访问，所以在前文中没有使用这个评论服务。</p><p>然而，通过自己的域名对其服务进行转发，即可通过DNS服务商来绕过流量屏蔽，大大提高了访问速度。</p><h2 id="基于Telegraph的图床"><a href="#基于Telegraph的图床" class="headerlink" title="基于Telegraph的图床"></a>基于Telegraph的图床</h2><p>服务运行在CloudFlare，国内虽可以访问，但速度并不理想，同理可使用域名转发进行加速。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Blog</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>进行Hexo大版本更新</title>
     <link href="/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/"/>
     <url>/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/</url>
