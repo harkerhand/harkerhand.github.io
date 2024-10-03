@@ -1,0 +1,1011 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo_circle.png">
+  <link rel="icon" href="/img/logo_circle.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="harkerhand">
+  <meta name="keywords" content="harkerhand,C++,tech">
+  
+    <meta name="description" content="前情提要本人正在进行C++课程的学习，每次作业组成为若干编程题目，每个题目需要包括测试文件.cpp，类的声明头文件.h，类的实现文件.cpp 大致的文件树在此列出  001 exp01 ex1.cpp Complex.h Complex.cpp   exp02 …   002 exp01 …   …  作业提交格式 : 将上述文件全部打包为.zip文件发送至指定邮箱 需求 : 排除本地调试生成的.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅尝Github Actions">
+<meta property="og:url" content="https://www.harkerhand.online/%E6%B5%85%E5%B0%9DGithub-Actions/index.html">
+<meta property="og:site_name" content="Where Is Mountain">
+<meta property="og:description" content="前情提要本人正在进行C++课程的学习，每次作业组成为若干编程题目，每个题目需要包括测试文件.cpp，类的声明头文件.h，类的实现文件.cpp 大致的文件树在此列出  001 exp01 ex1.cpp Complex.h Complex.cpp   exp02 …   002 exp01 …   …  作业提交格式 : 将上述文件全部打包为.zip文件发送至指定邮箱 需求 : 排除本地调试生成的.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.harkerhand.online/%E6%B5%85%E5%B0%9DGithub-Actions/github_actions.png">
+<meta property="article:published_time" content="2024-03-02T09:03:45.000Z">
+<meta property="article:modified_time" content="2024-03-02T18:36:26.663Z">
+<meta property="article:author" content="harkerhand">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="github">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.harkerhand.online/%E6%B5%85%E5%B0%9DGithub-Actions/github_actions.png">
+  
+  
+  
+  <title>浅尝Github Actions - Where Is Mountain</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.harkerhand.online","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":"d4f2c35df8a5310a997f42e7f8add2a8","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"CDX6IWyV2uLXpC5LxeP6cafw-gzGzoHsz","app_key":"d0eP6B1k5eQ1gkPrZuCkF0E8","server_url":"https://cdx6iwyv.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d4f2c35df8a5310a997f42e7f8add2a8";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何处为山</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="浅尝Github Actions"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        harkerhand
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-02 17:03" pubdate>
+          2024年3月2日
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          684 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="经验分享"
+        id="heading-bf7d27592999fc66ab392836d5099014" role="tab" data-toggle="collapse" href="#collapse-bf7d27592999fc66ab392836d5099014"
+        aria-expanded="true"
+      >
+        经验分享
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-bf7d27592999fc66ab392836d5099014"
+           role="tabpanel" aria-labelledby="heading-bf7d27592999fc66ab392836d5099014">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/" title="24暑期学校课设报告"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">24暑期学校课设报告</span>
+        </a>
+      
+    
+      
+      
+        <a href="/C-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" title="C++从入门到放弃"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++从入门到放弃</span>
+        </a>
+      
+    
+      
+      
+        <a href="/CloudFlare-telegraph%E5%9B%BE%E5%BA%8A%E9%83%A8%E7%BD%B2/" title="CloudFlare+telegraph图床部署"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">CloudFlare+telegraph图床部署</span>
+        </a>
+      
+    
+      
+      
+        <a href="/Hexo%E6%8F%90%E4%BA%A4%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%94%B6%E5%BD%95/" title="Hexo提交百度搜索引擎收录"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hexo提交百度搜索引擎收录</span>
+        </a>
+      
+    
+      
+      
+        <a href="/Markdown%E5%85%A5%E9%97%A8/" title="Markdown入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Markdown入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="VS Code中C++环境配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VS Code中C++环境配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/" title="[新]VSCode配置C/CPP"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">[新]VSCode配置C/CPP</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E4%BD%BF%E7%94%A8DoraSSR%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%912048%E6%B8%B8%E6%88%8FDemo/" title="使用DoraSSR引擎开发2048游戏Demo"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">使用DoraSSR引擎开发2048游戏Demo</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E5%9B%BD%E5%86%85%E9%AB%98%E9%80%9F%E5%9B%BE%E5%BA%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Vika/" title="国内高速图床解决方案--Vika"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">国内高速图床解决方案--Vika</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/" title="基于Twikoo的博客评论搭建"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">基于Twikoo的博客评论搭建</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E6%B5%85%E5%B0%9DGithub-Actions/" title="浅尝Github Actions"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">浅尝Github Actions</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/" title="申请域名相关"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">申请域名相关</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/" title="进行Hexo大版本更新"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">进行Hexo大版本更新</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">浅尝Github Actions</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年3月3日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h1><p>本人正在进行C++课程的学习，每次作业组成为若干编程题目，每个题目需要包括测试文件.cpp，类的声明头文件.h，类的实现文件.cpp</p>
+<p>大致的文件树在此列出</p>
+<ul>
+<li>001<ul>
+<li>exp01<ul>
+<li>ex1.cpp</li>
+<li>Complex.h</li>
+<li>Complex.cpp</li>
+</ul>
+</li>
+<li>exp02</li>
+<li>…</li>
+</ul>
+</li>
+<li>002<ul>
+<li>exp01</li>
+<li>…</li>
+</ul>
+</li>
+<li>…</li>
+</ul>
+<p><strong>作业提交格式 :</strong> 将上述文件全部打包为.zip文件发送至指定邮箱</p>
+<p><strong>需求 :</strong> 排除本地调试生成的.exe文件，自动打包</p>
+<p><em>注 : 作者使用git来进行本地与<a target="_blank" rel="noopener" href="https://gitee.com/harkerhand/homework2">云端仓库</a>的链接，.gitignore文件包含了*.exe</em></p>
+<h1 id="Github-Actions-简介"><a href="#Github-Actions-简介" class="headerlink" title="Github Actions 简介"></a>Github Actions 简介</h1><p>GitHub Actions 是一种持续集成和持续交付 (CI&#x2F;CD) 平台，可用于自动执行生成、测试和部署管道。 您可以创建工作流程来构建和测试存储库的每个拉取请求，或将合并的拉取请求部署到生产环境。</p>
+<p>GitHub Actions 不仅仅是 DevOps，还允许您在存储库中发生其他事件时运行工作流程。 例如，您可以运行工作流程，以便在有人在您的存储库中创建新问题时自动添加相应的标签。</p>
+<p>GitHub 提供 Linux、Windows 和 macOS 虚拟机来运行工作流程，或者您可以在自己的数据中心或云基础架构中托管自己的自托管运行器。</p>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><ul>
+<li>创建GitHub仓库</li>
+<li>在 <strong>Settings–Actions–General</strong> 中更改 <strong>Actions permissions</strong> 为 <strong>Allow all actions and reusable workflows</strong>，点击 <strong>Save</strong> 保存</li>
+<li>更改相同路径下的 <strong>Workflow permissions</strong> 为 <strong>Read and write permissions</strong>，并勾选 <strong>Allow GitHub Actions to create and approve pull requests</strong>，点击 <strong>Save</strong> 保存</li>
+</ul>
+<h1 id="编写Actions文件"><a href="#编写Actions文件" class="headerlink" title="编写Actions文件"></a>编写Actions文件</h1><p>在Actions选项卡中，选择 <strong>set up a workflow yourself</strong></p>
+<p>进入编辑界面，文件路径为 &#x2F;.github&#x2F;workflows&#x2F;main.yml，文件名可自定义</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">zip</span><br><span class="hljs-attr">on:</span> [<span class="hljs-string">push</span>]<br><span class="hljs-attr">jobs:</span><br>  <span class="hljs-attr">build:</span><br>    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span><br>    <span class="hljs-attr">steps:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v1</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">zip</span><br>      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">        for file in ./*</span><br><span class="hljs-string">        do</span><br><span class="hljs-string">          zip -r ./$&#123;file&#125;/$&#123;file&#125;.zip $&#123;file&#125;</span><br><span class="hljs-string">        done</span><br><span class="hljs-string"></span>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">list</span> <span class="hljs-string">files</span><br>      <span class="hljs-attr">run:</span><br>        <span class="hljs-string">ls</span> <span class="hljs-string">-R</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">commit</span><br>      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">        git config --global user.name &quot;harkerhand&quot;</span><br><span class="hljs-string">        git config --global user.email &quot;harkerhand@outlook.com&quot;</span><br><span class="hljs-string">        git add .</span><br><span class="hljs-string">        git commit -m &quot;zip&quot; -a</span><br><span class="hljs-string"></span>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">push</span><br>      <span class="hljs-attr">uses:</span> <span class="hljs-string">ad-m/github-push-action@master</span><br>      <span class="hljs-attr">with:</span><br>        <span class="hljs-attr">github_token:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.GITHUB_TOKEN</span> <span class="hljs-string">&#125;&#125;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>name 为流程名</li>
+<li>on 代表触发条件</li>
+<li>jobs 为流程动作</li>
+<li>build 为子流程名，可以有多个</li>
+<li>runs-on 指定了脚本运行的环境，这是一个枚举类型</li>
+<li>steps 为具体流程，数组类型</li>
+<li>uses 使用打包好的流程，这里是从远程仓库拉取至虚拟机</li>
+<li>name 为步骤名，可省略</li>
+<li>run 内为执行命令，多行脚本需要添加 |</li>
+<li>使用shell命令打包并列出文件（便于后期维护）</li>
+<li>在push之前设置虚拟机的git用户名和邮箱</li>
+<li>uses 使用打包好的push流程</li>
+</ul>
+<p><em>Tips : 需要在个人设置中生成名为 GITHUB_TOKEN 的 token</em></p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>直接在GitHub更改.yml文件即被视为push，触发Actions</p>
+<p>转到Actions选项卡，出现类似<img src="/./%E6%B5%85%E5%B0%9DGithub-Actions/actions_result.png" srcset="/img/loading.gif" lazyload alt="actions result"></p>
+<p>即为成功，库文件夹中出现对应.zip文件</p>
+<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p><a target="_blank" rel="noopener" href="https://docs.github.com/zh/actions">GitHub Actions 文档 - GitHub 文档</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/git/" class="print-no-link">#git</a>
+      
+        <a href="/tags/github/" class="print-no-link">#github</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>浅尝Github Actions</div>
+      <div>https://www.harkerhand.online/浅尝Github-Actions/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>harkerhand</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年3月3日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/" title="基于Twikoo的博客评论搭建">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">基于Twikoo的博客评论搭建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/OJ/8465/" title="8465.马走日">
+                        <span class="hidden-mobile">8465.马走日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://harkerhand-twikoo.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div>  
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

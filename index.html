@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo_circle.png">
+  <link rel="icon" href="/img/logo_circle.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="harkerhand">
+  <meta name="keywords" content="harkerhand,C++,tech">
+  
+    <meta name="description" content="A sharing Website">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Where Is Mountain">
+<meta property="og:url" content="https://www.harkerhand.online/index.html">
+<meta property="og:site_name" content="Where Is Mountain">
+<meta property="og:description" content="A sharing Website">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="harkerhand">
+<meta property="article:tag" content="harkerhand">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="tech">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Where Is Mountain</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.harkerhand.online","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":"d4f2c35df8a5310a997f42e7f8add2a8","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"CDX6IWyV2uLXpC5LxeP6cafw-gzGzoHsz","app_key":"d0eP6B1k5eQ1gkPrZuCkF0E8","server_url":"https://cdx6iwyv.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d4f2c35df8a5310a997f42e7f8add2a8";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何处为山</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg14.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Where is Mountain"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/" target="_self">
+          <img src="/./%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/cpp.png" srcset="/img/loading.gif" lazyload alt="[新]VSCode配置C/CPP">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/" target="_self">
+          [新]VSCode配置C/CPP
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/" target="_self">
+        <div>
+          前言近日在阅读他人题解时，发现了未曾见过的语法 1auto a = vector(n, INT_MIN);  即初始化一个长度为n的 vector 并命名为 a ，初始值为 INT_MIN，这比先前的 12vector&lt;int&gt; a(n);for(auto &amp;i: a) i = INT_MIN;  方便太多了！ 然而，我在自己的编辑器里这么写，编译器会报错，查看发现我所使用的一
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-19 15:47" pubdate>
+              2024-09-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">#C++</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/" target="_self">
+          <img src="/./24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/LogoQt.png" srcset="/img/loading.gif" lazyload alt="24暑期学校课设报告">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/" target="_self">
+          24暑期学校课设报告
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/" target="_self">
+        <div>
+          24暑期学校课设报告一 、题目（把题目复制一遍。如果是自拟的题目，把题目具体内容写在这里） 题目4：面向对象程序项目管理系统  [要求]该系统需创建和管理如下信息：1、类信息：编号、类名、基类名、功能、创建日期、作者、类成员数据集；2、类成员信息：成员编号、成员名称、成员类型（数据或函数）、内存字节数（数据成员）、数据类型、可访问性（公有、私有、保护）等。   系统功能要求如下：  创建和管理类信
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-09-10 14:00" pubdate>
+              2024-09-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">#C++</a>
+            
+              <a href="/tags/Qt/">#Qt</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/%E4%BD%BF%E7%94%A8DoraSSR%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%912048%E6%B8%B8%E6%88%8FDemo/" target="_self">
+          <img src="/./%E4%BD%BF%E7%94%A8DoraSSR%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%912048%E6%B8%B8%E6%88%8FDemo/logo.png" srcset="/img/loading.gif" lazyload alt="使用DoraSSR引擎开发2048游戏Demo">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E4%BD%BF%E7%94%A8DoraSSR%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%912048%E6%B8%B8%E6%88%8FDemo/" target="_self">
+          使用DoraSSR引擎开发2048游戏Demo
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/%E4%BD%BF%E7%94%A8DoraSSR%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%912048%E6%B8%B8%E6%88%8FDemo/" target="_self">
+        <div>
+          引言介绍2048游戏背景与历史2048游戏是由意大利开发者Gabriele Cirulli在2014年创建的简易益智游戏。值得注意的是，这款游戏是在他用JavaScript自学编程时开发的，仅用了一个周末的时间。 这款游戏最初的灵感来自于一个类似的游戏——1024，而1024本身也是基于另一个名为Threes的游戏。这种创新与简化使得2048在发布后迅速走红，吸引了全球玩家的注意，并在短时间内成为
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-11 21:32" pubdate>
+              2024-08-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Lua/">#Lua</a>
+            
+              <a href="/tags/DoraSSR/">#DoraSSR</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/" target="_self">
+          <img src="/./%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/MaterialSymbolsCloudDone.png" srcset="/img/loading.gif" lazyload alt="申请域名相关">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/" target="_self">
+          申请域名相关
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/" target="_self">
+        <div>
+          前言个人开设网站已经三年有余了，从最开始的本地部署、Gitee部署到现在的Github + 域名部署，不断遇到各种问题，最大的问题是各种服务的链接各不相同，难以统一记忆与管理，遂需要一个域名，通过二级转发来解决这些问题。 前几日听俱乐部的小伙伴说首年的域名都很便宜，那么 域名，启动！ 平台选择                     ▶各种平台
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-04-24 14:44" pubdate>
+              2024-04-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Blog/">#Blog</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/" target="_self">
+          <img src="/./%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/hexo.png" srcset="/img/loading.gif" lazyload alt="进行Hexo大版本更新">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/" target="_self">
+          进行Hexo大版本更新
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/" target="_self">
+        <div>
+          前言昨晚偶然打开了 package.json，发现 hexo 版本为 6.3.0，遂决定升至最新 v7.1.1。 遭遇错误执行报错 1npm update hexo-cli -g      重启解决 99% 的问题，剩下 1% 用重装   秉持这个思想，我选择重装 操作步骤备份备份旧版本的文章，格式，Hexo及Fluid的配置文件 卸载执行 1npm uninstall hexo-cli -g
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-04 01:15" pubdate>
+              2024-03-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Blog/">#Blog</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/CloudFlare-telegraph%E5%9B%BE%E5%BA%8A%E9%83%A8%E7%BD%B2/" target="_self">
+          <img src="https://image.harkerhand.online/file/5d0e3cb00e7e03672e347.png" srcset="/img/loading.gif" lazyload alt="CloudFlare+telegraph图床部署">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/CloudFlare-telegraph%E5%9B%BE%E5%BA%8A%E9%83%A8%E7%BD%B2/" target="_self">
+          CloudFlare+telegraph图床部署
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/CloudFlare-telegraph%E5%9B%BE%E5%BA%8A%E9%83%A8%E7%BD%B2/" target="_self">
+        <div>
+          提醒本文封面及所涉及的所有图片均来自云端图床，故随时存在无法访问的风险 部署Fork 项目将此项目Fork进自己的仓库 Telegraph-Image 部署CloudFlare使用 Pages 服务部署该仓库 创建KV : img_url 命名空间 img_url &#x3D; img_url 环境变量 BASIC_USER BASIC_PASS 后台管理用户名，密码 部署后得到前端网址 后缀 &
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-03 18:59" pubdate>
+              2024-03-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Blog/">#Blog</a>
+            
+              <a href="/tags/%E5%9B%BE%E5%BA%8A/">#图床</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/" target="_self">
+          <img src="/./%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/twikoo.png" srcset="/img/loading.gif" lazyload alt="基于Twikoo的博客评论搭建">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/" target="_self">
+          基于Twikoo的博客评论搭建
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/" target="_self">
+        <div>
+          写在前面寒假期间，好友章隐基于WordPress搭建了自己的博客彰隐的个人博客，包含有评论系统，十分有趣，故决定给自己的站点也增加这一服务。 本站基于Hexo搭建，在GitHub Pages和Gitee Pages双端部署，使用Fluid主题进行美化，功能丰富，内置了许多主题插件使用。 打开 node_modules&#x2F;hexo-theme-fluid&#x2F;_config.yml 并
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-03 15:06" pubdate>
+              2024-03-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Blog/">#Blog</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div>  
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

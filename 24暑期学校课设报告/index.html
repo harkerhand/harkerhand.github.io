@@ -1,0 +1,1879 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo_circle.png">
+  <link rel="icon" href="/img/logo_circle.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="harkerhand">
+  <meta name="keywords" content="harkerhand,C++,tech">
+  
+    <meta name="description" content="24暑期学校课设报告一 、题目（把题目复制一遍。如果是自拟的题目，把题目具体内容写在这里） 题目4：面向对象程序项目管理系统  [要求]该系统需创建和管理如下信息：1、类信息：编号、类名、基类名、功能、创建日期、作者、类成员数据集；2、类成员信息：成员编号、成员名称、成员类型（数据或函数）、内存字节数（数据成员）、数据类型、可访问性（公有、私有、保护）等。   系统功能要求如下：  创建和管理类信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24暑期学校课设报告">
+<meta property="og:url" content="https://www.harkerhand.online/24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Where Is Mountain">
+<meta property="og:description" content="24暑期学校课设报告一 、题目（把题目复制一遍。如果是自拟的题目，把题目具体内容写在这里） 题目4：面向对象程序项目管理系统  [要求]该系统需创建和管理如下信息：1、类信息：编号、类名、基类名、功能、创建日期、作者、类成员数据集；2、类成员信息：成员编号、成员名称、成员类型（数据或函数）、内存字节数（数据成员）、数据类型、可访问性（公有、私有、保护）等。   系统功能要求如下：  创建和管理类信">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.harkerhand.online/24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/LogoQt.png">
+<meta property="article:published_time" content="2024-09-10T06:00:54.000Z">
+<meta property="article:modified_time" content="2024-09-10T06:38:18.102Z">
+<meta property="article:author" content="harkerhand">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Qt">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.harkerhand.online/24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/LogoQt.png">
+  
+  
+  
+  <title>24暑期学校课设报告 - Where Is Mountain</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.harkerhand.online","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":"d4f2c35df8a5310a997f42e7f8add2a8","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"CDX6IWyV2uLXpC5LxeP6cafw-gzGzoHsz","app_key":"d0eP6B1k5eQ1gkPrZuCkF0E8","server_url":"https://cdx6iwyv.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d4f2c35df8a5310a997f42e7f8add2a8";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何处为山</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="24暑期学校课设报告"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        harkerhand
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-10 14:00" pubdate>
+          2024年9月10日
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          107 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="经验分享"
+        id="heading-bf7d27592999fc66ab392836d5099014" role="tab" data-toggle="collapse" href="#collapse-bf7d27592999fc66ab392836d5099014"
+        aria-expanded="true"
+      >
+        经验分享
+        <span class="list-group-count">(13)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-bf7d27592999fc66ab392836d5099014"
+           role="tabpanel" aria-labelledby="heading-bf7d27592999fc66ab392836d5099014">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/" title="24暑期学校课设报告"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">24暑期学校课设报告</span>
+        </a>
+      
+    
+      
+      
+        <a href="/C-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" title="C++从入门到放弃"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C++从入门到放弃</span>
+        </a>
+      
+    
+      
+      
+        <a href="/CloudFlare-telegraph%E5%9B%BE%E5%BA%8A%E9%83%A8%E7%BD%B2/" title="CloudFlare+telegraph图床部署"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">CloudFlare+telegraph图床部署</span>
+        </a>
+      
+    
+      
+      
+        <a href="/Hexo%E6%8F%90%E4%BA%A4%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%94%B6%E5%BD%95/" title="Hexo提交百度搜索引擎收录"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hexo提交百度搜索引擎收录</span>
+        </a>
+      
+    
+      
+      
+        <a href="/Markdown%E5%85%A5%E9%97%A8/" title="Markdown入门"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Markdown入门</span>
+        </a>
+      
+    
+      
+      
+        <a href="/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="VS Code中C++环境配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">VS Code中C++环境配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/" title="[新]VSCode配置C/CPP"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">[新]VSCode配置C/CPP</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E4%BD%BF%E7%94%A8DoraSSR%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%912048%E6%B8%B8%E6%88%8FDemo/" title="使用DoraSSR引擎开发2048游戏Demo"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">使用DoraSSR引擎开发2048游戏Demo</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E5%9B%BD%E5%86%85%E9%AB%98%E9%80%9F%E5%9B%BE%E5%BA%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Vika/" title="国内高速图床解决方案--Vika"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">国内高速图床解决方案--Vika</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E5%9F%BA%E4%BA%8ETwikoo%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%90%AD%E5%BB%BA/" title="基于Twikoo的博客评论搭建"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">基于Twikoo的博客评论搭建</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E6%B5%85%E5%B0%9DGithub-Actions/" title="浅尝Github Actions"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">浅尝Github Actions</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/" title="申请域名相关"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">申请域名相关</span>
+        </a>
+      
+    
+      
+      
+        <a href="/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/" title="进行Hexo大版本更新"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">进行Hexo大版本更新</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">24暑期学校课设报告</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年9月10日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="24暑期学校课设报告"><a href="#24暑期学校课设报告" class="headerlink" title="24暑期学校课设报告"></a>24暑期学校课设报告</h1><h2 id="一-、题目"><a href="#一-、题目" class="headerlink" title="一 、题目"></a>一 、题目</h2><p><em>（把题目复制一遍。如果是自拟的题目，把题目具体内容写在这里）</em></p>
+<p><strong>题目4：面向对象程序项目管理系统</strong></p>
+<blockquote>
+<p>[要求]该系统需创建和管理如下信息：1、类信息：编号、类名、基类名、功能、创建日期、作者、类成员数据集；2、类成员信息：成员编号、成员名称、成员类型（数据或函数）、内存字节数（数据成员）、数据类型、可访问性（公有、私有、保护）等。</p>
+</blockquote>
+<blockquote>
+<p>系统功能要求如下：</p>
+<ul>
+<li><p>创建和管理类信息的对象；</p>
+</li>
+<li><p>创建和管理类成员信息的对象；</p>
+</li>
+<li><p>增加和删除类；</p>
+</li>
+<li><p>针对特定类增加或删除类成员信息；</p>
+</li>
+<li><p>基本查询功能；</p>
+</li>
+<li><p>数据文件读写：文件中包含所有类信息、每个类的类成员信息等数据；</p>
+</li>
+<li><p>基本信息显示：1）所有类的信息显示；2）特定类的类成员信息；</p>
+</li>
+<li><p>可选功能提升：显示类对象的占用内存信息等。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="二-、设计思路"><a href="#二-、设计思路" class="headerlink" title="二 、设计思路"></a>二 、设计思路</h2><p><em>（这里分几部分：1、C++部分，包括几个类，各个类的功能，以及类的相互关系；2、Qt部分，用了什么框架，设计了几个ui，每个ui控件的功能，以及他们的相互关系；3、程序所完成的功能）</em></p>
+<h3 id="1-C-部分"><a href="#1-C-部分" class="headerlink" title="1. C++ 部分"></a>1. C++ 部分</h3><h4 id="1-1-类及功能"><a href="#1-1-类及功能" class="headerlink" title="1.1 类及功能"></a>1.1 类及功能</h4><ul>
+<li><p><code>ClassInfo</code></p>
+<p>功能：用于表示一个类的信息，包括类的基本属性（如ID、名称、基类名、功能、创建日期、作者）和类的成员（数据成员或函数成员）。</p>
+<p>主要方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">addMember</span>(); <span class="hljs-built_in">removeMember</span>(); <span class="hljs-comment">// 添加和删除类成员</span><br><span class="hljs-built_in">calculateMemorySize</span>(); <span class="hljs-comment">// 计算类的总内存占用。</span><br><span class="hljs-built_in">saveToStream</span>(); <span class="hljs-built_in">loadFromStream</span>(); <span class="hljs-comment">// 序列化与反序列化。</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>ClassMember</code></p>
+<p>功能：表示一个类的成员，包括成员的ID、名称、类型（数据成员或函数成员）、内存大小、数据类型和访问权限。</p>
+<p>主要方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">saveToStream</span>(); <span class="hljs-built_in">loadFromStream</span>(); <span class="hljs-comment">// 序列化与反序列化。</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>Enums</code></p>
+<p>功能： 定义了程序中用到的各种枚举类型，如成员类型（<code>MemberType</code>）、访问权限（<code>Accessibility</code>）、数据类型（<code>DataType</code>）、用户类型（<code>UserType</code>）。提供了将枚举转换为字符串的方法。</p>
+</li>
+<li><p><code>ClassModel</code>、<code>MemberModel</code>、<code>UserModel</code></p>
+<p>功能： 用于在表格视图中显示对象的模型类，继承自<code>QAbstractTableModel</code>。</p>
+<p>主要方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">data</span>(); <span class="hljs-comment">// 返回表格单元格的数据显示。</span><br><span class="hljs-built_in">headerData</span>(); <span class="hljs-comment">// 返回表格列头的数据。</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>Utils</code></p>
+<p>功能: 包含一些辅助函数，如获取数据类型的大小、密码哈希处理、账户的保存和验证等。</p>
+<p>主要方法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">getDataTypeSize</span>(); <span class="hljs-comment">// 返回数据类型的大小。</span><br><span class="hljs-built_in">hashPassword</span>(); <span class="hljs-comment">// 对密码进行哈希处理。</span><br><span class="hljs-built_in">saveAdminAccount</span>(); <span class="hljs-built_in">saveUserAccount</span>(); <span class="hljs-comment">// 保存管理员和用户账户信息。</span><br><span class="hljs-built_in">verifyAccount</span>(); <span class="hljs-comment">// 验证账户信息。</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>其他ui类</p>
+<ul>
+<li><code>CreateClassDialog</code> 创建类（可复用为修改类）</li>
+<li><code>CreateMemberDialog</code> 创建成员（可复用为修改成员）</li>
+<li><code>LoginWindow</code> 登录窗口</li>
+<li><code>MainWindow</code> 主窗口</li>
+<li><code>MemberDetailsDialog</code> 单个成员详情</li>
+<li><code>MembersDetailDialog</code> 所有成员详情</li>
+<li><code>SearchDialog</code> 搜索对话框</li>
+<li><code>SimpleTextDialog</code> 简易文字对话框</li>
+<li><code>UserManagementWindow</code> 用户管理窗口</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-类的相互关系"><a href="#1-2-类的相互关系" class="headerlink" title="1.2 类的相互关系"></a>1.2 类的相互关系</h4><ul>
+<li><p><code>ClassInfo</code> 包含多个 <code>ClassMember</code> 对象，通过 <code>_members</code> 列表进行管理。</p>
+</li>
+<li><p><code>ClassModel</code> 和 <code>MemberModel</code> 用于在视图中显示 <code>ClassInfo</code> 和 <code>ClassMember</code> 对象的信息，分别作为表格视图的模型。<code>UserModel</code> 用于显示用户信息，与用户管理窗口 <code>UserManagementWindow</code> 进行交互。</p>
+</li>
+<li><p><code>Utils</code> 提供辅助函数，被其他类和模块调用以实现功能，如账户验证、密码处理等。</p>
+</li>
+</ul>
+<h3 id="2-Qt部分"><a href="#2-Qt部分" class="headerlink" title="2. Qt部分"></a>2. Qt部分</h3><h4 id="2-1使用的框架"><a href="#2-1使用的框架" class="headerlink" title="2.1使用的框架"></a>2.1使用的框架</h4><ul>
+<li><p><strong>Qt Widgets</strong></p>
+<ul>
+<li><strong>功能:</strong> 提供传统的桌面应用程序界面组件，如窗口、按钮、文本框、对话框等。</li>
+<li>**示例: ** <code>QWidget</code>, <code>QPushButton</code>, <code>QLineEdit</code>, <code>QTableView</code></li>
+</ul>
+</li>
+<li><p><strong>Qt Core</strong></p>
+<ul>
+<li><strong>功能:</strong> 提供底层功能，包括事件处理、文件和数据流处理、时间管理、数据管理等。</li>
+<li>**示例: ** <code>QIODevice</code>, <code>QMetaType</code>, <code>QFile</code>, <code>QDataStream</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-UI设计"><a href="#2-2-UI设计" class="headerlink" title="2.2 UI设计"></a>2.2 UI设计</h4><h5 id="LoginWindow"><a href="#LoginWindow" class="headerlink" title="LoginWindow"></a>LoginWindow</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onLoginButtonClicked</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理登录按钮点击事件</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onLanguageChanged</span><span class="hljs-params">(<span class="hljs-type">int</span> index)</span></span>; <span class="hljs-comment">// 处理语言选择变化事件</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onThemeChanged</span><span class="hljs-params">(<span class="hljs-type">int</span> index)</span></span>;  <span class="hljs-comment">// 处理主题切换事件</span><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setupUI</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 设置和初始化用户界面</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">updateUI</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 更新用户界面，包括语言和主题的变化</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">paintEvent</span><span class="hljs-params">(QPaintEvent *event)</span> <span class="hljs-keyword">override</span></span>; <span class="hljs-comment">// 重写的绘制事件，用于自定义背景渲染</span><br>    QLineEdit *_usernameLineEdit; <span class="hljs-comment">// 用户名输入框</span><br>    QLineEdit *_passwordLineEdit; <span class="hljs-comment">// 密码输入框</span><br>    QPushButton *_loginButton; <span class="hljs-comment">// 登录按钮</span><br>    QLabel *_titleLabel; <span class="hljs-comment">// 窗口标题标签</span><br>    QLabel *_usernameLabel; <span class="hljs-comment">// 用户名标签</span><br>    QLabel *_passwordLabel; <span class="hljs-comment">// 密码标签</span><br>    QPushButton *_chineseButton; <span class="hljs-comment">// 中文按钮</span><br>    QPushButton *_englishButton; <span class="hljs-comment">// 英文按钮</span><br>    QPushButton *_lightThemeButton; <span class="hljs-comment">// 亮主题按钮</span><br>    QPushButton *_darkThemeButton; <span class="hljs-comment">// 暗主题按钮</span><br>    <span class="hljs-type">bool</span> _nowTheme; <span class="hljs-comment">// 当前主题状态（`true` 表示暗主题，`false` 表示亮主题）</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>图例：</strong></p>
+<p><img src="/./24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/image-20240907001311126.png" srcset="/img/loading.gif" lazyload alt="image-20240907001311126"></p>
+<p><strong>相互关系：</strong></p>
+<ul>
+<li><strong><code>QLineEdit *_usernameLineEdit</code></strong> 和 <strong><code>QLineEdit *_passwordLineEdit</code></strong>:<ul>
+<li><strong>功能</strong>: 分别用于输入用户名和密码。</li>
+<li><strong>相互关系</strong>: 用户输入的用户名和密码将用于用户身份验证，当点击**<code>QPushButton *_loginButton</code>**时，系统会检验这些输入。</li>
+</ul>
+</li>
+<li><strong><code>QPushButton *_loginButton</code></strong>:<ul>
+<li><strong>功能</strong>: 提交用户输入的用户名和密码，触发登录操作。</li>
+<li><strong>相互关系</strong>: 当点击此按钮时，**<code>onLoginButtonClicked()</code>**槽函数会被调用，用于处理登录逻辑。</li>
+</ul>
+</li>
+<li><strong><code>QLabel *_titleLabel</code></strong>, <strong><code>QLabel *_usernameLabel</code></strong>, 和 <strong><code>QLabel *_passwordLabel</code></strong>:<ul>
+<li><strong>功能</strong>: 显示窗口标题及输入框的标签。</li>
+<li><strong>相互关系</strong>: 这些标签与**<code>QLineEdit</code>**控件配合，提供界面提示和说明。</li>
+</ul>
+</li>
+<li><strong><code>QPushButton *_chineseButton</code></strong> 和 <strong><code>QPushButton *_englishButton</code></strong>:<ul>
+<li><strong>功能</strong>: 提供直接的语言切换选项。</li>
+<li><strong>相互关系</strong>: 用户点击这些按钮会切换界面语言，并触发**<code>onLanguageChanged(int index)</code>**槽函数。</li>
+</ul>
+</li>
+<li><strong><code>QPushButton *_lightThemeButton</code></strong> 和 <strong><code>QPushButton *_darkThemeButton</code></strong>:<ul>
+<li><strong>功能</strong>: 提供切换界面主题的选项。</li>
+<li><strong>相互关系</strong>: 用户点击这些按钮会切换界面主题，并触发**<code>onThemeChanged(int index)</code>**槽函数。</li>
+</ul>
+</li>
+<li><strong><code>QTranslator _translator</code></strong>:<ul>
+<li><strong>功能</strong>: 用于加载和应用翻译文件，支持多语言界面。</li>
+<li><strong>相互关系</strong>: 通过调用**<code>updateUI()</code><strong>函数来更新界面语言，</strong><code>_translator</code>**会根据用户选择的语言重新加载翻译文件。</li>
+</ul>
+</li>
+</ul>
+<h5 id="MainWindow"><a href="#MainWindow" class="headerlink" title="MainWindow"></a>MainWindow</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 根据 ID 移除类</span><br>    <span class="hljs-comment">// @param id 要移除的类的 ID</span><br>    <span class="hljs-comment">// @return 如果成功移除返回 true，否则返回 false</span><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">removeById</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">int</span> id)</span></span>;<br>    <span class="hljs-comment">// 根据 ID 查找类</span><br>    <span class="hljs-comment">// @param classes 要搜索的 ClassInfo 对象列表</span><br>    <span class="hljs-comment">// @param id 要查找的类的 ID</span><br>    <span class="hljs-comment">// @return 查找到的 ClassInfo 对象的引用</span><br>    <span class="hljs-function">ClassInfo&amp; <span class="hljs-title">findClassById</span><span class="hljs-params">(QList&lt;ClassInfo&gt;&amp; classes, <span class="hljs-type">const</span> <span class="hljs-type">int</span> id)</span></span>;<br><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onAddClass</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理添加新类的操作</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onSaveData</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 保存类数据为 Dat 格式</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onLoadData</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 加载类数据为 Dat 格式</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onSaveDataXML</span><span class="hljs-params">()</span></span>;<span class="hljs-comment">// 保存类数据为 XML 格式</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onLoadDataXML</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 从 XML 文件加载类数据</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onSaveDataJSON</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 保存类数据为 JSON 格式</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onLoadDataJSON</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 从 JSON 文件加载类数据</span><br>    <span class="hljs-comment">// 处理表格单元格点击事件</span><br>    <span class="hljs-comment">// @param index 被点击单元格的索引</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onCellClicked</span><span class="hljs-params">(<span class="hljs-type">const</span> QModelIndex &amp;index)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onBackToLogin</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 返回登录窗口</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onSearchClicked</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理搜索按钮点击事件</span><br>    <span class="hljs-comment">// 处理搜索完成事件</span><br>    <span class="hljs-comment">// @param filteredClasses 符合搜索条件的类列表</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handleSearchCompleted</span><span class="hljs-params">(<span class="hljs-type">const</span> QList&lt;ClassInfo&gt; &amp;filteredClasses)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onCancelSearch</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理搜索取消事件</span><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">updateUI</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 更新 UI 元素</span><br>    QList&lt;ClassInfo&gt; _classes; <span class="hljs-comment">// 管理的 ClassInfo 对象列表</span><br>    QList&lt;ClassInfo&gt; _classes_T; <span class="hljs-comment">// 临时存储的 ClassInfo 对象列表，用于搜索等操作</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setupToolbar</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 设置工具栏</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">displayClasses</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 显示类列表</span><br>    <span class="hljs-comment">// 显示选定类的成员</span><br>    <span class="hljs-comment">// @param classInfo 要显示成员的 ClassInfo 对象</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">displayMembers</span><span class="hljs-params">(<span class="hljs-type">const</span> ClassInfo&amp; classInfo)</span></span>;<br>    QTableView* _tableView; <span class="hljs-comment">// 表格视图控件</span><br>    <span class="hljs-type">bool</span> _searchMode = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 标识是否处于搜索模式</span><br>    QPushButton *_searchButton; <span class="hljs-comment">// 搜索按钮</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>图例：</strong></p>
+<p><img src="/./24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/image-20240907001356860.png" srcset="/img/loading.gif" lazyload alt="image-20240907001356860"></p>
+<p><strong>相互关系：</strong></p>
+<ul>
+<li><p><strong><code>QList&lt;ClassInfo&gt; _classes</code></strong> 和 <strong><code>QList&lt;ClassInfo&gt; _classes_T</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 存储类信息的列表，用于管理和展示类数据。</li>
+<li><strong>相互关系</strong>: <strong><code>_classes</code></strong> 用于存储当前的类信息列表，**<code>_classes_T</code>** 用于临时存储在搜索或其他操作中的类信息。</li>
+</ul>
+</li>
+<li><p><strong><code>QTableView *_tableView</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于显示类信息和成员信息的表格视图。</li>
+<li><strong>相互关系</strong>: 与 <strong><code>MemberModel</code></strong> 结合，显示 <strong><code>ClassInfo</code></strong> 和 <strong><code>ClassMember</code></strong> 的数据。通过调用 <strong><code>displayClasses()</code></strong> 和 <strong><code>displayMembers(const ClassInfo&amp; classInfo)</code></strong> 函数来更新视图。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_searchButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 提供执行搜索操作的按钮。</li>
+<li><strong>相互关系</strong>: 点击此按钮会触发 <strong><code>onSearchClicked()</code></strong> 槽函数，进行类信息的搜索，并更新显示的结果。</li>
+</ul>
+</li>
+<li><p><strong><code>void displayClasses()</code></strong>:</p>
+<ul>
+<li><p><strong>功能</strong>: 显示所有类的信息。</p>
+</li>
+<li><p><strong>相互关系</strong>: 更新 <strong><code>_tableView</code></strong> 显示的内容，展示 <strong><code>_classes</code></strong> 列表中的所有类。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>void displayMembers(const ClassInfo&amp; classInfo)</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 显示指定类的成员信息。</li>
+<li><strong>相互关系</strong>: 更新 <strong><code>_tableView</code></strong> 显示的内容，展示指定 <strong><code>ClassInfo</code></strong> 对象中的成员数据。</li>
+</ul>
+</li>
+<li><p><strong><code>bool removeById(const int id)</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 从 <strong><code>_classes</code></strong> 或 <strong><code>_classes_T</code></strong> 列表中删除指定 ID 的类信息。</li>
+<li><strong>相互关系:</strong> 如果处于搜索模式，首先在 <strong><code>_classes_T</code></strong> 中查找并删除具有指定 ID 的类信息。随后，从 <strong><code>_classes</code></strong> 中查找并删除具有指定 ID 的类信息。</li>
+</ul>
+</li>
+</ul>
+<h5 id="UserManagementWindow"><a href="#UserManagementWindow" class="headerlink" title="UserManagementWindow"></a>UserManagementWindow</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onAddUser</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 添加用户槽函数</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onDeleteUser</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 删除用户槽函数</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">saveUserData</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 保存用户数据槽函数</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onBackToLogin</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 返回登录界面槽函数</span><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setupUI</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 设置用户界面</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loadUserData</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 加载用户数据</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">showUsers</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 显示用户列表</span><br>    QTableView *_tableView; <span class="hljs-comment">// 用户表格视图</span><br>    QPushButton *_addButton; <span class="hljs-comment">// 添加用户按钮</span><br>    QPushButton *_deleteButton; <span class="hljs-comment">// 删除用户按钮</span><br>    QPushButton *_saveButton; <span class="hljs-comment">// 保存用户数据按钮</span><br>    QLineEdit *_usernameEdit; <span class="hljs-comment">// 用户名输入框</span><br>    QLineEdit *_passwordEdit; <span class="hljs-comment">// 密码输入框</span><br>    QPushButton *_backToLogin; <span class="hljs-comment">// 返回登录界面按钮</span><br>    QList&lt;QPair&lt;QString, QString&gt;&gt; _users; <span class="hljs-comment">// 存储用户信息的列表（用户名和密码的键值对）</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>图例：</strong></p>
+<img src="./24暑期学校课设报告/image-20240907001731554.png" srcset="/img/loading.gif" lazyload alt="image-20240907001731554" style="zoom:50%;" />
+
+<p><strong>相互关系：</strong></p>
+<ul>
+<li><p><strong><code>QTableView *_tableView</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 显示用户信息的表格视图。</li>
+<li><strong>相互关系</strong>: 与 <code>UserModel</code> 关联，用于展示 <code>QList&lt;QPair&lt;QString, QString&gt;&gt; _users</code> 中的用户数据。<code>showUsers()</code> 函数负责更新该视图的内容。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_addButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 添加新用户。</li>
+<li><strong>相互关系</strong>: 当点击此按钮时，<code>onAddUser()</code> 槽函数会被调用，允许用户输入新用户的用户名和密码，并将其添加到 <code>_users</code> 列表中。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_deleteButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 删除选中的用户。</li>
+<li><strong>相互关系</strong>: 当点击此按钮时，<code>onDeleteUser()</code> 槽函数会被调用，删除表格视图中选中的用户项，同时从 <code>_users</code> 列表中移除对应的用户。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_saveButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 保存用户数据到文件<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="程序执行初，会在系统Documents目录创建`/OOPM/passports/`文件夹，文件指该路径下的users.bat文件">[1]</span></a></sup>。</li>
+<li><strong>相互关系</strong>: 当点击此按钮时，<code>saveUserData()</code> 槽函数会被调用，将 <code>_users</code> 列表中的用户数据保存到持久化存储中（如文件）。</li>
+</ul>
+</li>
+<li><p><strong><code>QLineEdit *_usernameEdit</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 输入新用户的用户名。</li>
+<li><strong>相互关系</strong>: 与 <code>QPushButton *_addButton</code> 配合使用，用户输入的用户名将用于 <code>onAddUser()</code> 函数中添加新用户。</li>
+</ul>
+</li>
+<li><p><strong><code>QLineEdit *_passwordEdit</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 输入新用户的密码。</li>
+<li><strong>相互关系</strong>: 与 <code>QPushButton *_addButton</code> 配合使用，用户输入的密码将用于 <code>onAddUser()</code> 函数中添加新用户。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_backToLogin</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 返回登录界面。</li>
+<li><strong>相互关系</strong>: 当点击此按钮时，<code>onBackToLogin()</code> 槽函数会被调用，保存用户数据到文件，关闭当前的 <code>UserManagementWindow</code> 并返回到登录界面。</li>
+</ul>
+</li>
+<li><p><strong><code>QList&lt;QPair&lt;QString, QString&gt;&gt; _users</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 存储用户的用户名和密码。</li>
+<li><strong>相互关系</strong>: 与 <code>QTableView *_tableView</code> 和 <code>UserModel</code> 关联，<code>_users</code> 列表中的数据通过 <code>showUsers()</code> 函数展示在表格视图中，并且可以被 <code>onAddUser()</code> 和 <code>onDeleteUser()</code> 操作。</li>
+</ul>
+</li>
+</ul>
+<h5 id="CreateClassDialog"><a href="#CreateClassDialog" class="headerlink" title="CreateClassDialog"></a>CreateClassDialog</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 构造函数，初始化对话框，并设置类信息和模式</span><br>    <span class="hljs-built_in">CreateClassDialog</span>(QWidget *parent = <span class="hljs-literal">nullptr</span>, <span class="hljs-type">const</span> QList&lt;ClassInfo&gt; &amp;classes = &#123;&#125;, <span class="hljs-type">const</span> ClassInfo &amp;classInfo = <span class="hljs-built_in">ClassInfo</span>(), <span class="hljs-type">const</span> <span class="hljs-type">bool</span> isModifyMode = <span class="hljs-literal">false</span>);<br>    <span class="hljs-function">ClassInfo <span class="hljs-title">getClassInfo</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>; <span class="hljs-comment">// 获取当前编辑的类信息</span><br><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onAddMemberClicked</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 添加成员按钮点击事件处理</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onMemberClicked</span><span class="hljs-params">(QListWidgetItem *item)</span></span>; <span class="hljs-comment">// 成员列表项点击事件处理</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onIdChanged</span><span class="hljs-params">(<span class="hljs-type">const</span> QString &amp;text)</span></span>; <span class="hljs-comment">// 类ID变化事件处理</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onNameChanged</span><span class="hljs-params">(<span class="hljs-type">const</span> QString &amp;text)</span></span>; <span class="hljs-comment">// 类名称变化事件处理</span><br><span class="hljs-keyword">private</span>:<br>    QLineEdit *_idEdit; <span class="hljs-comment">// 类ID输入框</span><br>    QLineEdit *_nameEdit; <span class="hljs-comment">// 类名称输入框</span><br>    QLineEdit *_baseClassNameEdit; <span class="hljs-comment">// 基类名称输入框</span><br>    QTextEdit *_functionEdit; <span class="hljs-comment">// 类功能描述输入框</span><br>    QDateTimeEdit *_creationDateEdit; <span class="hljs-comment">// 创建日期选择框</span><br>    QLineEdit *_authorEdit; <span class="hljs-comment">// 作者输入框</span><br>    QListWidget *_membersListWidget; <span class="hljs-comment">// 成员列表控件</span><br>    QLabel *_idWarningLabel; <span class="hljs-comment">// 类ID警告标签</span><br>    QLabel *_nameWarningLabel; <span class="hljs-comment">// 类名称警告标签</span><br>    QList&lt;ClassMember&gt; _members; <span class="hljs-comment">// 类成员列表</span><br>    QPushButton *_createButton; <span class="hljs-comment">// 创建按钮</span><br>    <span class="hljs-type">bool</span> _isModifyMode; <span class="hljs-comment">// 标记是否为修改模式</span><br>    <span class="hljs-type">const</span> QList&lt;ClassInfo&gt; &amp;_classes; <span class="hljs-comment">// 所有类的信息列表</span><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isIdExists</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 检查ID是否存在</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>图例：</strong></p>
+<img src="./24暑期学校课设报告/image-20240907001909653.png" srcset="/img/loading.gif" lazyload alt="image-20240907001909653" style="zoom:50%;" />
+
+<p><strong>相互关系：</strong></p>
+<ul>
+<li><p><strong><code>QLineEdit *_idEdit</code></strong> 和 <strong><code>QLineEdit *_nameEdit</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于输入类的ID和名称。</li>
+<li><strong>相互关系</strong>: 这些输入框的内容会影响类的唯一标识和名称，<code>onIdChanged(const QString &amp;text)</code> 和 <code>onNameChanged(const QString &amp;text)</code> 槽函数会根据这些输入实时更新界面或检查有效性。</li>
+</ul>
+</li>
+<li><p><strong><code>QLineEdit *_baseClassNameEdit</code></strong> 和 <strong><code>QTextEdit *_functionEdit</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于输入基类名称和类功能描述。</li>
+<li><strong>相互关系</strong>: 这些输入框提供额外的类信息，影响类的描述和功能。</li>
+</ul>
+</li>
+<li><p><strong><code>QDateTimeEdit *_creationDateEdit</code></strong> 和 <strong><code>QLineEdit *_authorEdit</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于选择创建日期和输入作者信息。</li>
+<li><strong>相互关系</strong>: 提供类创建的时间戳和作者信息，帮助记录和管理类的创建信息。</li>
+</ul>
+</li>
+<li><p><strong><code>QListWidget *_membersListWidget</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 显示类的成员列表。</li>
+<li><strong>相互关系</strong>: 显示当前类的所有成员，用户可以通过 <code>onMemberClicked(QListWidgetItem *item)</code> 槽函数来选择或编辑成员。</li>
+</ul>
+</li>
+<li><p><strong><code>QLabel *_idWarningLabel</code></strong> 和 <strong><code>QLabel *_nameWarningLabel</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 显示类ID和名称的警告信息。</li>
+<li><strong>相互关系</strong>: 提供输入验证的反馈信息，确保类ID和名称的唯一性和有效性。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_createButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 提交创建或修改类的信息。</li>
+<li><strong>相互关系</strong>: 触发对话框的创建或更新操作，根据 <code>_isModifyMode</code> 标志来决定是创建新类还是修改现有类。</li>
+</ul>
+</li>
+<li><p><strong><code>const QList&lt;ClassInfo&gt; &amp;_classes</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 存储所有类的信息，用于验证新类的ID是否已存在。</li>
+<li><strong>相互关系</strong>: 提供所有已存在类的信息，以确保新类的ID唯一性，通过 <code>isIdExists()</code> 函数检查ID是否重复。</li>
+</ul>
+</li>
+</ul>
+<h5 id="CreateMemberDialog"><a href="#CreateMemberDialog" class="headerlink" title="CreateMemberDialog"></a>CreateMemberDialog</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">CreateMemberDialog</span><span class="hljs-params">(QWidget *parent = <span class="hljs-literal">nullptr</span>, <span class="hljs-type">const</span> QList&lt;ClassMember&gt; &amp;members = &#123;&#125;, <span class="hljs-type">const</span> ClassMember &amp;member = ClassMember(), <span class="hljs-type">bool</span> isModifyMode = <span class="hljs-literal">false</span>)</span></span>; <span class="hljs-comment">// 构造函数，初始化对话框，设置成员信息和模式</span><br>    <span class="hljs-function">ClassMember <span class="hljs-title">getClassMember</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>; <span class="hljs-comment">// 获取当前编辑的成员信息</span><br><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onMemberTypeChanged</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 成员类型变化事件处理</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onDataTypeChanged</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 数据类型变化事件处理</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onIdChanged</span><span class="hljs-params">(<span class="hljs-type">const</span> QString &amp;text)</span></span>; <span class="hljs-comment">// 成员ID变化事件处理</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onNameChanged</span><span class="hljs-params">(<span class="hljs-type">const</span> QString &amp;text)</span></span>; <span class="hljs-comment">// 成员名称变化事件处理</span><br><span class="hljs-keyword">private</span>:<br>    QLineEdit *_idEdit; <span class="hljs-comment">// 成员ID输入框</span><br>    QLineEdit *_nameEdit; <span class="hljs-comment">// 成员名称输入框</span><br>    QComboBox *_memberTypeComboBox; <span class="hljs-comment">// 成员类型下拉框</span><br>    QSpinBox *_memorySizeSpinBox; <span class="hljs-comment">// 内存大小输入框</span><br>    QComboBox *_dataTypeComboBox; <span class="hljs-comment">// 数据类型下拉框</span><br>    QComboBox *_accessibilityComboBox; <span class="hljs-comment">// 可访问性下拉框</span><br>    <span class="hljs-type">const</span> QList&lt;ClassMember&gt; &amp;_members; <span class="hljs-comment">// 所有成员的信息列表</span><br>    <span class="hljs-type">bool</span> _isModifyMode; <span class="hljs-comment">// 标记是否为修改模式</span><br>    QPushButton *_createButton; <span class="hljs-comment">// 创建按钮</span><br>    QLabel *_idWarningLabel; <span class="hljs-comment">// 成员ID警告标签</span><br>    QLabel *_nameWarningLabel; <span class="hljs-comment">// 成员名称警告标签</span><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isIdExists</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 检查ID是否存在</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>图例：</strong></p>
+<img src="./24暑期学校课设报告/image-20240907001943423.png" srcset="/img/loading.gif" lazyload alt="image-20240907001943423" style="zoom:50%;" />
+
+<p><strong>相互关系：</strong></p>
+<ul>
+<li><p><strong><code>QLineEdit *_idEdit</code></strong> 和 <strong><code>QLineEdit *_nameEdit</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于输入成员的ID和名称。</li>
+<li><strong>相互关系</strong>: 这些输入框的内容影响成员的唯一标识和名称，<code>onIdChanged(const QString &amp;text)</code> 和 <code>onNameChanged(const QString &amp;text)</code> 槽函数会根据这些输入实时更新界面或检查有效性。</li>
+</ul>
+</li>
+<li><p><strong><code>QComboBox *_memberTypeComboBox</code></strong> 和 <strong><code>QComboBox *_dataTypeComboBox</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于选择成员类型和数据类型。</li>
+<li><strong>相互关系</strong>: 这些下拉框提供成员的额外信息，<code>onMemberTypeChanged()</code> 和 <code>onDataTypeChanged()</code> 槽函数处理这些选择的变化并更新相关的UI元素或数据。</li>
+</ul>
+</li>
+<li><p><strong><code>QSpinBox *_memorySizeSpinBox</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 输入或选择成员的内存大小。</li>
+<li><strong>相互关系</strong>: 该控件的值影响成员的内存分配，确保数据准确，处理内存大小的更改涉及到对其他属性的调整。</li>
+</ul>
+</li>
+<li><p><strong><code>QComboBox *_accessibilityComboBox</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 选择成员的可访问性（公有、私有、保护）。</li>
+<li><strong>相互关系</strong>: 提供成员的访问控制信息，影响类成员的访问权限。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_createButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 提交创建或修改成员的信息。</li>
+<li><strong>相互关系</strong>: 触发对话框的创建或更新操作，根据 <code>_isModifyMode</code> 标志来决定是创建新成员还是修改现有成员。</li>
+</ul>
+</li>
+<li><p><strong><code>QLabel *_idWarningLabel</code></strong> 和 <strong><code>QLabel *_nameWarningLabel</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 显示成员ID和名称的警告信息。</li>
+<li><strong>相互关系</strong>: 提供输入验证的反馈信息，确保成员ID和名称的唯一性和有效性。</li>
+</ul>
+</li>
+<li><p><strong><code>const QList&lt;ClassMember&gt; &amp;_members</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 存储所有成员的信息，用于验证新成员的ID是否已存在。</li>
+<li><strong>相互关系</strong>: 提供所有已存在成员的信息，以确保新成员的ID唯一性，通过 <code>isIdExists()</code> 函数检查ID是否重复。</li>
+</ul>
+</li>
+</ul>
+<h5 id="MemberDetailsDialog"><a href="#MemberDetailsDialog" class="headerlink" title="MemberDetailsDialog"></a>MemberDetailsDialog</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">MemberDetailsDialog</span><span class="hljs-params">(<span class="hljs-type">const</span> ClassMember &amp;member, QWidget *parent = <span class="hljs-literal">nullptr</span>)</span></span>; <span class="hljs-comment">// 构造函数，初始化对话框并显示成员详情</span><br>signals:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">memberDeleted</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 成员删除信号，删除操作后发出该信号</span><br><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onDeleteButtonClicked</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理删除按钮点击事件</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onReturnButtonClicked</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理返回按钮点击事件</span><br><span class="hljs-keyword">private</span>:<br>    QLabel *_memberDetailsLabel; <span class="hljs-comment">// 显示成员详细信息的标签</span><br>    QPushButton *_deleteButton; <span class="hljs-comment">// 删除按钮</span><br>    QPushButton *_returnButton; <span class="hljs-comment">// 返回按钮</span><br>    ClassMember _member; <span class="hljs-comment">// 当前显示的成员信息</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>图例：</strong></p>
+<img src="./24暑期学校课设报告/image-20240907002251609.png" srcset="/img/loading.gif" lazyload alt="image-20240907002251609" style="zoom:50%;" />
+
+<p><strong>相互关系：</strong></p>
+<ul>
+<li><p><strong><code>QLabel *_memberDetailsLabel</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于显示成员的详细信息。</li>
+<li><strong>相互关系</strong>: 该标签通过 <code>_member</code> 数据显示成员的各项属性，帮助用户查看成员详情。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_deleteButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 提供删除当前显示成员的功能。</li>
+<li><strong>相互关系</strong>: 当用户点击该按钮时，会调用 <code>onDeleteButtonClicked()</code> 槽函数，执行删除操作，并发出 <code>memberDeleted()</code> 信号，通知其他组件成员已被删除。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_returnButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 返回上一级或关闭当前对话框。</li>
+<li><strong>相互关系</strong>: 用户点击此按钮时，会调用 <code>onReturnButtonClicked()</code> 槽函数，关闭对话框或返回上一级界面。</li>
+</ul>
+</li>
+<li><p><strong><code>ClassMember _member</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 存储当前显示的成员信息。</li>
+<li><strong>相互关系</strong>: 该成员变量用于在界面中展示成员详情，并在需要时执行删除操作，确保界面显示的信息与数据保持一致。</li>
+</ul>
+</li>
+</ul>
+<h5 id="MembersDetailDialog"><a href="#MembersDetailDialog" class="headerlink" title="MembersDetailDialog"></a>MembersDetailDialog</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">MembersDetailDialog</span><span class="hljs-params">(QList&lt;ClassMember&gt; &amp;members, QWidget *parent = <span class="hljs-literal">nullptr</span>)</span></span>; <span class="hljs-comment">// 构造函数，初始化对话框并显示成员列表</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">showMembers</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 显示成员列表</span><br>    <span class="hljs-function">QList&lt;ClassMember&gt; <span class="hljs-type">const</span> <span class="hljs-title">getMembers</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> _members; &#125; <span class="hljs-comment">// 获取成员列表</span><br><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onAddMember</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理添加成员操作</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onCellClicked</span><span class="hljs-params">(<span class="hljs-type">const</span> QModelIndex &amp;index)</span></span>; <span class="hljs-comment">// 处理表格单元格点击事件</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">updateTotalSize</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 更新成员总大小标签</span><br><span class="hljs-keyword">private</span>:<br>    QList&lt;ClassMember&gt; _members; <span class="hljs-comment">// 成员列表</span><br>    QTableView *_tableView; <span class="hljs-comment">// 显示成员的表格视图</span><br>    MemberModel *_model; <span class="hljs-comment">// 成员数据模型，用于管理表格数据</span><br>    QLabel *_totalSizeLabel; <span class="hljs-comment">// 显示成员总大小的标签</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>图例：</strong></p>
+<p><img src="/./24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/image-20240907002436977.png" srcset="/img/loading.gif" lazyload alt="image-20240907002436977"></p>
+<p><strong>相互关系：</strong></p>
+<ul>
+<li><p><strong><code>QList&lt;ClassMember&gt; _members</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 存储所有成员的信息。</li>
+<li><strong>相互关系</strong>: 该列表中的成员信息用于在表格视图中显示，并由 <code>_model</code> 数据模型管理，更新操作通过 <code>onAddMember()</code> 和 <code>onCellClicked()</code> 等槽函数影响成员列表的内容。</li>
+</ul>
+</li>
+<li><p><strong><code>QTableView *_tableView</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于在界面中以表格形式显示成员信息。</li>
+<li><strong>相互关系</strong>: 该视图通过 <code>_model</code> 数据模型显示 <code>_members</code> 列表中的内容。用户点击表格中的某个单元格时，会触发 <code>onCellClicked()</code> 槽函数，进行相应处理。</li>
+</ul>
+</li>
+<li><p><strong><code>MemberModel *_model</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 管理成员数据的模型，负责向表格视图提供数据。</li>
+<li><strong>相互关系</strong>: 该模型与 <code>_tableView</code> 直接关联，确保表格显示的数据与 <code>_members</code> 列表一致。每次成员列表更新后，表格内容也会随之更新。</li>
+</ul>
+</li>
+<li><p><strong><code>QLabel *_totalSizeLabel</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 显示所有成员的总内存大小。</li>
+<li><strong>相互关系</strong>: 通过 <code>updateTotalSize()</code> 函数计算并更新该标签的内容，以反映当前成员列表中的总内存大小信息。</li>
+</ul>
+</li>
+</ul>
+<h5 id="SearchDialog"><a href="#SearchDialog" class="headerlink" title="SearchDialog"></a>SearchDialog</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">SearchDialog</span>(<span class="hljs-type">const</span> QList&lt;ClassInfo&gt; &amp;classes, QWidget *parent = <span class="hljs-literal">nullptr</span>); <span class="hljs-comment">// 构造函数，初始化搜索对话框并传入类信息列表</span><br>signals:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">searchCompleted</span><span class="hljs-params">(<span class="hljs-type">const</span> QList&lt;ClassInfo&gt; &amp;filteredClasses)</span></span>; <span class="hljs-comment">// 发出搜索完成信号，并传递过滤后的类信息列表</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">cancelSearch</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 发出取消搜索的信号</span><br><span class="hljs-keyword">private</span> slots:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onSearch</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理搜索操作</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onCancel</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理取消操作</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">onDateTimeChange</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 处理日期范围变化事件</span><br><span class="hljs-keyword">private</span>:<br>	QLineEdit *_idEdit; <span class="hljs-comment">// 用于输入类id的编辑框</span><br>    QLineEdit *_nameEdit; <span class="hljs-comment">// 用于输入类名称的编辑框</span><br>    QLineEdit *_authorEdit; <span class="hljs-comment">// 用于输入作者名称的编辑框</span><br>    QComboBox *_dateRangeComboBox; <span class="hljs-comment">// 用于选择日期范围的下拉框</span><br>    QDateTimeEdit *_startDateEdit; <span class="hljs-comment">// 用于选择开始日期的日期时间编辑框</span><br>    QDateTimeEdit *_endDateEdit; <span class="hljs-comment">// 用于选择结束日期的日期时间编辑框</span><br>    QPushButton *_searchButton; <span class="hljs-comment">// 触发搜索操作的按钮</span><br>    QPushButton *_cancelButton; <span class="hljs-comment">// 触发取消操作的按钮</span><br>    QList&lt;ClassInfo&gt; _classes; <span class="hljs-comment">// 存储原始的类信息列表</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>图例：</strong></p>
+<p><img src="/./24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/image-20240907002526750.png" srcset="/img/loading.gif" lazyload alt="image-20240907002526750"></p>
+<p><strong>相互关系：</strong></p>
+<ul>
+<li><p><strong><code>QLineEdit *_nameEdit</code></strong> 和 <strong><code>QLineEdit *_authorEdit</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 分别用于输入类名和作者名。</li>
+<li><strong>相互关系</strong>: 这些输入框中的文本在用户点击**<code>_searchButton</code>**时被读取，用于过滤类信息列表 <code>_classes</code>，并调用 <code>onSearch()</code> 进行搜索操作。</li>
+</ul>
+</li>
+<li><p><strong><code>QComboBox *_dateRangeComboBox</code><strong>、</strong><code>QDateTimeEdit *_startDateEdit</code></strong> 和 <strong><code>QDateTimeEdit *_endDateEdit</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 用于选择和输入搜索时的日期范围。</li>
+<li><strong>相互关系</strong>: 用户选择或修改日期范围时，会触发 <code>onDateTimeChange()</code>，调整开始和结束日期的可选范围，以保证搜索条件的有效性。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_searchButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 触发搜索操作。</li>
+<li><strong>相互关系</strong>: 用户点击该按钮时，会调用 <code>onSearch()</code> 槽函数，使用输入框和日期选择器的内容来过滤 <code>_classes</code> 列表，并通过 <code>searchCompleted()</code> 信号返回过滤后的结果。</li>
+</ul>
+</li>
+<li><p><strong><code>QPushButton *_cancelButton</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 取消当前搜索操作并关闭对话框。</li>
+<li><strong>相互关系</strong>: 点击该按钮时，会调用 <code>onCancel()</code> 槽函数，发出 <code>cancelSearch()</code> 信号以通知搜索被取消，同时关闭对话框。</li>
+</ul>
+</li>
+<li><p><strong><code>QList&lt;ClassInfo&gt; _classes</code></strong>:</p>
+<ul>
+<li><strong>功能</strong>: 存储原始的类信息列表，用于搜索和过滤。</li>
+<li><strong>相互关系</strong>: 该列表中的数据通过 <code>onSearch()</code> 进行过滤，并在搜索完成后通过 <code>searchCompleted()</code> 信号传递给调用者。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-程序所完成的功能"><a href="#3-程序所完成的功能" class="headerlink" title="3. 程序所完成的功能"></a>3. 程序所完成的功能</h3><ol>
+<li><p><strong>创建和管理类信息的对象</strong></p>
+<p>使用 <code>ClassInfo</code> 实例化类，使用 <code>ClassModel</code> 与 <code>MainWindow</code> 中的表格实现对类的展示。</p>
+</li>
+<li><p><strong>创建和管理类成员信息的对象</strong></p>
+<p>使用 <code>ClassMember</code> 实例化类，使用 <code>MemberModel</code> 与 <code>MembersDetailDialog</code> 中的表格实现对成员的展示。</p>
+</li>
+<li><p><strong>增加和删除类</strong></p>
+<p>在 <code>MainWindow</code> 中操作相关控件实现。</p>
+</li>
+<li><p><strong>针对特定类增加或删除类成员信息</strong></p>
+<p>在 <code>MainWindow</code> 中点击特定类的类成员信息打开 <code>MembersDetailDialog</code> 来增删改。</p>
+</li>
+<li><p><strong>基本查询功能</strong></p>
+<p>在 <code>MainWindow</code> 工具栏中点击 <code>Search</code> 控件，实现id，名称，作者，时间的多重筛选查询。</p>
+</li>
+<li><p><strong>数据文件读写</strong></p>
+<p>在 <code>MainWindow</code> 工具栏中点击相应文件菜单，实现对应操作。</p>
+</li>
+<li><p><strong>基本信息显示</strong></p>
+<p>在 <code>MainWindow</code> 中使用表格直观展示信息。</p>
+</li>
+</ol>
+<h3 id="4-额外实现的功能"><a href="#4-额外实现的功能" class="headerlink" title="4. 额外实现的功能"></a>4. 额外实现的功能</h3><ol>
+<li><p><strong>多语言支持</strong>：</p>
+<p>系统实现了通过 <code>QTranslator</code> 进行多语言切换的功能，允许用户选择不同的界面语言。</p>
+</li>
+<li><p><strong>主题切换</strong>：</p>
+<p>提供了明亮主题和黑暗主题的切换功能，用户可以通过按钮在不同的界面主题之间切换。</p>
+</li>
+<li><p><strong>多文件支持</strong>：</p>
+<p>实现了Dat、XML、JSON文件的统一，可以进行数据互通。</p>
+</li>
+<li><p><strong>类和成员信息的修改功能</strong>：</p>
+<p>可以直接修改已有的类和类成员信息，而无需先删除再重新添加，提升了系统的灵活性和用户体验。</p>
+</li>
+<li><p><strong>可行性验证</strong>：</p>
+<p>在创建或编辑类和类成员时，系统提供了实时的ID与名称验证功能，防止重复ID的使用，防止ID与名称为空，并在发现错误时禁用创建按钮。</p>
+</li>
+<li><p><strong>多端协同</strong>：</p>
+<p>实现了管理员和常规用户的分别登录，管理员，支持添加、删除、保存用户数据，用户进行类管理。</p>
+</li>
+<li><p><strong>密码哈希加密</strong>：</p>
+<p>在用户登录功能中，密码进行了哈希加密<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="将密码转换为`QByteArray`，使用SHA-256算法生成哈希值，并将哈希值转换为十六进制字符串以便于存储和比较。">[2]</span></a></sup>存储和验证，增强了系统的安全性。</p>
+</li>
+</ol>
+<h2 id="三、-文件格式描述"><a href="#三、-文件格式描述" class="headerlink" title="三、 文件格式描述"></a>三、 文件格式描述</h2><p><em>（详细描述所保存和读取的文件格式）</em></p>
+<h3 id="1-JSON"><a href="#1-JSON" class="headerlink" title="1. JSON"></a>1. JSON</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;Author&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Author1&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;BaseClassName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;BaseManager&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;CreationDate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2024-08-01T10:00:00&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Function&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Handles data operations.&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;ID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Members&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>            <span class="hljs-punctuation">&#123;</span><br>                <span class="hljs-attr">&quot;Accessibility&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Public&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-attr">&quot;DataType&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Double&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-attr">&quot;MemberID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-attr">&quot;MemberName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;dataField&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-attr">&quot;MemberType&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Data&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-attr">&quot;MemorySize&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">8</span><br>            <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-punctuation">&#123;</span><br>            	<span class="hljs-comment">// other Member</span><br>            <span class="hljs-punctuation">&#125;</span><br>        <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;Name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DataManager&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-comment">// other Class</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>Author</code></strong>: 记录创建类的作者信息。</li>
+<li><strong><code>BaseClassName</code></strong>: 类的基类名称，如果当前类是从另一个类继承而来的，这里会显示基类的名称。</li>
+<li><strong><code>CreationDate</code></strong>: 类的创建日期和时间，使用标准的 ISO 8601 日期格式（<code>YYYY-MM-DDTHH:MM:SS</code>）。</li>
+<li><strong><code>Function</code></strong>: 描述类的主要功能或职责。</li>
+<li><strong><code>ID</code></strong>: 类的唯一标识符，用于区分不同的类对象。</li>
+<li><strong><code>Members</code></strong>: 存储类成员信息的数组，每个成员信息包括以下字段：<ul>
+<li><strong><code>Accessibility</code></strong>: 成员的访问权限，如<code>Public</code>（公共）、<code>Private</code>（私有）、<code>Protected</code>（受保护）。</li>
+<li><strong><code>DataType</code></strong>: 成员的数据类型，如 <code>Double</code>、<code>Int</code>、<code>String</code>等。</li>
+<li><strong><code>MemberID</code></strong>: 成员的唯一标识符，用于区分不同的成员。</li>
+<li><strong><code>MemberName</code></strong>: 成员的名称，通常是变量或函数的名称。</li>
+<li><strong><code>MemberType</code></strong>: 成员类型，表示该成员是数据成员还是函数成员（例如 <code>Data</code> 或 <code>Function</code>）。</li>
+<li><strong><code>MemorySize</code></strong>: 数据成员的内存大小（以字节为单位），函数成员通常为 <code>0</code>。</li>
+</ul>
+</li>
+<li><strong><code>Name</code></strong>: 类的名称，用于标识和引用该类。</li>
+</ul>
+<h3 id="2-XML"><a href="#2-XML" class="headerlink" title="2. XML"></a>2. XML</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Classes</span>&gt;</span> 	<br>	<span class="hljs-tag">&lt;<span class="hljs-name">Class</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">ID</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">ID</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Name</span>&gt;</span>UserController<span class="hljs-tag">&lt;/<span class="hljs-name">Name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">BaseClassName</span>&gt;</span>BaseController<span class="hljs-tag">&lt;/<span class="hljs-name">BaseClassName</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Function</span>&gt;</span>Manages user-related functions.<span class="hljs-tag">&lt;/<span class="hljs-name">Function</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">CreationDate</span>&gt;</span>2024-08-02T11:00:00<span class="hljs-tag">&lt;/<span class="hljs-name">CreationDate</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Author</span>&gt;</span>Author2<span class="hljs-tag">&lt;/<span class="hljs-name">Author</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Members</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">Member</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">MemberID</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">MemberID</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">MemberName</span>&gt;</span>userID<span class="hljs-tag">&lt;/<span class="hljs-name">MemberName</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">MemberType</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">MemberType</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">MemorySize</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">MemorySize</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">DataType</span>&gt;</span>Int<span class="hljs-tag">&lt;/<span class="hljs-name">DataType</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">Accessibility</span>&gt;</span>Private<span class="hljs-tag">&lt;/<span class="hljs-name">Accessibility</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">Member</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">member</span>&gt;</span><br>                <span class="hljs-comment">&lt;!-- ... --&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">member</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">Members</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">Class</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">Class</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- ... --&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">Class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Classes</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>&lt;Class&gt;</code></strong>: 表示一个类对象的整体信息，包含该类的所有属性和成员。<ul>
+<li><strong><code>&lt;ID&gt;</code></strong>: 类的唯一标识符，用于区分不同的类对象。</li>
+<li><strong><code>&lt;Name&gt;</code></strong>: 类的名称，用于标识和引用该类。</li>
+<li><strong><code>&lt;BaseClassName&gt;</code></strong>: 类的基类名称，如果当前类是从另一个类继承而来的，这里会显示基类的名称。</li>
+<li><strong><code>&lt;Function&gt;</code></strong>: 描述类的主要功能或职责。</li>
+<li><strong><code>&lt;CreationDate&gt;</code></strong>: 类的创建日期和时间，使用标准的 ISO 8601 日期格式（<code>YYYY-MM-DDTHH:MM:SS</code>）。</li>
+<li><strong><code>&lt;Author&gt;</code></strong>: 记录创建类的作者信息。</li>
+<li><strong><code>&lt;Members&gt;</code></strong>: 存储类成员信息的集合标签，包含若干个 <code>&lt;Member&gt;</code> 标签，每个 <code>&lt;Member&gt;</code> 标签表示一个类成员。<ul>
+<li><strong><code>&lt;Member&gt;</code></strong>: 描述类中的一个成员的具体信息。<ul>
+<li><strong><code>&lt;MemberID&gt;</code></strong>: 成员的唯一标识符，用于区分不同的成员。</li>
+<li><strong><code>&lt;MemberName&gt;</code></strong>: 成员的名称，通常是变量或函数的名称。</li>
+<li><strong><code>&lt;MemberType&gt;</code></strong>: 成员类型，表示该成员是数据成员还是函数成员（例如 <code>Data</code> 或 <code>Function</code>）。</li>
+<li><strong><code>&lt;MemorySize&gt;</code></strong>: 数据成员的内存大小（以字节为单位），函数成员通常为 <code>0</code>。</li>
+<li><strong><code>&lt;DataType&gt;</code></strong>: 成员的数据类型，如 <code>Int</code>、<code>Void</code>、<code>String</code>等。</li>
+<li><strong><code>&lt;Accessibility&gt;</code></strong>: 成员的访问权限，如 <code>Public</code>（公共）、<code>Private</code>（私有）、<code>Protected</code>（受保护）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Dat"><a href="#3-Dat" class="headerlink" title="3. Dat"></a>3. Dat</h3><ul>
+<li><p>类数据块:</p>
+<p>保存类的各个属性（ID、名称、基类名、功能、创建日期、作者）。</p>
+<p>保存成员的数量。</p>
+<p>依次保存每个成员的数据。</p>
+</li>
+<li><p>成员数据块:</p>
+<p>保存成员的各个属性（ID、名称、类型、内存大小、数据类型、访问权限），其中枚举类型被转换为整数进行保存。</p>
+</li>
+</ul>
+<h2 id="四、-具体实现过程"><a href="#四、-具体实现过程" class="headerlink" title="四、 具体实现过程"></a>四、 具体实现过程</h2><p><em>（详细描述按照什么顺序进行程序搭建，在实现中碰到的问题以及解决的方法）</em></p>
+<h3 id="1-需求分析与规划阶段"><a href="#1-需求分析与规划阶段" class="headerlink" title="1. 需求分析与规划阶段"></a>1. 需求分析与规划阶段</h3><p>在开始程序的实现之前，首先进行了需求分析，以明确系统的功能需求、数据结构和用户界面。确定了以下主要功能：</p>
+<ul>
+<li>用户管理与登录</li>
+<li>类和成员信息管理</li>
+<li>数据的保存与加载（支持 XML、JSON 和 DAT 格式）</li>
+<li>界面设计和用户交互</li>
+</ul>
+<h3 id="2-准备工具阶段"><a href="#2-准备工具阶段" class="headerlink" title="2. 准备工具阶段"></a>2. 准备工具阶段</h3><ul>
+<li><p><strong>Qt Creator</strong>：使用 Qt Creator 作为主要的开发环境。虽然 Qt Creator 提供了可视化的 UI 设计器，但在这个项目中我决定完全使用代码编写 UI，以实现更高的自定义性和灵活性。</p>
+</li>
+<li><p><strong>Qt Linguist</strong>：选用 Qt Linguist来构建应用的翻译功能。这一工具帮助创建和管理多语言支持，允许在应用中动态切换语言，提升用户体验。</p>
+</li>
+<li><p><strong>Git 和 GitHub</strong>：使用 Git 进行版本控制，GitHub 作为远程仓库<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="远程仓库地址：[harkerhand/OOPM (github.com)](https://github.com/harkerhand/OOPM)">[3]</span></a></sup>来存储和管理代码。Git 的版本控制功能帮助跟踪代码变更历史，GitHub 提供了团队协作、代码审查和持续集成的支持。</p>
+</li>
+</ul>
+<h3 id="3-设计阶段"><a href="#3-设计阶段" class="headerlink" title="3. 设计阶段"></a>3. 设计阶段</h3><h4 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h4><ol>
+<li><p><strong><code>ClassInfo.h</code></strong> 和 <strong><code>ClassMember.h</code></strong>: </p>
+<p>定义了表示类和类成员的信息，包括数据成员和方法。</p>
+</li>
+<li><p><strong><code>Utils.h</code></strong>:</p>
+<p>包含了处理密码哈希加密、验证账户、保存用户数据等功能的声明。</p>
+</li>
+<li><p><strong><code>CreateClassDialog.h</code> 和 <code>CreateMemberDialog.h</code></strong>:</p>
+<p>定义了创建类和类成员的对话框，包括处理用户输入的槽函数和界面元素。</p>
+</li>
+<li><p><strong><code>MemberDetailsDialog.h</code> 和 <code>MembersDetailDialog.h</code></strong>:</p>
+<p>定义了显示单个与多个成员详细信息的对话框。</p>
+</li>
+<li><p><strong><code>SearchDialog.h</code></strong>:</p>
+<p>定义了一个用于查询类信息的对话框，包含搜索条件和结果显示。</p>
+</li>
+<li><p><strong>其他UI类与辅助类</strong></p>
+</li>
+</ol>
+<h3 id="4-实现阶段"><a href="#4-实现阶段" class="headerlink" title="4. 实现阶段"></a>4. 实现阶段</h3><h4 id="4-1-类实现"><a href="#4-1-类实现" class="headerlink" title="4.1 类实现"></a>4.1 类实现</h4><ol>
+<li><p><strong>实现数据类</strong>：</p>
+<p>在 <strong><code>ClassInfo.cpp</code></strong> 和 <strong><code>ClassMember.cpp</code></strong> 文件中，实现了类和类成员的具体功能，例如数据读写和保存到流等操作。</p>
+</li>
+<li><p><strong>实现用户数据模型</strong>：</p>
+<p>在 <strong><code>UserModel.cpp</code></strong> 文件中，实现了 <code>QAbstractTableModel</code> 的各个方法，包括数据的显示和标题的处理。</p>
+</li>
+<li><p><strong>实现工具函数</strong>：</p>
+<p>在 <strong><code>Utils.cpp</code></strong> 文件中，完成了密码哈希加密、账户验证等功能的实现，并处理了与文件读写相关的操作。</p>
+</li>
+<li><p><strong>实现对话框</strong>：</p>
+<p><strong><code>CreateClassDialog.cpp</code> 和 <code>CreateMemberDialog.cpp</code></strong>: 实现了创建类和成员对话框的界面布局及槽函数。</p>
+<p><strong><code>MemberDetailsDialog.cpp</code> 和 <code>MembersDetailDialog.cpp</code></strong>: 实现了显示成员详细信息和成员列表的对话框。</p>
+<p><strong><code>SearchDialog.cpp</code></strong>: 实现了搜索功能的对话框，包括搜索和取消操作。</p>
+</li>
+<li><p><strong>实现窗口</strong>：</p>
+<p>在 <strong><code>MainWindow.cpp</code></strong> 中，实现了主窗口的界面和功能，包括添加和删除类，显示类信息，处理文件读写等。</p>
+<p>在 <strong><code>LoginWindow.cpp</code></strong> 中，实现了验证用户登录的用户名和密码，以及界面语言和主题切换。</p>
+<p>在 <strong><code>UserManagementWindow.cpp</code></strong> 中，实现了管理用户信息，包括添加、删除用户，保存用户数据，显示用户列表及其详细信息。</p>
+</li>
+</ol>
+<h4 id="4-2-主要功能实现"><a href="#4-2-主要功能实现" class="headerlink" title="4.2 主要功能实现"></a>4.2 主要功能实现</h4><ol>
+<li><strong>创建和管理类与成员</strong>：<ul>
+<li>使用 <strong><code>CreateClassDialog</code></strong> 和 <strong><code>CreateMemberDialog</code></strong> 来创建类和类成员。</li>
+<li>使用 <strong><code>MembersDetailDialog</code></strong> 来查看和管理类成员的详细信息。</li>
+</ul>
+</li>
+<li><strong>增加和删除功能</strong>：<ul>
+<li>在 <strong><code>MainWindow</code></strong> 中实现了增加和删除类的功能。</li>
+<li>对于类成员，使用 <strong><code>MembersDetailDialog</code></strong> 和 <strong><code>ClassInfo</code></strong> 中的方法来管理成员。</li>
+</ul>
+</li>
+<li><strong>数据文件读写</strong>：<ul>
+<li>实现了 XML、JSON 和 DAT 文件的读写操作。**<code>Utils.cpp</code>** 处理了文件的保存和加载操作，并确保了数据的正确性。</li>
+</ul>
+</li>
+<li><strong>信息显示</strong>：<ul>
+<li>使用 <strong><code>MainWindow</code></strong> 的表格视图和详细信息对话框来显示所有类的信息和特定类的成员信息。</li>
+</ul>
+</li>
+<li><strong>额外功能</strong>：<ul>
+<li>实现了密码哈希加密功能用于增强安全性。</li>
+<li>增加了修改类和成员信息的功能，而不是删除和重新添加。</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-测试阶段"><a href="#5-测试阶段" class="headerlink" title="5. 测试阶段"></a>5. 测试阶段</h3><p>单元测试：对各个模块进行了单元测试，包括类信息的保存与加载、数据模型的显示功能等。</p>
+<p>集成测试：测试了不同模块之间的集成，包括 UI 与数据模型的交互、文件保存与加载的正确性。</p>
+<p>调试：通过调试工具定位并修复了代码中的错误和问题，确保程序的稳定性和功能的完整性。</p>
+<p><em>这部分将在下一节详细说明</em></p>
+<h3 id="6-遇到的问题及解决方案"><a href="#6-遇到的问题及解决方案" class="headerlink" title="6. 遇到的问题及解决方案"></a>6. 遇到的问题及解决方案</h3><ol>
+<li><strong>数据格式转换问题</strong>：<ul>
+<li><strong>问题</strong>：在处理数据的 XML 和 JSON 格式时，出现了数据格式不匹配的问题。</li>
+<li><strong>解决方案</strong>：通过详细阅读格式规范和实现相应的解析和序列化函数，确保了数据的正确读写。</li>
+</ul>
+</li>
+<li><strong>界面刷新问题</strong>：<ul>
+<li><strong>问题</strong>：在修改数据后，界面没有及时更新。</li>
+<li><strong>解决方案</strong>：添加了界面更新的函数<code>updateUI()</code>，在数据修改后调用以刷新界面。</li>
+</ul>
+</li>
+<li><strong>文件读写异常</strong>：<ul>
+<li><strong>问题</strong>：在文件读写过程中，偶尔出现文件无法打开或数据读取错误。</li>
+<li><strong>解决方案</strong>：增加了异常处理机制，确保文件操作的健壮性，并提供了用户友好的错误提示。</li>
+</ul>
+</li>
+<li><strong>密码验证异常</strong>：<ul>
+<li><strong>问题</strong>：在密码哈希存储过程中，如果读取到的密码哈希值被二次加密，可能会导致密码校验失败。</li>
+<li><strong>解决方案</strong>:<ol>
+<li><strong>长度验证</strong>：在保存和读取密码哈希值时，通过检查哈希值的长度来判断是否可能发生了二次加密。不同哈希算法生成的哈希值长度是固定的，因此可以利用哈希值的长度来确保哈希值没有被错误处理。</li>
+<li><strong>存储和验证一致性</strong>：确保在存储和读取密码哈希时，哈希值只经过一次哈希处理。避免在存储后对哈希值进行任何额外的哈希处理，以确保密码校验时能够准确匹配。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>同一个界面用于创建与修改的复用问题</strong>：<ul>
+<li><strong>问题</strong>：在一个界面中复用创建和修改对象的功能时，会遇到如何区分创建模式和修改模式的问题。</li>
+<li><strong>解决方案</strong>:<ol>
+<li><strong>动态按钮文本</strong>：使用条件表达式来设置按钮文本，根据当前操作模式（创建或修改）来更新按钮的显示文本。</li>
+<li><strong>模式标识</strong>：在界面初始化时，通过参数或标识来确定当前是创建模式还是修改模式。</li>
+<li><strong>功能适配</strong>：在按钮点击事件中，根据当前模式执行不同的逻辑。对于创建模式，执行创建操作；对于修改模式，执行更新操作。在代码中实现逻辑分支来处理不同的操作模式。</li>
+<li><strong>用户提示</strong>：提供清晰的用户提示，确保用户知道当前操作的模式是什么。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、-测试报告"><a href="#五、-测试报告" class="headerlink" title="五、 测试报告"></a>五、 测试报告</h2><p><em>（对主要功能进行测试，可以列表表示各项功能的完成情况，也可以贴图表示）</em></p>
+<h3 id="1-用户登录功能"><a href="#1-用户登录功能" class="headerlink" title="1. 用户登录功能"></a>1. 用户登录功能</h3><table>
+<thead>
+<tr>
+<th>测试内容</th>
+<th>预期结果</th>
+<th>实际结果</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入正确的用户名和密码登录</td>
+<td>成功登录，进入主界面</td>
+<td>成功登录</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>输入管理员的用户名和密码登录</td>
+<td>成功登录，进入管理员界面</td>
+<td>成功登录</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>输入错误的用户名和密码登录</td>
+<td>登录失败，显示错误提示</td>
+<td>正确显示错误提示</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>空用户名或密码登录</td>
+<td>登录失败，显示错误提示</td>
+<td>正确显示错误提示</td>
+<td>无问题</td>
+</tr>
+</tbody></table>
+<h3 id="2-类信息管理功能"><a href="#2-类信息管理功能" class="headerlink" title="2. 类信息管理功能"></a>2. 类信息管理功能</h3><table>
+<thead>
+<tr>
+<th>测试内容</th>
+<th>预期结果</th>
+<th>实际结果</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加新的类信息</td>
+<td>新类信息成功添加到列表中</td>
+<td>添加成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>修改现有的类信息</td>
+<td>类信息成功修改</td>
+<td>修改成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>删除类信息</td>
+<td>类信息成功删除</td>
+<td>删除成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>显示类详细信息</td>
+<td>正确显示类的详细信息</td>
+<td>显示正确</td>
+<td>无问题</td>
+</tr>
+</tbody></table>
+<h3 id="3-成员信息管理功能"><a href="#3-成员信息管理功能" class="headerlink" title="3. 成员信息管理功能"></a>3. 成员信息管理功能</h3><table>
+<thead>
+<tr>
+<th>测试内容</th>
+<th>预期结果</th>
+<th>实际结果</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加新的成员信息</td>
+<td>新成员信息成功添加到列表中</td>
+<td>添加成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>修改现有的成员信息</td>
+<td>成员信息成功修改</td>
+<td>修改成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>删除成员信息</td>
+<td>成员信息成功删除</td>
+<td>删除成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>显示成员详细信息</td>
+<td>正确显示成员的详细信息</td>
+<td>显示正确</td>
+<td>无问题</td>
+</tr>
+</tbody></table>
+<h3 id="4-数据保存与加载功能"><a href="#4-数据保存与加载功能" class="headerlink" title="4. 数据保存与加载功能"></a>4. 数据保存与加载功能</h3><table>
+<thead>
+<tr>
+<th>测试内容</th>
+<th>预期结果</th>
+<th>实际结果</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>保存为 DAT 格式</td>
+<td>正确保存数据为 DAT 文件</td>
+<td>保存成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>保存为 XML 格式</td>
+<td>正确保存数据为 XML 文件</td>
+<td>保存成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>保存为 JSON 格式</td>
+<td>正确保存数据为 JSON 文件</td>
+<td>保存成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>加载 DAT 格式数据</td>
+<td>正确加载 DAT 文件中的数据</td>
+<td>加载成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>加载 XML 格式数据</td>
+<td>正确加载 XML 文件中的数据</td>
+<td>加载成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>加载 JSON 格式数据</td>
+<td>正确加载 JSON 文件中的数据</td>
+<td>加载成功</td>
+<td>无问题</td>
+</tr>
+</tbody></table>
+<h3 id="5-用户管理功能"><a href="#5-用户管理功能" class="headerlink" title="5. 用户管理功能"></a>5. 用户管理功能</h3><table>
+<thead>
+<tr>
+<th>测试内容</th>
+<th>预期结果</th>
+<th>实际结果</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加用户</td>
+<td>新用户成功添加到用户列表中</td>
+<td>添加成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>删除用户</td>
+<td>用户成功删除</td>
+<td>删除成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>保存用户数据</td>
+<td>用户数据成功保存</td>
+<td>保存成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>显示用户列表</td>
+<td>正确显示用户列表</td>
+<td>显示正确</td>
+<td>无问题</td>
+</tr>
+</tbody></table>
+<h3 id="6-界面与交互功能"><a href="#6-界面与交互功能" class="headerlink" title="6. 界面与交互功能"></a>6. 界面与交互功能</h3><table>
+<thead>
+<tr>
+<th>测试内容</th>
+<th>预期结果</th>
+<th>实际结果</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>界面控件功能</td>
+<td>各个控件按预期功能工作</td>
+<td>功能正常</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>界面布局与美观</td>
+<td>界面布局合理，符合设计要求</td>
+<td>布局合理</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>语言切换功能</td>
+<td>界面语言切换成功</td>
+<td>切换成功</td>
+<td>无问题</td>
+</tr>
+<tr>
+<td>主题切换功能</td>
+<td>主题切换成功，界面显示正确</td>
+<td>切换成功</td>
+<td>无问题</td>
+</tr>
+</tbody></table>
+<h3 id="7-结论"><a href="#7-结论" class="headerlink" title="7. 结论"></a>7. 结论</h3><p>所有主要功能经过测试均正常工作，程序的各项功能完成情况符合预期。没有发现严重的错误或问题，程序在Windows操作系统环境下表现稳定。</p>
+<h2 id="六、-心得体会和相关建议"><a href="#六、-心得体会和相关建议" class="headerlink" title="六、 心得体会和相关建议"></a>六、 心得体会和相关建议</h2><p><em>（课程小结和对课程改进的建议）</em></p>
+<h3 id="1-心得体会"><a href="#1-心得体会" class="headerlink" title="1. 心得体会"></a>1. 心得体会</h3><ol>
+<li><p><strong>技术掌握的提升</strong></p>
+<p>在项目开发过程中，我对C++和Qt的掌握有了显著提升。特别是在数据持久化和文件处理方面，实际操作使我对这些技术有了更深入的理解。Qt的信号与槽机制等特性在实际应用中的效果超出了我的预期，使得程序的开发变得更加高效。</p>
+</li>
+<li><p><strong>代码复用和功能模块化</strong></p>
+<p>在实现过程中，复用相同界面或功能时，通过清晰的模式标识和条件逻辑可以有效区分不同操作。这种方法减少了代码重复，提高了系统的维护性。</p>
+</li>
+<li><p><strong>数据一致性的重要性</strong></p>
+<p>确保数据在不同格式（XML, JSON）之间的正确转换是关键，合理的格式规范和详细的实现能避免数据不一致的问题。</p>
+</li>
+<li><p><strong>项目管理和组织能力的提高</strong></p>
+<p>项目的开发需要协调多个模块和功能的实现，这不仅考验了我的编程能力，也提升了我的项目管理和组织能力。从需求分析、设计实现到测试和调试，每一步都需要精细的计划和有效的执行。通过这个项目，我学会了如何更好地分解任务、制定合理的计划表，并在开发过程中灵活调整策略以应对各种挑战。</p>
+</li>
+</ol>
+<h3 id="2-对课程的建议"><a href="#2-对课程的建议" class="headerlink" title="2. 对课程的建议"></a>2. 对课程的建议</h3><ol>
+<li><p><strong>增加实际项目案例</strong></p>
+<p>课程中增加更多的实际项目案例，将帮助学生更好地理解理论知识的实际应用。</p>
+</li>
+<li><p><strong>提供更多的实际开发工具和资源</strong></p>
+<p>课程中可以提供更多实际开发工具和资源的使用指南，例如版本控制工具（如Git）的深入讲解，测试工具的使用方法等，以帮助学生更好地进行项目管理和维护。</p>
+</li>
+<li><p><strong>加强测试和调试技巧的培训</strong></p>
+<p>测试和调试是开发过程中至关重要的环节。建议课程中增加有关测试策略、调试技巧和错误处理的详细讲解和实践，以提高学生在实际开发中的问题解决能力。</p>
+</li>
+<li><p><strong>注重用户体验设计</strong></p>
+<p>在课程中加强对用户体验（UX）和用户界面（UI）设计的重视，可以帮助学生更好地理解用户需求并设计出更符合用户期望的程序界面。提供一些用户体验设计的实践课程将有助于提升学生的综合设计能力。</p>
+</li>
+</ol>
+<h2 id="七、-亮点"><a href="#七、-亮点" class="headerlink" title="七、 亮点"></a>七、 亮点</h2><h3 id="1-使用-Qt-的-Resources-功能实现内部资源的管理"><a href="#1-使用-Qt-的-Resources-功能实现内部资源的管理" class="headerlink" title="1. 使用 Qt 的 Resources 功能实现内部资源的管理"></a>1. 使用 Qt 的 Resources 功能实现内部资源的管理</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">RCC</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">qresource</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;/&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>styles/darkstyle.qss<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>styles/lightstyle.qss<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>langs/OOPM_zh_CN.qm<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>langs/OOPM_en_US.qm<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>imgs/low.png<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>imgs/darkBg.png<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>imgs/lightBg.png<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>imgs/bgtext.png<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>imgs/icon.png<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>passports/admin.dat<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">qresource</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">RCC</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">RESOURCES</span> <span class="hljs-string">+= \</span><br><span class="hljs-string">    resources.qrc</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-重写-QWidget-的-void-paintEvent-QPaintEvent-event-函数，实现了背景的自定义，并根据明暗主题选择相应的背景。"><a href="#2-重写-QWidget-的-void-paintEvent-QPaintEvent-event-函数，实现了背景的自定义，并根据明暗主题选择相应的背景。" class="headerlink" title="2. 重写 QWidget 的 void paintEvent(QPaintEvent *event) 函数，实现了背景的自定义，并根据明暗主题选择相应的背景。"></a>2. 重写 <code>QWidget</code> 的 <code>void paintEvent(QPaintEvent *event)</code> 函数，实现了背景的自定义，并根据明暗主题选择相应的背景。</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">LoginWindow::paintEvent</span><span class="hljs-params">(QPaintEvent *event)</span> </span>&#123;<br>    <span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>;<br>    <span class="hljs-keyword">if</span>(_nowTheme) painter.<span class="hljs-built_in">drawPixmap</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">width</span>(), <span class="hljs-built_in">height</span>(),<span class="hljs-built_in">QPixmap</span>(<span class="hljs-string">&quot;:/imgs/darkBg.png&quot;</span>));<br>    <span class="hljs-keyword">else</span> painter.<span class="hljs-built_in">drawPixmap</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">width</span>(), <span class="hljs-built_in">height</span>(),<span class="hljs-built_in">QPixmap</span>(<span class="hljs-string">&quot;:/imgs/lightBg.png&quot;</span>));<br>    QWidget::<span class="hljs-built_in">paintEvent</span>(event); <span class="hljs-comment">// Call base class implementation if needed</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-将多次复用的值设置为全局变量，并且调用Windows环境变量来获取相应路径。"><a href="#3-将多次复用的值设置为全局变量，并且调用Windows环境变量来获取相应路径。" class="headerlink" title="3. 将多次复用的值设置为全局变量，并且调用Windows环境变量来获取相应路径。"></a>3. 将多次复用的值设置为全局变量，并且调用Windows环境变量来获取相应路径。</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">extern</span> QString DOCUMENT_PATH;<br><span class="hljs-keyword">extern</span> QString USER_FILE_PATH;<br><span class="hljs-keyword">extern</span> QString ICON_PATH;<br><span class="hljs-keyword">extern</span> QTranslator translator;<br>QString DOCUMENT_PATH = QStandardPaths::<span class="hljs-built_in">writableLocation</span>(QStandardPaths::DocumentsLocation);<br>QString USER_FILE_PATH = DOCUMENT_PATH + <span class="hljs-string">&quot;/OOPM/passports/users.dat&quot;</span>;<br>QString ICON_PATH = <span class="hljs-string">&quot;:/imgs/icon.png&quot;</span>;<br><span class="hljs-function">QTranslator <span class="hljs-title">translator</span><span class="hljs-params">(qApp)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-继承覆写-QAbstractTableModel-来实现各个表格的数据加载。"><a href="#4-继承覆写-QAbstractTableModel-来实现各个表格的数据加载。" class="headerlink" title="4. 继承覆写 QAbstractTableModel 来实现各个表格的数据加载。"></a>4. 继承覆写 <code>QAbstractTableModel</code> 来实现各个表格的数据加载。</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">ClassModel</span>(<span class="hljs-type">const</span> QList&lt;ClassInfo&gt; &amp;classes, QObject *parent = <span class="hljs-literal">nullptr</span>);<br><span class="hljs-built_in">MemberModel</span>(<span class="hljs-type">const</span> QList&lt;ClassMember&gt; &amp;members, QObject *parent = <span class="hljs-literal">nullptr</span>);<br><span class="hljs-built_in">UserModel</span>(<span class="hljs-type">const</span> QList&lt;QPair&lt;QString, QString&gt;&gt; &amp;users, QObject *parent = <span class="hljs-literal">nullptr</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-将复选框有限的选项封装为枚举类，使用-QMetaType-声明为全局，增强代码的可读性。"><a href="#5-将复选框有限的选项封装为枚举类，使用-QMetaType-声明为全局，增强代码的可读性。" class="headerlink" title="5. 将复选框有限的选项封装为枚举类，使用 QMetaType 声明为全局，增强代码的可读性。"></a>5. 将复选框有限的选项封装为枚举类，使用 <code>QMetaType</code> 声明为全局，增强代码的可读性。</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">MemberType</span> &#123; Data, Function &#125;;<br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">Accessibility</span> &#123; Public, Private, Protected &#125;;<br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">DataType</span> &#123; Int, Float, Double, Char, String, Custom &#125;;<br><span class="hljs-keyword">enum class</span> <span class="hljs-title class_">UserType</span> &#123; Admin, User, Invalid &#125;;<br><span class="hljs-built_in">Q_DECLARE_METATYPE</span>(MemberType)<br><span class="hljs-built_in">Q_DECLARE_METATYPE</span>(Accessibility)<br><span class="hljs-built_in">Q_DECLARE_METATYPE</span>(DataType)<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-使用正则表达式限制用户名与密码输入的范围"><a href="#6-使用正则表达式限制用户名与密码输入的范围" class="headerlink" title="6. 使用正则表达式限制用户名与密码输入的范围"></a>6. 使用正则表达式限制用户名与密码输入的范围</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">QRegularExpression <span class="hljs-title">regex</span><span class="hljs-params">(<span class="hljs-string">&quot;[A-Za-z0-9!@#$%^&amp;*()_+\\-=\\[\\]&#123;&#125;;&#x27;:\&quot;\\\\|,.&lt;&gt;\\/?]+&quot;</span>)</span></span>;<br>QRegularExpressionValidator *validator = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QRegularExpressionValidator</span>(regex, <span class="hljs-keyword">this</span>);<br>_usernameLineEdit-&gt;<span class="hljs-built_in">setValidator</span>(validator);<br>_passwordLineEdit-&gt;<span class="hljs-built_in">setValidator</span>(validator);<br></code></pre></td></tr></table></figure>
+
+<h3 id="7-使用-Qt-Linguist-实现中英双语切换"><a href="#7-使用-Qt-Linguist-实现中英双语切换" class="headerlink" title="7. 使用 Qt Linguist 实现中英双语切换"></a>7. 使用 Qt Linguist 实现中英双语切换</h3><h3 id="8-使用-qss-文件实现明暗主题切换"><a href="#8-使用-qss-文件实现明暗主题切换" class="headerlink" title="8. 使用 .qss 文件实现明暗主题切换"></a>8. 使用 <code>.qss</code> 文件实现明暗主题切换</h3><h3 id="9-使用了规定格式的文档注释，便于开发与后期维护"><a href="#9-使用了规定格式的文档注释，便于开发与后期维护" class="headerlink" title="9. 使用了规定格式的文档注释，便于开发与后期维护"></a>9. 使用了规定格式的文档注释，便于开发与后期维护</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 根据 ID 移除类</span><br><span class="hljs-comment">// @param id 要移除的类的 ID</span><br><span class="hljs-comment">// @return 如果成功移除返回 true，否则返回 false</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">removeById</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">int</span> id)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><em>与自动文档生成工具<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="自动文档生成工具（如 Doxygen、Javadoc 等）可以通过解析源代码中的注释自动生成文档，将代码逻辑与解释文本结合，易于阅读。">[4]</span></a></sup>兼容</em></p>
+<h3 id="10-使用-Git-与-Github-实现了版本管理"><a href="#10-使用-Git-与-Github-实现了版本管理" class="headerlink" title="10. 使用 Git 与 Github 实现了版本管理"></a>10. 使用 Git 与 Github 实现了版本管理</h3><p><img src="/./24%E6%9A%91%E6%9C%9F%E5%AD%A6%E6%A0%A1%E8%AF%BE%E8%AE%BE%E6%8A%A5%E5%91%8A/image-20240907000716633.png" srcset="/img/loading.gif" lazyload alt="image-20240907000716633"></p>
+<h3 id="11-使用-QIcon-实现了界面图标的自定义"><a href="#11-使用-QIcon-实现了界面图标的自定义" class="headerlink" title="11. 使用 QIcon 实现了界面图标的自定义"></a>11. 使用 <code>QIcon</code> 实现了界面图标的自定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">setWindowIcon</span>(<span class="hljs-built_in">QIcon</span>(ICON_PATH)); <span class="hljs-comment">// ICON_PATH 为全局变量</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="12-使用-css-插入来实现控件风格自定义"><a href="#12-使用-css-插入来实现控件风格自定义" class="headerlink" title="12. 使用 css 插入来实现控件风格自定义"></a>12. 使用 <code>css</code> 插入来实现控件风格自定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp">_loginButton-&gt;<span class="hljs-built_in">setStyleSheet</span>(<br>    <span class="hljs-string">&quot;QPushButton &#123;&quot;</span><br>    <span class="hljs-string">&quot;    border: 2px solid rgba(219, 125, 100);&quot;</span><br>    <span class="hljs-string">&quot;    border-radius: 5px;&quot;</span><br>    <span class="hljs-string">&quot;    padding: 5px 10px;&quot;</span><br>    <span class="hljs-string">&quot;&#125;&quot;</span><br>    <span class="hljs-string">&quot;QPushButton:hover &#123;&quot;</span><br>    <span class="hljs-string">&quot;    border: 2px solid blue;&quot;</span>  <span class="hljs-comment">// 悬停时边框变为蓝色</span><br>    <span class="hljs-string">&quot;&#125;&quot;</span><br>    <span class="hljs-string">&quot;QPushButton:pressed &#123;&quot;</span><br>    <span class="hljs-string">&quot;    border: 2px solid green;&quot;</span> <span class="hljs-comment">// 按下时边框变为绿色</span><br>	<span class="hljs-string">&quot;&#125;&quot;</span><br>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="13-使用-QDir-创建文件夹来保证软件正常运行-1"><a href="#13-使用-QDir-创建文件夹来保证软件正常运行-1" class="headerlink" title="13. 使用 QDir 创建文件夹来保证软件正常运行[1]"></a>13. 使用 <code>QDir</code> 创建文件夹来保证软件正常运行<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="程序执行初，会在系统Documents目录创建`/OOPM/passports/`文件夹，文件指该路径下的users.bat文件">[1]</span></a></sup></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// main.cpp</span><br>QDir dir;<br>QString path = DOCUMENT_PATH + <span class="hljs-string">&quot;/OOPM/passports/&quot;</span>; <span class="hljs-comment">// 指定新建文件夹的路径</span><br><span class="hljs-keyword">if</span> (!dir.<span class="hljs-built_in">exists</span>(path)) &#123;<br>    <span class="hljs-comment">// 如果文件夹不存在，则创建它</span><br>    <span class="hljs-keyword">if</span> (dir.<span class="hljs-built_in">mkpath</span>(path)) <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;Folder created successfully!&quot;</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;Failed to create folder.&quot;</span>;<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;Folder already exists.&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>程序执行初，会在系统Documents目录创建<code>/OOPM/passports/</code>文件夹，文件指该路径下的users.bat文件
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>将密码转换为<code>QByteArray</code>，使用SHA-256算法生成哈希值，并将哈希值转换为十六进制字符串以便于存储和比较。
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>远程仓库地址：<a target="_blank" rel="noopener" href="https://github.com/harkerhand/OOPM">harkerhand&#x2F;OOPM (github.com)</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>自动文档生成工具（如 Doxygen、Javadoc 等）可以通过解析源代码中的注释自动生成文档，将代码逻辑与解释文本结合，易于阅读。
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Qt/" class="print-no-link">#Qt</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>24暑期学校课设报告</div>
+      <div>https://www.harkerhand.online/24暑期学校课设报告/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>harkerhand</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月10日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年9月10日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/" title="[新]VSCode配置C/CPP">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">[新]VSCode配置C/CPP</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E4%BD%BF%E7%94%A8DoraSSR%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%912048%E6%B8%B8%E6%88%8FDemo/" title="使用DoraSSR引擎开发2048游戏Demo">
+                        <span class="hidden-mobile">使用DoraSSR引擎开发2048游戏Demo</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://harkerhand-twikoo.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div>  
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
