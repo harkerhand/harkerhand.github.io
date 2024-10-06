@@ -253,7 +253,7 @@ web_analytics:
   # 百度统计的 Key，值需要获取下方链接中 `hm.js?` 后边的字符串
   # Baidu analytics, get the string behind `hm.js?`
   # See: https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376
-  baidu: d4f2c35df8a5310a997f42e7f8add2a8
+  baidu:
 
   # Google Analytics 4 的媒体资源 ID
   # Google Analytics 4 MEASUREMENT_ID
@@ -450,8 +450,7 @@ footer:
     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
     <i class="iconfont icon-love"></i>
     <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
-    <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
-  '
+    <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div>'
 
   # 展示网站的 PV、UV 统计数
   # Display website PV and UV statistics
@@ -753,7 +752,7 @@ post:
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: twikoo
+    type: waline
 
 
 #---------------------------
@@ -840,10 +839,15 @@ waline:
   meta: ['nick', 'mail', 'link']
   requiredMeta: ['nick']
   lang: 'zh-CN'
-  emoji: ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
+  emoji: ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo',
+    "https://cdn.jsdelivr.net/gh/walinejs/emojis/tieba",
+    "https://cdn.jsdelivr.net/gh/walinejs/emojis/bmoji",
+    "https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili"]
   dark: 'html[data-user-color-scheme="dark"]'
   wordLimit: 0
   pageSize: 10
+  search: false
+  reaction: true
 
 # 畅言 Changyan
 # 基于第三方的服务
@@ -876,7 +880,8 @@ remark42:
 # Based on Tencent CloudBase
 # See: https://twikoo.js.org
 twikoo:
-  envId: https://harkerhand-twikoo.hf.space
+  # envId: https://harkerhand-twikoo.hf.space
+  envId: https://twikoo.harkerhand.online
   region: ap-shanghai
   path: window.location.pathname
 
@@ -1088,7 +1093,7 @@ links:
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: waline
+    type: twikoo
 
 
 #---------------------------

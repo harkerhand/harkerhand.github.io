@@ -6,6 +6,7 @@ categories: 经验分享
 cover:
 index_img: ./基于Twikoo的博客评论搭建/twikoo.png
 banner_img:
+comment: 'twikoo'
 ---
 
 # 写在前面
