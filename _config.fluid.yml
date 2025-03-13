@@ -834,7 +834,7 @@ valine:
 # Derived from Valine, with self-hosted service and new features
 # See: https://waline.js.org/
 waline:
-  serverURL: 'https://waline.harkerhand.online/'
+  serverURL: 'https://waline.harkerhand.cn/'
   path: window.location.pathname
   meta: ['nick', 'mail', 'link']
   requiredMeta: ['nick']
@@ -881,7 +881,7 @@ remark42:
 # See: https://twikoo.js.org
 twikoo:
   # envId: https://harkerhand-twikoo.hf.space
-  envId: https://twikoo.harkerhand.online
+  envId: https://twikoo.harkerhand.cn
   region: ap-shanghai
   path: window.location.pathname
 
@@ -1083,8 +1083,8 @@ links:
     content: '<hr><p>在下方留言申请加入我的友链，按如下格式提供信息：</p><ul>
     <li>博客名：何山</li>
     <li>简介：Where is Mountain</li>
-    <li>链接：<a href="https://www.harkerhand.online/">博客链接</a></li>
-    <li>图片：<a href="https://image.harkerhand.online/file/8146d6f6c3c39c9a719c2.png">图片链接</a></li></ul>'
+    <li>链接：<a href="https://www.harkerhand.cn/">博客链接</a></li>
+    <li>图片：<a href="https://image.harkerhand.cn/file/8146d6f6c3c39c9a719c2.png">图片链接</a></li></ul>'
 
   # 评论插件
   # Comment plugin
