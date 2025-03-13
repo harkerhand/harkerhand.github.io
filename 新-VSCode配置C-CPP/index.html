@@ -24,17 +24,17 @@
     <meta name="description" content="前言近日在阅读他人题解时，发现了未曾见过的语法 1auto a &#x3D; vector(n, INT_MIN);  即初始化一个长度为n的 vector 并命名为 a ，初始值为 INT_MIN，这比先前的 12vector&lt;int&gt; a(n);for(auto &amp;i: a) i &#x3D; INT_MIN;  方便太多了！ 然而，我在自己的编辑器里这么写，编译器会报错，查看发现我所使用的一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[新]VSCode配置C&#x2F;CPP">
-<meta property="og:url" content="https://www.harkerhand.online/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/index.html">
+<meta property="og:url" content="https://www.harkerhand.cn/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/index.html">
 <meta property="og:site_name" content="Where Is Mountain">
 <meta property="og:description" content="前言近日在阅读他人题解时，发现了未曾见过的语法 1auto a &#x3D; vector(n, INT_MIN);  即初始化一个长度为n的 vector 并命名为 a ，初始值为 INT_MIN，这比先前的 12vector&lt;int&gt; a(n);for(auto &amp;i: a) i &#x3D; INT_MIN;  方便太多了！ 然而，我在自己的编辑器里这么写，编译器会报错，查看发现我所使用的一">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.harkerhand.online/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/cpp.png">
+<meta property="og:image" content="https://www.harkerhand.cn/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/cpp.png">
 <meta property="article:published_time" content="2024-09-19T07:47:24.000Z">
 <meta property="article:modified_time" content="2024-09-21T09:02:30.207Z">
 <meta property="article:author" content="harkerhand">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.harkerhand.online/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/cpp.png">
+<meta name="twitter:image" content="https://www.harkerhand.cn/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/cpp.png">
   
   
   
@@ -76,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.harkerhand.online","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"CDX6IWyV2uLXpC5LxeP6cafw-gzGzoHsz","app_key":"d0eP6B1k5eQ1gkPrZuCkF0E8","server_url":"https://cdx6iwyv.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.harkerhand.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"CDX6IWyV2uLXpC5LxeP6cafw-gzGzoHsz","app_key":"d0eP6B1k5eQ1gkPrZuCkF0E8","server_url":"https://cdx6iwyv.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -503,7 +503,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> &amp;i: a) i = INT_MIN;<br></code></pre></td></tr></table></figure>
 
 <p>方便太多了！</p>
-<p>然而，我在自己的编辑器里这么写，编译器会报错，查看发现我所使用的一直是c++11的标准，为了支持新标准，我们需要新的编译器，之前的文章 <a href="https://www.harkerhand.online/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">VS Code中C++环境配置 - Where Is Mountain</a> 所使用的gcc版本是8.1.0，所以写此文，更新一下配置相关。</p>
+<p>然而，我在自己的编辑器里这么写，编译器会报错，查看发现我所使用的一直是c++11的标准，为了支持新标准，我们需要新的编译器，之前的文章 <a target="_blank" rel="noopener" href="https://www.harkerhand.online/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">VS Code中C++环境配置 - Where Is Mountain</a> 所使用的gcc版本是8.1.0，所以写此文，更新一下配置相关。</p>
 <h1 id="安装-mingw-w64"><a href="#安装-mingw-w64" class="headerlink" title="安装 mingw-w64"></a>安装 mingw-w64</h1><p>这是官网的下载页 <a target="_blank" rel="noopener" href="https://www.mingw-w64.org/downloads/">Downloads - MinGW-w64</a>，然后进入 MinGW-W64-builds 的 GitHub Release 页面，按照你的需要选择对应的版本下载，下面给出各个选项的含义。</p>
 <ul>
 <li>i686、x86_64 也就是俗称的 32&#x2F;64 位系统，现在基本都是 x86_64 </li>
@@ -519,7 +519,7 @@
 <li>win + S 搜索<strong>编辑系统环境变量</strong>，进入后点击<strong>环境变量</strong>，在系统变量的<strong>Path</strong>值中添加你的安装路径下的bin文件夹路径，比如 D:\mingw64\bin 。完成后保存退出。</li>
 <li>win + R 输入cmd进入命令行，输入 <code>gcc -v</code> 回车，返回 <code>gcc version 14.2.0 (x86_64-win32-seh-rev0, Built by MinGW-Builds project)</code> 即配置完成。</li>
 </ul>
-<p>关于vscode的设置可以参考前面提到的 <a href="https://www.harkerhand.online/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">VS Code中C++环境配置 - Where Is Mountain</a> 这篇文章。</p>
+<p>关于vscode的设置可以参考前面提到的 <a target="_blank" rel="noopener" href="https://www.harkerhand.online/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">VS Code中C++环境配置 - Where Is Mountain</a> 这篇文章。</p>
 
                 
               </div>
@@ -566,7 +566,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>[新]VSCode配置C/CPP</div>
-      <div>https://www.harkerhand.online/新-VSCode配置C-CPP/</div>
+      <div>https://www.harkerhand.cn/新-VSCode配置C-CPP/</div>
     </div>
     <div class="license-meta">
       
@@ -659,7 +659,7 @@
       Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
       Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://waline.harkerhand.online/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/bmoji","https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"search":false,"reaction":true},
+          {"serverURL":"https://waline.harkerhand.cn/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/bmoji","https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"search":false,"reaction":true},
           {
             el: '#waline',
             path: window.location.pathname
