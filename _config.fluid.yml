@@ -1074,7 +1074,7 @@ links:
     - {
       title: "GlowLED",
       intro: "一个混吃等死的普通人",
-      link: "https://glowled.top/",
+      link: "https://blog.glowled.top/",
       avatar: "https://glowled.top/avatar/avatar_yamada.jpg"
     }
     - {
@@ -1088,7 +1088,12 @@ links:
       intro: "蛊惑他人，麻醉内心",
       link: "https://blog.chpu437.com/",
       avatar: "https://blog.chpu437.com/img/avatar/my_avatar.png"
-
+    }
+    - {
+      title: "Zero'F_Fa",
+      intro: "让你看到老鼠人很抱歉.jpg",
+      link: "https://zeroffa233.github.io/",
+      avatar: "https://youke1.picui.cn/s1/2025/10/21/68f6fe06cc163.jpg"
     }
 
   # 当成员头像加载失败时，替换为指定图片
