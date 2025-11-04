@@ -107,17 +107,7 @@ theme: fluid
 deploy:
 - type: 'git'
   repo:
-  - git@gitee.com:harkerhand/harkerhand.git
-- type: 'git'
-  repo:
   - git@github.com:harkerhand/harkerhand.github.io.git
-# - type: baidu_url_submitter
 
 archive_generator:
   per_page: 7
-
-baidu_url_submit:
-	count: 10
-	host: www.harkerhand.online
-	token: KE6R0G83YL0MZScA
-	path: baidu_urls.txt
