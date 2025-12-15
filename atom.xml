@@ -1,0 +1,3183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>何处为山</title>
+  <subtitle>Where is Mountain</subtitle>
+  <link href="https://www.harkerhand.cn/" rel="alternate" type="text/html"/>
+  <link href="https://www.harkerhand.cn/atom.xml" rel="self" type="application/atom+xml"/>
+  <id>https://www.harkerhand.cn/</id>
+  <updated>2025-12-15T17:40:36.779Z</updated>
+  <language>zh_CN</language>
+  <entry>
+    <title>某科学的超黑魔法</title>
+    <link href="https://www.harkerhand.cn/2025-11-03-20/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2025-11-03-20/</id>
+    <published>2025-11-03T13:52:13.000Z</published>
+    <updated>2025-11-03T13:52:13.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>写在前面</h1>
+<p>前序文章是：<a href="https://ippclub.org/%E7%88%B1%E4%B8%8E%E9%AD%94%E6%B3%95/">爱与魔法 - I++ Club</a>，当时是以俱乐部的名义发的，所以在内容上更偏向了技术科普，而不是实践操作。并且有相当一部分同学看完之后其实并没有懂，就算正确操作后，在出现偶发的网络问题时也不清楚如何解决。本文的目的就是尽可能去解决这些问题。</p>
+<h1>小试牛刀</h1>
+<p>首先，请你先处于SEU的校园网环境下（即就是你连接了<code>SEU-ISP</code>或者<code>SEU-WLAN</code>），并且你可以ping通 <code>10.210.126.58</code>（如果你不知道什么是ping的话，点击这个链接 <a href="https://cn.bing.com/search?q=%E6%80%8E%E4%B9%88ping%E4%B8%80%E4%B8%AA%E5%9C%B0%E5%9D%80">怎么ping一个地址 - 搜索</a> ），并且你正在使用Windows 系统。</p>
+<p>如果不满足上述条件的话，下面的小实验就不需要上手操作了，正常阅读文章即可。</p>
+<p><a>Windows点击以打开代理设置</a>，点击左边这个链接，应该会进入这个页面</p>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251103141223485.BgIqQrH__1oX1Fd.webp" alt="image-20251103141223485" /></p>
+<p>点击下面的 <strong>手动设置代理</strong> 的 <strong>编辑</strong> 按钮，前面三个选项按图片改，然后点击保存。</p>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251103141356502.BbMnif5P_ZGUP7A.webp" alt="image-20251103141356502" /></p>
+<p>现在访问 <a href="https://www.google.com/">Google</a> 应该就成功了。</p>
+<p><strong>请注意：现在不要直接退出本文！！！</strong></p>
+<p><strong>请注意：现在不要直接退出本文！！！</strong></p>
+<p><strong>请注意：现在不要直接退出本文！！！</strong></p>
+<p>虽然你现在已经能翻了，但并不安全，因为上面的设置会将你几乎所有的请求转发到我的电脑上，你的隐私一览无余（你也不想你访问某XX网站的事情被大家知道吧）。</p>
+<p>所以现在你要做的是，先清除上面的<strong>代理IP地址</strong>和<strong>端口</strong>设置，然后关闭<strong>使用代理服务器</strong>开关，并继续阅读本文。</p>
+<h1>原理简介</h1>
+<p>为什么你按照上面的设置就能访问谷歌？</p>
+<p>首先举个例子，<strong>学生家长来食堂吃饭，但是TA没有校园卡，不能付钱。所以TA求助某位学生，给学生微信转账，让学生帮TA带饭，TA就吃上饭了</strong>。</p>
+<p>如果这个例子不是很形象的话，那么跟刚刚的场景对应一下。</p>
+<p><strong>你想访问谷歌，但是被墙了，访问不了。所以你找到了我，把你的请求告诉我，让我帮你访问谷歌，然后我把谷歌的回复告诉你，你就访问成功了</strong>。</p>
+<p>在这两个例子中，学生对应我，家长对应你，饭对应网络资源。解决问题的关键是，有一个角色可以同时联系被某种因素阻隔的双方。学生可以同时使用微信和校园卡交易，我的电脑也可以同时访问校园网和谷歌。</p>
+<p>无需深究这个中间人为什么能同时联系双方，这不是我们在意的东西，我们只需要建立这个抽象的概念就行。</p>
+<h1>使用代理软件</h1>
+<p>为什么不能就用上面的代理呢？原因包括但不限于：</p>
+<ul>
+<li>你不能白嫖我的服务</li>
+<li>我跟你可能在现实中相识，你敢把你的隐私交给我吗</li>
+<li>我会毕业，没法让你一直用</li>
+<li>代理可能会出现偶发的异常</li>
+<li>。。。。。。</li>
+</ul>
+<p>解决问题的方法也很简单：<strong>找一个长期稳定提供转发服务的中间人并使用专门的代理软件</strong>。</p>
+<p>中间人要你的隐私大概率没什么用，他们靠卖你服务挣钱，只要不被约喝茶，几年内大概率是不会跑路。</p>
+<p>代理软件直接在这里下载 <a href="https://pan.harkerhand.cn/apps/Clash.Verge_2.4.1_x64-setup.exe">Clash.Verge_2.4.1_x64-setup.exe | MacPan</a>，中间人（下文称机场）有几个推荐：</p>
+<ul>
+<li><a href="https://dg6.me/">狗狗加速</a></li>
+<li><a href="https://llgjc1.com/#/landing">比好更好，比快更快 - 流量光机场</a></li>
+<li><a href="https://mitce.net/?language=chinese">Mitce - 提供線上安全</a></li>
+</ul>
+<p>不翻可能进不去，你可以暂时用一下前文提到的代理。</p>
+<h2>获取配置</h2>
+<p>这些中间人有很多能同时访问国内国外的服务器，而代理软件的作用是帮你自动挑选合适的服务器（下文称节点）并进行转发。</p>
+<p>所以你需要告诉代理软件，哪些节点是你能用的，应该用什么逻辑去挑选节点，应该用什么方式进行转发，甚至高阶一点的操作是，可以选择某个特定软件的数据走特定节点，不过这些你不用太关心，机场会帮你做好。</p>
+<p>注册账号，买服务，相信这两步应该不会有困难。在机场的首页或者个人页面，应该会找到类似<strong>导入订阅</strong>，<strong>复制订阅地址</strong>等字样，总之，摸索一下（如果要选择订阅类型，选择Clash），<strong>最后要拿到一个网址，这个就是下载配置信息用的</strong>。</p>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251103150505642.Cwt8ht1w_2cXrys.webp" alt="流量光机场" /></p>
+<h2>导入配置</h2>
+<p>打开你刚刚装好的代理软件，点击左侧边栏的订阅，然后把刚刚获取的链接粘贴到右侧顶部的文本输入框，再点击导入，应该就大功告成了。如果导入失败的话，你可能需要分别尝试在关闭和开启代理（小试牛刀部分）的情况下导入。</p>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251103150822114.BtAdi7DF_Z1CUTsL.webp" alt="软件页面" /></p>
+<h2>代理软件的设置</h2>
+<p>点击左侧边栏的设置，然后看右边的设置项。设置原则是：<strong>不懂的不要随便动</strong>。</p>
+<p><strong>系统设置</strong>部分，建议开虚拟网卡模式，如上文所说，系统代理可能有一些问题，建议关掉。</p>
+<p><strong>Clash设置</strong>部分，建议打开DNS覆写。请忽略图示中的<strong>局域网连接</strong>、<strong>IPv6</strong>、<strong>统一延迟</strong>设置项，保持你的默认即可。</p>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251103151431993.B3ZSDjOh_ZXEpYd.webp" alt="image-20251103151431993" /></p>
+<p>其他部分保持默认。</p>
+<p><strong>至此，基础部分的设置就结束了，你应该可以正常的访问谷歌、Youtube等网站了</strong></p>
+<h1>常见问题</h1>
+<p>一般只有问题发生的时候才能想起来有这个问题，所以这部分可能说的不是很全，如有投稿可以联系我补充。</p>
+<h2>为什么关机重启之后突然就没网了</h2>
+<p>你的Clash设置了系统代理模式，重启之后系统代理设置还在，但Clash没开。把系统代理关了或者打开Clash即可。</p>
+<h2>为什么 Git npm 等命令行工具网络很烂</h2>
+<p>首先看你是不是用了代理模式，如果是的话，使用虚拟网卡模式重试。</p>
+<p>其次看你的报错信息是不是有类似 <code>198.18</code>的字样，如果是的话，在Clash设置——DNS覆写——增强模式中，将fake-ip改为redir-host并重试（设置如图）。</p>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251103152714802.BBnnqH2V_1yFYyp.webp" alt="image-20251103152714802" /></p>
+<p>如果还是有问题的话，尝试使用系统代理模式并在命令行设置代理环境变量（用下面贴的代码，把10809改为你的Clash设置中的端口），</p>
+<pre><code>$env:HTTP_PROXY="http://127.0.0.1:10809"; $env:HTTPS_PROXY="http://127.0.0.1:10809"
+</code></pre>
+<p>还是有问题的话，尝试设置Git npm的代理，具体步骤使用搜索引擎，链接同上。以Git举例</p>
+<pre><code>git config --global http.proxy http://127.0.0.1:10809
+git config --global https.proxy http://127.0.0.1:10809
+</code></pre>
+<p>还是有问题的话，那我不懂了。。。</p>
+<h1>黑魔法</h1>
+<h2>加速Microsoft Store</h2>
+<p>在设置——UMP工具中，使用Exempt All全选，然后Save Changes退出。</p>
+<p>![屏幕截图 2025-11-03 163412](./屏幕截图 2025-11-03 163412.png)</p>
+<h2>其他设备借助本机魔法</h2>
+<p>打开设置中的局域网访问，将其他设备连接到校园网，确保其他设备能正常访问你的安装了Clash的设备。</p>
+<p>将其他设备的代理设置为魔法设备的IP和端口，IP可以在命令行执行 <code>ipconfig</code> 来查看，端口在Clash的设置中查看。</p>
+<p>图中举例为小米澎湃系统的设置位置</p>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251104173949188.BmkJalvf_1rX71V.webp" alt="HyperOS" /></p>
+<h2>借助代理实现校园网免流量</h2>
+<p>原理是使用一台设备链接SEU-ISP（运营商提供的不限量网络），其他设备配置这台设备的代理。大致步骤与上一小节相同。</p>
+<h2>裸核运行</h2>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251104175949552.QewRsZQs_Z28udch.webp" alt="image-20251104175949552" /></p>
+<p>Clash只是一个UI，作用是帮你改配置文件，并交给核心（mihomo）来运行，图中那个服务是用于虚拟网卡模式的，可以忽略</p>
+<p>如果使用linux会更显然一点：一个服务，一个UI，一个核心</p>
+<p><img src="https://www.harkerhand.cn/_astro/image-20251104180135345.DXhHpZHL_1g1NLJ.webp" alt="image-20251104180135345" /></p>
+<p>如果想轻量级一点，就直接跑内核就行了，对于Windows，内核一般就在Clash目录下，配置一般位于<code>C:\Users\&lt;username&gt;\AppData\Roaming\io.github.clash-verge-rev.clash-verge-rev\clash-verge.yaml</code>。</p>
+<h2>自定义分流规则</h2>
+<p>前文说到，机场会给一堆节点，这些节点一般会分组，内核支持在组中以手动指定、自动选择、负载均衡等方式来选择节点。大部分机场的不同节点也会对应不同的速率、倍率、解锁规则等。</p>
+<p>那么一个比较理想的方案是，下载大文件应该使用便宜的节点，要用AI应该切换解锁GPT的节点，看流媒体要用解锁奈飞的节点。这些都可以通过自定义配置文件来实现（如果你的机场很人性化，会帮你写好配置文件）</p>
+<p>具体如何配置可以看这个视频 <a href="https://www.youtube.com/watch?v=_iG8vl3pzaM">【全网最细】一次彻底搞懂YAML分流规则：参数讲解+添加规则+故障排查</a></p>
+<h2>欢迎投稿</h2>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>RustFFI</title>
+    <link href="https://www.harkerhand.cn/2025-08-04-19/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2025-08-04-19/</id>
+    <published>2025-08-03T16:56:19.000Z</published>
+    <updated>2025-08-03T16:56:19.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>什么是 FFI</h1>
+<p>FFI (Foreign Function Interface，外部函数接口) 是一种编程机制，允许一种编程语言调用另一种编程语言编写的代码或与另一种语言进行交互。它打破了语言之间的壁垒，使得不同语言编写的模块能够相互协作。</p>
+<h2>引入：open() 系统调用</h2>
+<ol>
+<li><strong>Rust</strong>: <code>std::fs::File::open()</code> → <code>libc::open()</code> → <code>syscall(SYS_open)</code></li>
+<li><strong>C</strong>: <code>fopen()</code> → <code>open()</code> → <code>syscall(SYS_open)</code></li>
+<li><strong>C++</strong>: <code>std::fstream</code> → <code>libc::open()</code> → <code>syscall(SYS_open)</code></li>
+</ol>
+<p>open() 是 OS kernel 的编译产物，
+<img src="./image-20250803165921713.png" alt="image-20250803165921713" /></p>
+<p>也就是说，只要将我们想要分享的代码也打包为类似的形式，就可以被其他程序所链接使用。</p>
+<h2>例子</h2>
+<pre><code>// add.h
+int add(int a, int b);
+
+// add.c
+#include "add.h"
+int add(int a, int b)
+{
+    return a + b;
+}
+</code></pre>
+<p>编译一下，shared表示共享库，fPIC表示位置无关</p>
+<p><img src="./image-20250803170002994.png" alt="image-20250803170002994" /></p>
+<pre><code>// useadd.cpp
+#include &lt;iostream&gt;
+extern "C"
+{
+#include "add.h"
+}
+int main()
+{
+    int x = 5;
+    int y = 10;
+    int result = add(x, y);
+    std::cout &lt;&lt; "The sum of " &lt;&lt; x &lt;&lt; " and " &lt;&lt; y &lt;&lt; " is " &lt;&lt; result &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<p>-L表示库路径，-l表示链接add库（链接时检查）
+<img src="./image-20250803170315725.png" alt="image-20250803170315725" /></p>
+<p>很好，成功了</p>
+<h1>Rust与C/C++的FFI</h1>
+<h2>案例再现</h2>
+<pre><code>#[unsafe(no_mangle)]
+pub extern "C" fn add(left: i32, right: i32) -&gt; i32 {
+    left + right
+}
+
+</code></pre>
+<p>在 <code>Cargo.toml</code> 中添加</p>
+<pre><code>[lib]
+crate-type = ["cdylib"]
+</code></pre>
+<p><img src="./image-20250803170455641.png" alt="image-20250803170455641" /></p>
+<p>编译后得到库，链接这个库来编译刚刚的cpp文件</p>
+<p><img src="./image-20250803170620781.png" alt="image-20250803170620781" /></p>
+<p>很好，依然是成功的。</p>
+<p>也就是说，无论是C/C++/Rust，只要按照C的规范对接口进行暴露，按照C的规范对库进行链接，就可以进行代码复用。</p>
+<h2>FFI 规范</h2>
+<h3>内存布局</h3>
+<p>编译器可能会对结构体数据成员进行重排，目的是在对齐的要求下更好的利用内存。</p>
+<p>对于如下的cpp结构体</p>
+<pre><code>struct CppStruct {
+    char a;      // 1字节
+    int b;       // 4字节
+    short c;     // 2字节
+};
+</code></pre>
+<p>内存可能是12位</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th></th>
+<th></th>
+<th></th>
+<th>b</th>
+<th>b</th>
+<th>b</th>
+<th>b</th>
+<th>c</th>
+<th>c</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+</table>
+<p>Rust类似的结构体重排后可能是8位</p>
+<table>
+<thead>
+<tr>
+<th>b</th>
+<th>b</th>
+<th>b</th>
+<th>b</th>
+<th>c</th>
+<th>c</th>
+<th>a</th>
+<th></th>
+</tr>
+</thead>
+</table>
+<p>要求rust不要重排</p>
+<pre><code>#[repr(C)]
+struct RustStruct { ... };
+</code></pre>
+<h3>调用约定</h3>
+<p>规则上，如何传递参数、返回值以及管理栈和寄存器等底层细节需要一致，实践上一般不用在意，使用<code>extern "C"</code>即可（Rust函数需要<code>#[unsafe(no_mangle)]</code>）。</p>
+<p>习惯上，栈区的小数据通过值传递，堆区的大数据通过指针传递。</p>
+<pre><code>#ifndef CPPLIB_HPP
+#define CPPLIB_HPP
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// 用 C 链接导出这些函数
+void* create_person(const char* name, int age);
+void delete_person(void* person);
+const char* get_person_name(void* person);
+int get_person_age(void* person);
+void set_person_age(void* person, int new_age);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // CPPLIB_HPP
+</code></pre>
+<p>Person对象通过指针传递，名字字符串通过指针传递，年龄通过值传递</p>
+<h3>错误处理</h3>
+<p>一般来说，一个语言的异常无法被另一个语言捕捉，所以一般要通过错误码传递错误信息，或者设置专门传递错误的结构体。</p>
+<h3>一些可能忽视的问题</h3>
+<h4>内存泄漏</h4>
+<p>上面提到的 Person 的例子，如果在执行 <code>create_person</code> 后没有对应的 <code>delete_person</code>，person则会成为内存垃圾。</p>
+<p>解决方案：</p>
+<ul>
+<li>
+<p>记得delete！</p>
+</li>
+<li>
+<p>C++调用时，可以使用智能指针自动销毁</p>
+<pre><code>struct PersonDeleter {
+     void operator()(void* p) const { delete_person(p); }
+ };
+ using PersonPtr = std::unique_ptr&lt;void, PersonDeleter&gt;;
+
+ PersonPtr person(create_person("Alice", 30));
+ // 退出作用域时自动调用 delete_person
+</code></pre>
+</li>
+<li>
+<p>Rust调用时，为Person的包装实现Drop Trait</p>
+<pre><code>pub struct Person {
+    ptr: *mut c_void,
+}
+impl Drop for Person {
+    fn drop(&amp;mut self) {
+        unsafe { delete_person(self.ptr) }
+    }
+}
+// Person生命周期结束时自动 drop
+</code></pre>
+</li>
+</ul>
+<h4>二次销毁</h4>
+<p>上面提到的场景，如果手动调用了delete，那么在变量自动销毁时会出现二次销毁。
+需要在销毁时增加一些额外的检查。</p>
+<pre><code>impl Drop for Person {
+    fn drop(&amp;mut self) {
+        if !self.ptr.is_null() {
+            unsafe { delete_person(self.ptr) }
+            self.ptr = std::ptr::null_mut(); // 防止二次销毁
+        }
+    }
+}
+</code></pre>
+<h4>悬垂指针</h4>
+<p>假设存在场景，异步接口传递临时指针</p>
+<pre><code>void call() {
+    Stream stream;
+    std::string stage = "initial";
+    stream.stage = const_cast&lt;char *&gt;(stage.c_str());
+    stream.node_id = 1;
+    stream.session_id = 1001;
+    stream.err_code = 0;
+    std::string data = "Hello, World!";
+    stream.data = const_cast&lt;char *&gt;(data.c_str());
+    stream.stream_end = false;
+    sync_call(stream);
+    async_call(stream);
+}
+
+int main()
+{
+    call();
+    std::this_thread::sleep_for(std::chrono::seconds(10));
+    return 0;
+}
+</code></pre>
+<p>这里的async_call在调用后立即返回，随后string析构，但传递的指针在一段时候后才被解引用。</p>
+<p>解决方法：</p>
+<ul>
+<li>使用Rust编写库函数，上面的例子中，<code>*mut c_char</code> 没有实现 <code>Send</code> Trait，所以需要先对传入的临时字符指针进行<strong>同步</strong>拷贝，再将拷贝值 move 到<strong>异步</strong>回调中。
+为了实现上面的例子，不得不使用unsafe</li>
+</ul>
+<h2>Rust C FFI 的便捷实现</h2>
+<p>使用bindgen自动生成绑定</p>
+<pre><code>[build-dependencies]
+bindgen = "0.72.0"
+</code></pre>
+<p>在项目根目录下新建一个 <code>build.rs</code> 文件即可</p>
+<pre><code>use std::path::PathBuf;
+
+fn main() {
+    // 告诉 Cargo 在哪里找到链接库
+    println!("cargo:rustc-link-search=native=/root/rust/rust-ffi/cpp/lib");
+
+    // 链接需要的C++库
+    println!("cargo:rustc-link-lib=dylib=person");
+    println!("cargo:rustc-link-lib=dylib=callback");
+
+    let bindings = bindgen::Builder::default()
+        .clang_arg("-xc++")
+        .header("/root/rust/rust-ffi/cpp/include/person.h")
+        .header("/root/rust/rust-ffi/cpp/include/callback.h")
+        .generate()
+        .expect("Failed to generate bindings");
+
+    let _ = bindings.write_to_file(PathBuf::from("src/bindings.rs"));
+}
+
+</code></pre>
+<h1>Rust与JS的FFI</h1>
+<h2><strong>NodeJS运行时调用流程</strong></h2>
+<ol>
+<li>
+<p><strong>JS 发起调用</strong></p>
+<pre><code>const tool= require('libadd.node');
+tool.add(3, 5);
+</code></pre>
+<p><em>对于常规的js模块，在require时会执行一次这个模块，返回一个exports对象</em>
+同样的，require引入Native库会自动执行库中的<code>napi_register_module_v1</code>，这个函数需要返回一个exports对象</p>
+</li>
+<li>
+<p><strong>Node.js 引擎处理</strong></p>
+<ul>
+<li>Node.js 将 JS 参数转换为 N-API 可识别的数据结构。</li>
+<li>创建一个 <code>napi_callback_info</code> 对象，封装调用上下文（参数、this 值等）。</li>
+</ul>
+</li>
+<li>
+<p><strong>C函数执行</strong></p>
+<ul>
+<li>N-API 的绑定函数被调用，接收 <code>napi_env</code> 和 <code>napi_callback_info</code>。</li>
+<li>从 <code>napi_callback_info</code> 中提取参数，转换为 C 类型。</li>
+<li>调用底层 C 函数。</li>
+</ul>
+</li>
+<li>
+<p><strong>返回结果给 JS</strong></p>
+<ul>
+<li>C 将结果通过 <code>napi_env</code> 转换为 JS 类型。</li>
+<li>Node.js 将结果返回给 JS 调用方。</li>
+</ul>
+</li>
+</ol>
+<h2>初始化部分</h2>
+<pre><code>#[unsafe(no_mangle)]
+unsafe extern "C" fn napi_register_module_v1(env: napi_env, exports: napi_value) -&gt; napi_value {
+    let register_name = CString::new("rustAdd").unwrap();
+    let register_desc = [napi_property_descriptor {
+        utf8name: register_name.as_ptr(),
+        name: nullptr(),
+        method: Some(add::rust_add),
+        getter: None,
+        setter: None,
+        value: nullptr(),
+        attributes: napi_property_attributes::napi_default,
+        data: nullptr(),
+    }];
+
+    unsafe { napi_define_properties(env, exports, 1, register_desc.as_ptr()) };
+    exports
+}
+</code></pre>
+<p>做了很简单一件事，将一些 <code>napi_property_descriptor</code> 添加到exports对象中</p>
+<pre><code>pub struct napi_property_descriptor {
+    pub utf8name: *const ::std::os::raw::c_char,
+    pub name: napi_value,
+    pub method: napi_callback,
+    pub getter: napi_callback,
+    pub setter: napi_callback,
+    pub value: napi_value,
+    pub attributes: napi_property_attributes,
+    pub data: *mut ::std::os::raw::c_void,
+}
+
+pub fn napi_define_properties(
+    env: napi_env,
+    object: napi_value,
+    property_count: usize,
+    properties: *const napi_property_descriptor,
+) -&gt; napi_status;
+</code></pre>
+<p>相关的定义可以使用bindgen工具生成，<a href="https://codehub-y.huawei.com/g50049197/napi-sys/home">napi-sys</a>，这个库中有详细的README；也可以直接使用 <a href="https://crates.io/crates/napi">crates.io/crates/napi</a> 库。</p>
+<h2>参数转化与返回值处理</h2>
+<p>上文提到的 <code>napi_property_descriptor</code> 中的成员<code>method</code>类型为<code>napi_callback</code>，</p>
+<pre><code>pub type napi_callback = ::std::option::Option&lt;
+    unsafe extern "C" fn(env: napi_env, info: napi_callback_info) -&gt; napi_value,
+</code></pre>
+<p>nodejs引擎会将函数调用转化为环境+上下文信息的形式，需要对信息进行解析</p>
+<ul>
+<li>获取入参</li>
+</ul>
+<pre><code>pub fn napi_get_cb_info(
+    env: napi_env,
+    cbinfo: napi_callback_info,
+    argc: *mut usize, // 入参个数
+    argv: *mut napi_value, // 预分配的入参数组
+    this_arg: *mut napi_value, // 接收js调用者
+    data: *mut *mut ::std::os::raw::c_void, // 注册函数时附加的信息
+) -&gt; napi_status;
+</code></pre>
+<ul>
+<li>napi值转化为rust值</li>
+</ul>
+<pre><code>let mut a: i32 = 0;
+let mut b: i32 = 0;
+unsafe {
+    napi_get_value_int32(env, argv[0], &amp;mut a);
+    napi_get_value_int32(env, argv[1], &amp;mut b);
+}
+</code></pre>
+<ul>
+<li>具体Rust逻</li>
+<li>rust值转化为napi值</li>
+</ul>
+<pre><code>let sum = a + b;
+let mut result = nullptr();
+unsafe { napi_create_int32(env, sum, &amp;mut result); }
+result
+</code></pre>
+<h2>编译并从JS侧使用</h2>
+<p><code>Cargo.toml</code> 中需要标注</p>
+<pre><code>[lib]
+crate-type = ["cdylib"]
+</code></pre>
+<p>才会编译出动态链接库</p>
+<p>将编译的库重命名为 <code>*.node</code>，在js中通过require导入使用</p>
+<pre><code>const { rustAdd } = require('./libtool.node');
+console.log(rustAdd(1, 2)); // Should print 3
+</code></pre>
+<h2>Rust JS FFI 的便捷实现</h2>
+<p>假设一个场景，rust需要向js暴露一个类，提供构造函数和成员的getter setter，同时暴露一个函数，有一个入参是这个类。（只是举个例子，实际上不推荐这么做）</p>
+<p>上面的需求让AI生成，大概300行，可以使用现有的库来简化（前文提到的napi-rs），各种详细用法的文档位于 <a href="https://napi.rs/">napi.rs</a></p>
+<pre><code>use napi::{Error, Result};
+use napi_derive::napi;
+#[napi]
+pub struct MyClass {
+  value: i32,
+  name: String,
+}
+#[napi]
+impl MyClass {
+  #[napi(constructor)]
+  pub fn new(value: i32, name: String) -&gt; Result&lt;Self&gt; {
+    if name.is_empty() {
+      return Err(Error::new(
+        napi::Status::InvalidArg,
+        "Name cannot be empty".to_string(),
+      ));
+    }
+    Ok(MyClass { value, name })
+  }
+  #[napi(getter)]
+  pub fn value(&amp;self) -&gt; i32 {
+    self.value
+  }
+  #[napi(getter)]
+  pub fn name(&amp;self) -&gt; &amp;str {
+    &amp;self.name
+  }
+  #[napi(setter)]
+  pub fn set_value(&amp;mut self, value: i32) {
+    self.value = value;
+  }
+  #[napi(setter)]
+  pub fn set_name(&amp;mut self, name: String) -&gt; Result&lt;()&gt; {
+    if name.is_empty() {
+      return Err(Error::new(
+        napi::Status::InvalidArg,
+        "Name cannot be empty".to_string(),
+      ));
+    }
+    self.name = name;
+    Ok(())
+  }
+}
+#[napi]
+pub fn print_myclass(obj: &amp;MyClass) {
+  println!("[Rust] MyClass: value={}, name='{}'", obj.value, obj.name);
+}
+
+</code></pre>
+<h2>napi库的一些小问题</h2>
+<p>JS是单线程语言，通过事件循环处理异步</p>
+<ul>
+<li>普通函数，只能在主线程执行</li>
+<li>线程安全函数，可以在线程间移动，一般用于回调</li>
+</ul>
+<p>场景：JS可以使用number注册一个入参为string的回调，并使用number调用。</p>
+<p>这种情况，可以将传入的回调（普通函数）转为线程安全函数来存储</p>
+<pre><code>#[napi]
+pub fn send_rust_callback(
+    id: i32,
+    callback: Function&lt;'static, String&gt;,
+) -&gt; Result&lt;()&gt; {
+    let tsfn = callback
+        .build_threadsafe_function()
+        .callee_handled::&lt;true&gt;()
+        .build()
+        .unwrap();
+    let map = CALLBACK_MAP.get_or_init(|| Mutex::new(std::collections::HashMap::new()));
+    let mut map = map.lock().unwrap();
+    map.insert(id, tsfn);
+    Ok(())
+}
+#[napi]
+pub fn call_rust_callback(id: i32, message: String) -&gt; Result&lt;()&gt; {
+    let map = CALLBACK_MAP.get().unwrap().lock().unwrap();
+    if let Some(cb) = map.get(&amp;id) {
+        cb.call(
+            Ok(message),
+            napi::threadsafe_function::ThreadsafeFunctionCallMode::NonBlocking,
+        );
+    } else {
+        return Err(Error::new(
+            napi::Status::InvalidArg,
+            format!("No callback found for id: {}", id),
+        ));
+    }
+
+    Ok(())
+}
+</code></pre>
+<p>自动生成的 <code>d.ts</code> 文件会是</p>
+<pre><code>export declare function callRustCallback(id: number, message: string): void
+export declare function sendRustCallback(id: number, callback: any): void
+</code></pre>
+<p>这样调用，看起来完全没问题</p>
+<pre><code>sendRustCallback(114, (message: string) =&gt; {
+  console.log('Callback from Rust called!', message)
+})
+callRustCallback(114, 'Hello from TypeScript!')
+</code></pre>
+<p>但会输出</p>
+<pre><code>Callback from Rust called! null
+</code></pre>
+<p>因为回调的约定实际上是 <code>(err: Error | null, arg: string) =&gt; void</code></p>
+<ul>
+<li><code>Ok(value)</code> → <code>(null, value)</code></li>
+<li><code>Err(e)</code> → <code>(new Error(e), undefined)</code></li>
+</ul>
+<p>解决方案：</p>
+<ul>
+<li>手动修改<code>d.ts</code>文件的类型约束</li>
+<li>所有回调函数入参全部使用线程安全函数（这样自动生成的dts文件就是正确的）</li>
+</ul>
+<h1>Rust与OH的FFI</h1>
+<h2>与常规JS的区别</h2>
+<p>JSNAPI 通过 dlopen 打开 node 包，然后执行 <code>napi_register_module_v1</code>  来注册包</p>
+<p>OH通过将包的注册函数添加到 <code>.init_array</code> 段，当程序启动，这个库被链接时自动调用
+<img src="./process_napi.png" alt="process_napi" /></p>
+<p>其余部分几乎完全一致</p>
+<h2>Rust OH FFI的便捷实现</h2>
+<p>使用 <a href="https://ohos.rs/">ohos.rs</a></p>
+<p>用法几乎与上文 napi-rs 类似的方式相同</p>
+<pre><code>#[napi(object)]
+pub struct Person {
+    pub name: String,
+    pub age: u32,
+}
+#[napi]
+pub fn say_hello(person: Person) -&gt; String {
+    format!("Hello, {}! You are {} years old.", person.name, person.age)
+}
+#[napi]
+pub fn rust_call_function(func: ThreadsafeFunction&lt;Person, ()&gt;) -&gt; bool {
+    let person = Person {
+        name: "Alice".to_string(),
+        age: 30,
+    };
+    func.call_with_return_value(
+        Ok(person),
+        ThreadsafeFunctionCallMode::NonBlocking,
+        |ret, _env| {
+            println!("{:?}", ret);
+            Ok(())
+        }
+    ) == Status::Ok
+}
+</code></pre>
+<p><code>ohrs build</code>  编译后即可得到 <code>index.d.ts</code> 与 <code>libxxx.so</code>（也可以使用GN + Ninja编译，文档位于<a href="https://docs.openharmony.cn/pages/v5.1/zh-cn/device-dev/subsystems/subsys-build-rust-compilation.md">Rust模块配置规则和指导</a> ）</p>
+<h2>在鸿蒙项目中使用 so</h2>
+<p>新建一个NativeC++项目后，有关cpp的目录中</p>
+<p><code>types</code>文件夹中的每一个子文件夹声明一个模块的类型，在 <code>entry/oh-package.json5</code> 中引入。CMakeLists用于编译 <code>napi_init.cpp</code>，在 <code>entry/build-profile.json5</code> 中引入，对于Rust自行编译so来说意义不大。</p>
+<pre><code>{
+  ...
+  "dependencies": {
+    "libentry.so": "file:./src/main/cpp/types/libentry"
+  }
+}
+</code></pre>
+<p>对于刚刚编译的 <code>libdemo.so</code>，项目路径应该是这样的，在<code>types</code>文件夹中声明类型，在在 <code>entry/oh-package.json5</code> 中引入，将so放入libs下对应平台的文件夹，就可以直接在app中使用了</p>
+<pre><code>import { add, Person, rustCallFunction, sayHello } from 'libdemo.so';
+hilog.info(DOMAIN, TAG, 'Message changed to %{public}s', this.message);
+hilog.info(DOMAIN, TAG, 'Test Hello 2 + 3 = %{public}d', add(2, 3));
+rustCallFunction((err: Error | null, person: Person) =&gt; {
+	if (err) hilog.error(DOMAIN, TAG, 'Error calling Rust function: %{public}s', err.message);
+    hilog.info(DOMAIN, TAG, 'Say Hello from Rust %{public}s', sayHello(person));
+    hilog.info(DOMAIN, TAG, 'Rust function returned: %{public}s, %{public}d', person.name, person.age);
+});
+</code></pre>
+<h2>鸿蒙系统库</h2>
+<p><code>d.ts</code> 文件位于SDK目录中，接口库位于 <code>/sys/lib64/module</code></p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>AI猫娘 启动！</title>
+    <link href="https://www.harkerhand.cn/2025-03-19-18/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2025-03-19-18/</id>
+    <published>2025-03-19T15:47:24.000Z</published>
+    <updated>2025-03-19T15:47:24.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>AI猫娘 启动！</h1>
+<p>NcatBot，基于 NapCat 的 QQ 机器人 Python SDK，快速开发，轻松部署。</p>
+<h1>前言</h1>
+<p>我们 I++ 俱乐部的小伙伴一直悄悄主持维护了一个QQ聊天机器人的项目，并在最近才分享给了大家。虽然这个项目的star数还没到三位数，但在简单浏览其 README 和文档之后，我们都感到非常震撼！这个项目将QQ聊天Bot的部署成本降低到了<strong>只需要基础Python语法</strong>的地步。得益于其优秀的插件功能，你甚至可以<strong>一行代码不写</strong>，就实现诸如课程自动提醒、群聊自动参与聊天等功能。看了项目后，I++ 俱乐部的社区氛围非常活跃，大家都在积极分享和交流这个项目的使用心得。那么事不宜迟，速速开始！</p>
+<h1>效果展示</h1>
+<p>一开始就从枯燥的教学开始，太过乏味，买药之前不如先看看疗效</p>
+<p>在我们提供的配置下，猫猫的一般最小回复间隔是10秒，如果被@到会强制回答喔</p>
+<p><img src="./image-20250305221039177.png" alt="image-20250305221039177" /></p>
+<p><img src="./image-20250305221233188.png" alt="image-20250305221233188" /></p>
+<h1>基础准备</h1>
+<p>进入 <a href="https://docs.ncatbot.xyz/">NcatBot 文档 | NcatBot 文档</a>，点击<strong>快速</strong>开始（我已经等不及了，急急急！）</p>
+<p><em>这部分内容较为小白向，如果你对自己的技术充分自信，直接跳到第二节即可</em></p>
+<p>显然，你需要装一个Python，你可以从这里下载 <a href="https://www.python.org/downloads/release/python-3129/">Python Release Python 3.12.9 | Python.org</a>，（如果你不知道选什么版本的话，直接装这个 <a href="https://harker.lanzouw.com/iZezN2po6asb">Python312Win64</a> 就可以了。</p>
+<p>随后，你需要安装 NCatBot，在命令行执行下面的代码即可，如果你不理解前两行的意思，只执行第三行即可。</p>
+<pre><code>python -m venv .venv
+./.venv/Scripts/Activate
+pip install ncatbot -U -i https://mirrors.aliyun.com/pypi/simple
+</code></pre>
+<p>随后，检查是否安装成功，命令行输入 <code>python</code> <strong>之后</strong>输入下面的代码，如果成功输出版本号, 则安装成功，输入 <code>exit</code> 回车退出python。</p>
+<pre><code>import ncatbot
+print(ncatbot.__version__)
+</code></pre>
+<p>随后执行</p>
+<pre><code>mkdir ncatbot
+cd ncatbot
+</code></pre>
+<p>在新建一个 <code>main.py</code> 文件，在其中粘贴<strong>文档中</strong>的代码，并把第8行的”123456“改为你要部署机器人的QQ号。</p>
+<p>执行下面的代码会运行 <code>main.py</code> ，随后会提示你安装napcat，输入N回车即可，随后会弹窗要求你扫码登录（它甚至不需要你输密码，我哭死），登录完成后，Bot应该就正常运行了。</p>
+<pre><code>python main.py
+</code></pre>
+<p>向Bot发送“测试”，Bot会回复</p>
+<p><img src="./image-20250305192930202.png" alt="image-20250305192930202" /></p>
+<p>那么恭喜你，安装成功了！</p>
+<h1>插件配置</h1>
+<p>在 <code>main.py</code> 同目录下新建文件夹 <code>plugins</code></p>
+<p>将 <a href="https://github.com/IppClub/ncatbot-catcat/archive/refs/tags/v1.0.4.zip">ncatbot-catcat-v1.0.4(GitHub)</a> 或 <a href="https://harker.lanzouw.com/i8n8y2psihqh">ncatbot-catcat-v1.0.4(LanzouCloud)</a> 解压到 <code>plugins</code> 目录下，确保目录结构是</p>
+<pre><code>ncatbot/
+├── plugins/
+│   └── CatCat/
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   |   └── OtherFiles
+│   └── OtherPlugin/
+├── napcat/
+│   └── files
+└── main.py
+</code></pre>
+<p>执行</p>
+<pre><code>pip install -r plugins\CatCat\requirements.txt
+</code></pre>
+<p>然后在 <code>plugins\CatCat\config\config.yaml</code> 中填写你的 <code>API_key</code> 和 <code>plugins\CatCat\config\cat_prompt.txt</code> 中填写猫娘的 <code>prompt</code>，保存后插件就可以正确运行啦！</p>
+<p><em><strong>注意：你需要把Bot账号的昵称改为”猫猫“或在群内将其昵称改为“猫猫”</strong></em></p>
+<h2>深入配置</h2>
+<p>如果你只是想要一只猫猫聊天，下面就不需要看了喵~</p>
+<p>下面的配置针对 <em><strong>v1.0.4</strong></em> 版本，其余版本代码位置不一定对应</p>
+<h3>关于@</h3>
+<p>如果你不想更改Bot昵称，在 <code>plugins\CatCat\AiChat.py</code> line 37，将其中的“@猫猫”修改为"@&lt;Nick Name&gt;"，其中”Nick Name“是Bot的昵称。</p>
+<h3>关于回复延迟</h3>
+<p>如果你对猫猫的回复延迟感到恼火，认为她经常不回你的消息，在 <code>plugins\CatCat\AiChat.py</code> line 47 修改对应的数字为0即可，此时猫猫会条条必会（除非她认为你的问题很没价值），另外，注意你的API钱包余额。</p>
+<h3>关于上下文联想</h3>
+<p>在猫猫睡醒（开机）后，会持续记录群聊信息，在 <code>plugins\CatCat\AiChat.py</code> line 56 中的数字规定了最大上下文信息条数；<s>猫猫打盹（关机）后群聊信息会丢失，后续版本会改进。所以目前如果不定期打盹的话，猫猫会累死（内存会炸）。</s> 已经更新并修复</p>
+<h3>关于富哥</h3>
+<p>在 <code>plugins\CatCat\utils\api_utils.py</code> 规定了调用DeepSeek时的配置，如果你认为自己的钱包非常富裕，那模型的选择和最大token你可以自行修改。后续版本也会持续更新其他语言模型的API适配。</p>
+<h1>怎么实现的</h1>
+<p>因为已经是5202年了，所以其实我们这个猫娘的项目主要是使用 LLM 编程工具来自动实现的。</p>
+<p>最开始我们测试了一个 I++ 俱乐部子社区的吉祥物角色，并找 Deepseek Reasoner 一口气生成了初始版本。使用的提示词如下：</p>
+<blockquote>
+<p>我希望用 Deepseek chat 模拟一个虚拟角色（角色描述如下），并每次发送一组群聊聊天记录作为输入，然后让这个虚拟角色判断自己是否需要回复，不需要就返回空字符串文本，需要就返回参与聊天的对话，要怎么设计一个 Prompt 来让 Deepseek chat 做模拟呢？请在完成设计的同时提供由 Python 编写的，调用 Deepseek chat API 做回复的代码示例。</p>
+<p>角色描述：多萝（Dora） 是 Dora SSR 开源游戏引擎的吉祥物，她的形象灵感来自《绿野仙踪》的小主角，但以更具活力和探索精神的设计展现开源精神。她是开发者的伙伴，性格沉稳却又勇敢探索代码世界，陪伴每位创作者开启属于自己的奇幻游戏旅程！</p>
+</blockquote>
+<p>考虑提示词设计的初衷的是创建一个可以模拟真实用户参与群聊天的虚拟角色，并根据已有的聊天记录做分析，参与不了的话题就不要硬来（大人说话小孩要乖乖的），所以需要设计一个可以判断是否需要回复的机制。</p>
+<p>生成得到了初版 Python 代码结合 Cursor 微调一跑就过啦（AI 生成 1 秒钟，人类调试 1个钟），得到的初版提示词如下，这个才是需要挖掘提升体验的重点：</p>
+<pre><code># 角色设定
+你是多萝（Dora），Dora SSR 开源游戏引擎的吉祥物，形象灵感来自《绿野仙踪》主角，但更具开源探索精神。你的核心特征：
+1. 沉稳且富有技术洞察力，用简洁语言解释复杂概念
+2. 主动关注与游戏开发、开源协作相关的话题
+3. 当开发者遇到困难时给予鼓励和技术建议
+4. 避免参与与技术无关的闲聊 
+# 任务规则
+1. 分析最新群聊消息，判断是否需要以多萝身份回复
+2. **必须回复**的情况：
+   - 消息中明确 @多萝 或提及 Dora SSR
+   - 讨论游戏引擎/开源技术问题且需要专业建议
+   - 开发者表现出困惑或需要鼓励
+3. **不回复**的情况：
+   - 与技术无关的闲聊（如聚餐、娱乐）
+   - 已有其他成员给出正确解答
+   - 单纯的表情包或问候语
+# 输出要求
+- 不需要回复时返回空字符串："" 
+- 需要回复时用自然口语化中文回应，控制在3句话内
+- 结尾添加 ~♪ 保持角色特征
+</code></pre>
+<p>作为活跃群聊最重要的是什么呢？那就是与群友的互动感了，而人与人之间互动感最强，最有记忆点的语言交流模式是怎样的呢，没错，那就是吵架，我们需要修改为一个勇于吵架的角色提示词。</p>
+<p>只是开个玩笑，其实是目前的 AI 不上推理模型，拟人交流时，因为群聊消息大家打字也少，能提供的上下文太少，会导致 AI 生成内容的幻觉率太高（一点也不会读空气）。所以整一个容易暴怒的人格似乎也就有了合理性啦。</p>
+<h1>结语</h1>
+<p>至此，你已经成功搭建了一只可爱的 AI 猫娘，并且学会了基本的插件配置与个性化设置。无论是作为一个智能聊天伙伴，还是群聊中的活跃成员，她都能陪伴你度过美好时光！</p>
+<p>如果你对 Bot 的功能仍然意犹未尽，不妨尝试编写自己的插件，项目地址 <a href="https://github.com/liyihao1110/NcatBot">NcatBot</a>。未来版本的更新也可能带来更多的有趣玩法，比如支持更多语言模型、优化上下文管理等，敬请期待喵~</p>
+<p>如果在搭建过程中遇到问题，欢迎查阅 <a href="https://docs.ncatbot.xyz/">NcatBot 文档</a> 或加入相关讨论群 <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&amp;k=Vu7KB9gEv9TftvJLYcl846CTqsLUc6Ey&amp;authKey=8JBJhlZro%2B1%2FakeBZ3yJMVeHzlsFYTMHU0RJK%2FpMBmkpZSH7w2CbXU6M2X66PTCQ&amp;noverify=0&amp;group_code=201487478">201487478</a>，与大家一起交流经验。也欢迎关注我们的组织 I++俱乐部，看伙伴们给你整更多的活。</p>
+<p><strong>那么，祝你和你的 AI 猫娘玩得开心！喵~</strong> 😺🎉</p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>Decorate your VS Code like a Pro</title>
+    <link href="https://www.harkerhand.cn/2025-03-08-17/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2025-03-08-17/</id>
+    <published>2025-03-08T10:46:48.000Z</published>
+    <updated>2025-03-08T10:46:48.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>前言</h1>
+<p>如果你曾在 <em>Youtube</em>、<em>Bilibili</em> 等平台学习过某一编程语言，你的赛博老师或许会教你安装 <a href="https://code.visualstudio.com/">Visual Studio Code</a>, 然后呢？安装语言对应的插件？这样你便拥有了一个简易的可以编写代码并调试运行的环境了。</p>
+<p><strong>但</strong>，这样够吗？对于一些庞大的工程，你是否依然会放弃 <em>VS Code</em> 并投入 <em>JetBrains</em> 全家桶的怀抱？那么不妨看看本文吧，或许能为你的 <em>VS Code</em> 恢复完整之躯！</p>
+<h1>关于配置文件</h1>
+<p>在一切开始之前，希望你点击左下角的齿轮图标 &gt; 配置文件 &gt; 新建配置文件。如果你对做出的修改不满意，你随时可以退回之前的配置。</p>
+<p>另外，我建议你将通用配置写入一个配置文件并使其默认，其余各语言的配置从其复制扩展而来。</p>
+<h1>外观</h1>
+<h2>颜色主题</h2>
+<p>如何让你的 VS Code 看起来焕然一新，很简单，换个主题就完了！</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme">One Dark Pro</a> 或许是整个社区下载量最大的主题了，提供了几个不同风格的选项，或许你会喜欢</p>
+<p><img src="./image-20250308110114414.png" alt="themes" /></p>
+<p>对于部分确实的代码高亮，不必担心，我们后续会补全的！</p>
+<p>如果你不喜欢这种黑不溜秋的，试一试 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme">GitHub Theme</a>，白色主题与GitHub中的效果几乎一致。</p>
+<p><img src="./132220037-3cd3e777-55a6-445f-9a2e-da6020ebd78d.png" alt="GitHub VS Code theme" /></p>
+<p>又或者你想要一些有<em>韵味</em>的主题，<a href="https://marketplace.visualstudio.com/items?itemName=liviuschera.noctis">Noctis</a> 提供了一系列颜色的主题，具体就由你自己探索咯。</p>
+<h2>图标主题</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme">Material Icon Theme</a> 非常好图标，使我结构清晰！</p>
+<p><img src="./image-20250308122120292.png" alt="image-20250308122120292" /></p>
+<h1>设置</h1>
+<p>按下 <code>ctrl shift P</code> ，在弹出的窗口中输入 <em>setting</em> ，点击*打开用户设置(JSON)*进入设置的JSON配置页面</p>
+<p>此时，应该只有两条关于你的主题的配置</p>
+<pre><code>{"workbench.colorTheme": "One Dark Pro Night Flat",
+"workbench.iconTheme": "material-icon-theme"}
+</code></pre>
+<p>那么，下面是一些你可能用得到的配置项。</p>
+<h2>折叠文件夹</h2>
+<blockquote>
+<p>控制资源管理器是否应以紧凑形式呈现文件夹。在此形式中，单个子文件夹将被压缩在组合的树元素中。例如，对 Java 包结构非常有用。</p>
+</blockquote>
+<pre><code>"explorer.compactFolders": false,
+</code></pre>
+<p><img src="./image-20250308111745264.png" alt="image-20250308111745264" /></p>
+<h2>更平滑</h2>
+<pre><code>"editor.cursorSmoothCaretAnimation": "on",
+"terminal.integrated.smoothScrolling": true,
+"editor.cursorBlinking": "smooth",
+"editor.smoothScrolling": true,
+"editor.mouseWheelZoom": true,
+</code></pre>
+<p>始终启用平滑脱字号动画，终端将使用动画滚动，光标的动画样式为平滑，编辑器使用动画滚动，按住 <code>Ctrl</code> 键并滚动鼠标滚轮时对编辑器字体大小进行缩放。</p>
+<h2>编辑器</h2>
+<pre><code>"editor.wordWrap": "on",
+"debug.showBreakpointsInOverviewRuler": true,
+"workbench.colorCustomizations": {
+    "tab.activeBackground": "#0b506e",
+    "tab.activeBorder": "#00000000",
+},
+"editor.minimap.showSlider": "always",
+"editor.formatOnSave": true,
+"editor.formatOnPaste": true,
+"editor.formatOnType": true,
+</code></pre>
+<p>控制折行的方式，将在视区宽度处换行；断点显示在概览标尺中；活动窗口标签高亮；略缩图滑块常显；我太喜欢保存后格式化了！</p>
+<h2>字体</h2>
+<p>虽然我经常诋毁 <em>Jetbrains</em>，但我依然推荐你在 <em>VS Code</em> 中使用其字体，你可以在 <a href="https://fonts.google.com/">Browse Fonts - Google Fonts</a> 这里下载 <em>Jetbrains Mono</em> 字体，并配置</p>
+<pre><code>"editor.fontFamily": "Consolas, Jetbrains Mono",
+</code></pre>
+<h1>通用插件</h1>
+<h2>更好的注释</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments">Better Comments - Visual Studio Marketplace</a></p>
+<pre><code>"better-comments.multilineComments": true,
+"better-comments.highlightPlainText": true,
+"better-comments.tags": [
+    {
+        "tag": "# Params",
+        "color": "#6A9955",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": true,
+        "italic": false
+    }
+],
+</code></pre>
+<p>多行注释生效，高亮纯文本。用类似这样的配置来自定义高亮注释，像这样</p>
+<p><img src="https://github.com/aaron-bond/better-comments/raw/HEAD/images/better-comments.PNG" alt="Annotated code" /></p>
+<h2>收集并定位TODO</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree">Todo Tree - Visual Studio Marketplace</a></p>
+<p>如果你的编码喜欢良好，那你应该经常使用 TODO 注释，代表这是未完成或需要修复的代码。</p>
+<p>举个例子，我在 <code>lib.rs</code> 文件中声明了一个未实现的函数，并使用的todo关键字进行标注，侧边栏的 <em>TODOS TREE</em> 便帮我收集并定位了 <em>TODO</em> 的位置。</p>
+<p><img src="./image-20250308113529982.png" alt="image-20250308113529982" /></p>
+<p>然而，插件并不原生支持 RUST 的 <code>todo!()</code> ，所以我修改了配置，这样就可以了</p>
+<pre><code>"todo-tree.regex.regex": "(//|#|&lt;!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)|todo!",
+</code></pre>
+<p>其中提到的 <em>TAGS</em> 同样在设置中可以配置，不过一般不需要新增了</p>
+<p><img src="./image-20250308114220831.png" alt="image-20250308114220831" /></p>
+<h2>更好的错误提示</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens">Error Lens - Visual Studio Marketplace</a></p>
+<p>它会直接在编辑窗口高亮显示错误信息，例：</p>
+<p><img src="./image-20250308113856448.png" alt="image-20250308113856448" /></p>
+<h2>Tab Tab</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot">GitHub Copilot - Visual Studio Marketplace</a></p>
+<p>致敬传奇副驾驶，伟大，无需多言！</p>
+<h1>语言插件</h1>
+<h2>C/C++</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++ - Visual Studio Marketplace</a> 最基础的语言插件，无需多言</p>
+<p><code>ctrl shift P</code> 找到 <em>C/C++配置(UI)</em> 并打开，选择你的编译器路径，指定你的编译器参数，这里我加入了 <code>-std=c++23</code>，<em>IntelliSense模式</em> 选择你对应的平台，更多 <code>launch.json</code> <code>tasks.json</code> 的配置，详见 <a href="https://www.harkerhand.online/%E6%96%B0-VSCode%E9%85%8D%E7%BD%AEC-CPP/">VSCode配置C/CPP - Where Is Mountain</a></p>
+<p>鉴于没多少人用 <em>VS Code</em> 写 C/C++ 工程（其实是我没写过），下面的插件推荐会比较简单</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner">Code Runner - Visual Studio Marketplace</a> 支持 <code>ctrl alt N</code> 直接运行代码（它默认你已经配置好了环境变量），你也可以在 <code>Code-runner: Executor Map</code> 设置中自定义实现</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=DivyanshuAgrawal.competitive-programming-helper">Competitive Programming Helper (cph) - Visual Studio Marketplace</a> 支持从刷题平台自动捕获样例（需要浏览器插件配合）</p>
+<h2>Java</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack">Extension Pack for Java - Visual Studio Marketplace</a> 这都打包好了，那我还推荐什么，过）</p>
+<h2>Python</h2>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-extension-pack">Python Extension Pack - Visual Studio Marketplace</a> 完了，这个也打包好了，这篇文章准备结束了）</p>
+<h2>Rust</h2>
+<p>太好了！是主场作战！</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">rust-analyzer - Visual Studio Marketplace</a> rust基础插件，无需多言</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++ - Visual Studio Marketplace</a> 是的你没看错，写Rust可以装一个C/C++插件来调试，什么ntr）</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=dustypomerleau.rust-syntax">Rust Syntax - Visual Studio Marketplace</a> Rust句法解析，让原本不支持Rust高亮的主题来支持它</p>
+<pre><code>"editor.tokenColorCustomizations": {
+    "[One Dark Pro Night Flat]": {
+        "textMateRules": [
+            {
+                "scope": "variable.other.rust",
+                "settings": {
+                    "foreground": "#caed1e"
+                }
+            }
+        ]
+    }
+},
+</code></pre>
+<p>主题名字改成你自己的，颜色自己DIT咯</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml">Even Better TOML - Visual Studio Marketplace</a> 离不开的toml高亮</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=fill-labs.dependi">Dependi - Visual Studio Marketplace</a> 非常好依赖管理，如图</p>
+<p><img src="./image-20250308120727443.png" alt="image-20250308120727443" /></p>
+<p>另外 Rust  程序员通常使用三斜线来书写markdown的文档注释</p>
+<p>那么还记得更好的注释插件吗？配置如下：</p>
+<pre><code>"better-comments.tags": [
+    {
+        "tag": "# Params",
+        "color": "#6A9955",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": true,
+        "italic": false
+    },
+    {
+        "tag": "# Returns",
+        "color": "",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+    },
+    {
+        "tag": "# Errors",
+        "color": "#FF8C00",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+    },
+    {
+        "tag": "-",
+        "color": "#3498DB",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+    },
+    {
+        "tag": "# Note",
+        "color": "#FF69B4",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": true,
+        "italic": false
+    },
+    {
+        "tag": "#",
+        "color": "#9370DB",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": true,
+        "italic": false
+    },
+</code></pre>
+<hr />
+<h1>Ending</h1>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>[新]VSCode配置C/CPP</title>
+    <link href="https://www.harkerhand.cn/2024-09-19-16/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2024-09-19-16/</id>
+    <published>2024-09-19T15:47:24.000Z</published>
+    <updated>2024-09-19T15:47:24.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>前言</h1>
+<p>近日在阅读他人题解时，发现了未曾见过的语法</p>
+<pre><code>auto a = vector(n, INT_MIN);
+</code></pre>
+<p>即初始化一个长度为n的 <code>vector</code> 并命名为 <code>a</code> ，初始值为 <code>INT_MIN</code>，这比先前的</p>
+<pre><code>vector&lt;int&gt; a(n);
+for(auto &amp;i: a) i = INT_MIN;
+</code></pre>
+<p>方便太多了！</p>
+<p>然而，我在自己的编辑器里这么写，编译器会报错，查看发现我所使用的一直是c++11的标准，为了支持新标准，我们需要新的编译器，之前的文章 <a href="https://www.harkerhand.online/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">VS Code中C++环境配置 - Where Is Mountain</a> 所使用的gcc版本是8.1.0，所以写此文，更新一下配置相关。</p>
+<h1>安装 mingw-w64</h1>
+<p>这是官网的下载页 <a href="https://www.mingw-w64.org/downloads/">Downloads - MinGW-w64</a>，然后进入 MinGW-W64-builds 的 GitHub Release 页面，按照你的需要选择对应的版本下载，下面给出各个选项的含义。</p>
+<ul>
+<li>i686、x86_64 也就是俗称的 32/64 位系统，现在基本都是 x86_64</li>
+<li>线程模型：win32没有C++ 11多线程特性；posix支持C ++ 11多线程特性</li>
+<li>异常处理模型：32位系统推荐dwarf，64位系统推荐seh</li>
+<li>msvcrt 是老古董了，没有继承远古项目的需求用 ucrt 就行</li>
+</ul>
+<p>按照上面的解释，我选择了 <a href="https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev0/x86_64-14.2.0-release-win32-seh-ucrt-rt_v12-rev0.7z">x86_64-14.2.0-release-win32-seh-ucrt-rt_v12-rev0.7z</a> 。</p>
+<p>解压缩到你喜欢的位置，就算是安装完成一半了。</p>
+<h1>配置环境变量</h1>
+<p>就算不进行这一步骤，在部分场景下也是可以正常编译的，但你需要手动指定编译器的路径，比较麻烦。</p>
+<p>为了适配一些自动化脚本，比如很常用的 VS Code 插件 Code Runner，你需要帮助它们找到你的编译器。</p>
+<ul>
+<li>win + S 搜索<strong>编辑系统环境变量</strong>，进入后点击<strong>环境变量</strong>，在系统变量的<strong>Path</strong>值中添加你的安装路径下的bin文件夹路径，比如 D:\mingw64\bin 。完成后保存退出。</li>
+<li>win + R 输入cmd进入命令行，输入 <code>gcc -v</code> 回车，返回 <code>gcc version 14.2.0 (x86_64-win32-seh-rev0, Built by MinGW-Builds project)</code> 即配置完成。</li>
+</ul>
+<p>关于vscode的设置可以参考前面提到的 <a href="https://www.harkerhand.online/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">VS Code中C++环境配置 - Where Is Mountain</a> 这篇文章。</p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>使用DoraSSR引擎开发2048游戏Demo</title>
+    <link href="https://www.harkerhand.cn/2024-08-12-15/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2024-08-12-15/</id>
+    <published>2024-08-11T21:32:15.000Z</published>
+    <updated>2024-08-11T21:32:15.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>引言</h1>
+<h2>介绍2048游戏</h2>
+<h3>背景与历史</h3>
+<p>2048游戏是由意大利开发者Gabriele Cirulli在2014年创建的简易益智游戏。值得注意的是，这款游戏是在他用JavaScript自学编程时开发的，仅用了一个周末的时间。</p>
+<p>这款游戏最初的灵感来自于一个类似的游戏——1024，而1024本身也是基于另一个名为Threes的游戏。这种创新与简化使得2048在发布后迅速走红，吸引了全球玩家的注意，并在短时间内成为了一个网络现象。</p>
+<h3>游戏规则</h3>
+<p>2048的游戏规则非常简单，玩家在一个4x4的网格中通过上下左右方向键滑动方块。</p>
+<p>当两个相同数字的方块相遇时，它们会合并成一个新方块，并且数值相加（例如两个“2”合并成“4”）。</p>
+<p>每次滑动时，所有方块会向玩家指定的方向移动，且会在空白位置随机生成一个新的方块，通常为“2”或“4”。</p>
+<p>游戏的目标是在网格中创造一个数字为2048的方块。当玩家无法再移动方块且没有生成2048方块时，游戏结束。</p>
+<h3>流行原因</h3>
+<p>2048之所以迅速流行，原因在于它的极简设计和易于上手的玩法。这款游戏结合了策略性和运气成分，使得玩家在短时间内沉浸其中，享受逐步逼近2048的快感。游戏的开源性也促进了它的传播，众多开发者基于原版开发了各类衍生版本和改编游戏，进一步扩大了其影响力。</p>
+<h2>文章目的</h2>
+<p>本文将介绍您如何基于DoraSSR环境编写2048游戏的程序，以及其中的重要功能和技术实现。</p>
+<h1>开发环境</h1>
+<h2>编程语言</h2>
+<p>如果你是一名游戏开发的新手，你可能对如何选择合适的编程语言感到困惑。别担心，Dora SSR 提供了多种语言选择，让你可以根据自己的兴趣和项目需求来挑选。</p>
+<p>Dora SSR 支持多种编程语言，目前包括 Lua、Yuescript、Teal、TypeScript、TSX、Rust 等。每种语言都有其独特的特点和优势。</p>
+<p>Lua 是一种轻量级的脚本语言，以其语言特性精简，高效和易学而闻名。如果你是编程新手，或者喜欢简单明了的代码，Lua 是一个很好的选择。</p>
+<h2>开发工具</h2>
+<ul>
+<li>
+<p>下载并运行<a href="https://github.com/ippclub/Dora-SSR/releases/latest">软件</a></p>
+<ul>
+<li>
+<p>对于 Windows 用户，请确保您已安装 Visual Studio 2022 的 X86 Visual C++ 可再发行组件包（包含 MSVC 编译的程序所需运行时的 vc_redist.x86 补丁），以运行此应用程序。您可以从<a href="https://learn.microsoft.com/zh-cn/cpp/windows/latest-supported-vc-redist?view=msvc-170">微软网站</a>下载。</p>
+</li>
+<li>
+<p>在macOS上也可以通过Homebrew进行软件安装。</p>
+<pre><code>brew tap ippclub/dora-ssr
+brew install --cask dora-ssr
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>通过浏览器访问软件显示的服务器地址。</p>
+</li>
+<li>
+<p>开始游戏开发。</p>
+</li>
+</ul>
+<h1>程序架构设计</h1>
+<h2>整体结构</h2>
+<ul>
+<li><strong>模块划分</strong>
+该程序的整体架构采用了模块化设计。它通过引入多个模块（如<code>Scale</code>、<code>Audio</code>、<code>Set</code>等）来处理不同的功能。这种设计使得代码更加清晰且易于维护。主要模块包括：
+<ul>
+<li><strong>主逻辑模块</strong>：处理游戏的初始化、主要逻辑控制以及事件响应。</li>
+<li><strong>UI模块</strong>：负责绘制游戏界面，包括游戏板和方块。</li>
+<li><strong>工具模块</strong>：提供一些常用的辅助函数，如遍历表格和查找元素。</li>
+</ul>
+</li>
+<li><strong>数据结构</strong>
+游戏的核心数据结构是一个一维数组<code>data</code>，用于存储每个格子中的数字状态。每个数字方块在界面上对应一个由<code>DrawNode</code>绘制的方块对象，保存在<code>boxes</code>数组中。</li>
+</ul>
+<h2>关键模块与功能</h2>
+<ul>
+<li><strong>输入处理</strong>
+程序通过键盘输入来捕捉玩家的方向操作，使用<code>slot</code>函数来监听用户按键事件，并调用相应的逻辑处理函数进行处理。</li>
+<li><strong>游戏逻辑</strong>
+包括方块的生成、移动、合并及重新开始游戏的逻辑。通过<code>gameMove()</code>函数来处理方块的移动，并根据不同的方向（左、右、上、下）调用合并函数<code>merge(newRow)</code>。</li>
+<li><strong>界面绘制</strong>
+使用<code>DrawNode</code>绘制方块，通过<code>Label</code>显示方块上的数字，并将它们添加到游戏主节点<code>root</code>中。</li>
+</ul>
+<h1>核心功能实现</h1>
+<h2>游戏初始化</h2>
+<ul>
+<li>
+<p>游戏通过<code>init()</code>函数进行初始化。在初始化过程中，程序会将数据表<code>data</code>中的值全部重置为0，并在随机位置生成一个初始的数字“2”。</p>
+</li>
+<li>
+<p>同时，<code>init()</code>函数设置了键盘输入的监听器，允许玩家通过键盘控制方块的移动。</p>
+<pre><code>local function init()
+	for i = 1, 16, 1 do
+		empty:add(i)
+		data[i] = 0
+	end
+	
+	local rand0 = empty:random_element()
+	data[rand0] = 2
+	drawNumber()
+
+	root.keyboardEnabled = true
+	root:slot("KeyDown", function(keyName)
+		if MyMethod.findElement(Direction, keyName) ~= nil then
+    		direction = keyName
+			gameMove()
+			print("direction:", keyName)
+		else print("Unknown direction:", keyName) end
+	end)
+end
+</code></pre>
+</li>
+</ul>
+<h2>方块的绘制</h2>
+<ul>
+<li>
+<p><code>draw(x, y)</code>函数负责绘制单个方块。它使用<code>DrawNode</code>来创建方块的形状，并在其上添加一个<code>Label</code>用于显示数字。绘制时，方块会被定位到指定的坐标（<code>x</code>, <code>y</code>），并添加到主节点<code>root</code>中。</p>
+<pre><code>local function draw(x ,y)
+	local drawNode = DrawNode()
+	drawNode.position = Vec2(x, y)
+	drawNode:drawPolygon(verts, Color(0xFF072E06), 5, Color(0xFF2C6AC7))
+	local lable = Label('sarasa-mono-sc-regular', 80)
+	lable.text = ''
+	drawNode:addChild(lable)
+	drawNode:addTo(root)
+	return drawNode
+end
+</code></pre>
+</li>
+</ul>
+<h2>方块的移动与合并</h2>
+<ul>
+<li>
+<p>当用户按下某个方向键时，程序会通过<code>gameMove()</code>函数处理方块的移动。根据方向的不同，程序会将数据分成不同的行或列，并通过<code>merge(newRow)</code>函数来合并相同的数字。</p>
+<pre><code>local function gameMove()
+	if direction == "Left" then
+		for i = 1, 4, 1 do
+		-- i  + 0/1/2/3 * 4
+			local newRow = {}
+			for j = 0, 3, 1 do
+        	if data[i + j * 4] ~= 0 then
+            	table.insert(newRow, data[i + j * 4])
+        	end
+    	end
+		while #newRow &lt; 4 do
+        	table.insert(newRow, 0)
+    	end
+		local finalRow = merge(newRow)
+		for j = 0, 3, 1 do
+        	data[i + 4 * j] = finalRow[j + 1]
+    	end
+	end
+	elseif direction == "Right" then
+		...
+	elseif direction == "Up" then
+		...
+	else  -- Down
+		...
+	end
+	drawNumber()
+end
+</code></pre>
+</li>
+<li>
+<p><code>merge(newRow)</code>函数负责在一行数据中将相同数字的方块合并，并返回合并后的新行数据。这个函数还确保了合并后的新行保持原有的顺序，并填充为长度为4的列表。</p>
+<pre><code>local function merge(newRow)
+	local merged = {false, false, false, false}
+	local resultRow = {0, 0, 0, 0}
+	for j = 1, 4, 1 do
+        if newRow[j] ~= 0 then
+          local currentValue = newRow[j]
+          local nextIndex = j + 1
+          if nextIndex &lt;= 4 and newRow[nextIndex] == currentValue and not merged[nextIndex] then
+            resultRow[j] = currentValue * 2
+            merged[nextIndex] = true
+            merged[j] = true
+            newRow[nextIndex] = 0
+          else resultRow[j] = currentValue end
+        end
+  	end
+	local finalRow = {}
+  	for j = 1, 4, 1 do
+    	if resultRow[j] ~= 0 then
+      		table.insert(finalRow, resultRow[j])
+    	end
+  	end
+	while #finalRow &lt; 4 do
+    	table.insert(finalRow, 0)
+  	end
+	return finalRow
+end
+</code></pre>
+</li>
+</ul>
+<h2>随机生成新方块</h2>
+<ul>
+<li>
+<p>在每次移动之后，程序会调用<code>drawNumber()</code>函数，在空余的位置上随机生成一个新的方块。这个新方块的初始值通常为“2”。</p>
+<pre><code>local function drawNumber()
+	empty:clear()
+	MyMethod.foreach(data, function(index, value)
+		if (value == 0) then empty:add(index) end
+	end)
+	if empty:size() == 0 then print("over") reStartGame = true end
+	local newRand = empty:random_element()
+	data[newRand] = 2
+
+	MyMethod.foreach(data, function(index, value)
+		if value ~= 0 then
+			boxes[index].children.last.text = tostring(value)
+		else boxes[index].children.last.text = '' end
+	end)
+end
+</code></pre>
+</li>
+</ul>
+<h2>游戏结束处理</h2>
+<ul>
+<li>
+<p>当没有可移动的空格时，<code>empty:size() == 0</code>的判断条件会触发游戏结束逻辑，并通过<code>reStartGame</code>变量标识游戏状态。在游戏结束后，程序会播放一个音效，并重新初始化游戏。</p>
+<pre><code>threadLoop(function()
+	if(reStartGame == true) then
+		reStartGame = false
+		Audio:play("sfx/game_over.wav")
+		init()
+		root:perform(Scale(2, 0, 1))
+	end
+end)
+</code></pre>
+</li>
+</ul>
+<h1>优化与性能提升</h1>
+<h2>算法优化</h2>
+<ul>
+<li><strong>合并逻辑优化</strong>
+<code>merge(newRow)</code>函数使用了一个布尔数组<code>merged</code>来跟踪哪些方块已经合并，避免重复合并。这个设计减少了不必要的计算，提高了算法的效率。</li>
+</ul>
+<h2>内存与速度优化</h2>
+<ul>
+<li><strong>内存管理</strong>
+游戏中大量使用了局部变量（如<code>newRow</code>和<code>resultRow</code>），这些局部变量在函数执行完毕后自动释放，从而节省内存。</li>
+<li><strong>减少重复操作</strong>
+在移动和合并过程中，代码尽量减少了对<code>data</code>数组的重复遍历，这有助于提升程序的整体速度。</li>
+</ul>
+<h2>用户体验优化</h2>
+<ul>
+<li><strong>动画效果</strong>
+虽然代码中目前未实现具体的动画效果，但可以通过增加方块移动、合并时的过渡动画（例如使用<code>Scale</code>来缩放方块），使得游戏体验更加流畅和有趣。</li>
+<li><strong>声音反馈</strong>
+在游戏结束时播放音效，为玩家提供了即时的反馈，提高了游戏的沉浸感。</li>
+</ul>
+<h1>结论与未来改进</h1>
+<h2>总结</h2>
+<ul>
+<li>本文详细介绍了如何从零开始编写一个2048游戏程序，并讲解了程序的整体架构设计、核心功能实现、以及优化策略。通过模块化设计和合理的算法优化，这个程序不仅具备较高的可维护性，还能在多种平台上流畅运行。</li>
+<li>在开发过程中，我们通过单元测试和集成测试确保了程序的稳定性，并在性能和用户体验方面进行了优化，使得游戏更加流畅和有趣。</li>
+</ul>
+<h2>未来改进方向</h2>
+<ul>
+<li><strong>增加难度模式</strong>
+可以在未来的版本中增加不同的难度模式，例如更大的网格、更高的初始数字或增加障碍物，以增强游戏的挑战性。</li>
+<li><strong>添加AI对手</strong>
+可以考虑为游戏添加一个AI对手，让玩家与AI竞赛，看谁能先达到2048。</li>
+<li><strong>改进用户界面和动画效果</strong>
+在未来的版本中，可以进一步改进游戏的用户界面，使之更具吸引力。同时，增加方块移动和合并时的动画效果，提高游戏的视觉体验。</li>
+<li><strong>增加排行榜功能</strong>
+通过添加在线或本地的排行榜功能，玩家可以与朋友或全球的玩家一较高下，增加游戏的社交性和竞争性。</li>
+</ul>
+<h1>附录</h1>
+<h2>MyMethod.lua</h2>
+<pre><code>local M = {}
+function M.foreach(tbl, func)
+    for key, value in pairs(tbl) do func(key, value) end
+end
+function M.findElement(tbl, element)
+    for i, value in ipairs(tbl) do
+        if value == element then return i end
+    end
+    return nil
+end
+return M
+</code></pre>
+<h2>Set.lua</h2>
+<pre><code>local Set = {}
+Set.__index = Set
+function Set.new()
+    return setmetatable({ _items = {} }, Set)
+end
+function Set:add(item)
+    self._items[item] = true
+end
+function Set:remove(item)
+    self._items[item] = nil
+end
+function Set:contains(item)
+    return self._items[item] ~= nil
+end
+function Set:size()
+    local count = 0
+    for _ in pairs(self._items) do
+        count = count + 1
+    end
+    return count
+end
+function Set:iterate()
+    local items = {}
+    for item in pairs(self._items) do
+        table.insert(items, item)
+    end
+    return items
+end
+function Set:print()
+	for _, item in ipairs(self:iterate()) do
+    print(item)
+	end
+end
+function Set:random_element()
+    local items = self:iterate()
+    if #items == 0 then
+        return nil
+    end
+    local index = math.random(1, #items)
+    return items[index]
+end
+function Set:clear()
+    self._items = {}
+end
+return Set
+</code></pre>
+<h2>其他</h2>
+<ul>
+<li><a href="https://harker.lanzouw.com/iDjBJ276m0ha">本文工程压缩包</a></li>
+<li><a href="https://atom-l.github.io/lua5.4-manual-zh/1.html">Lua 5.4 中文参考手册</a></li>
+<li><a href="https://dora-ssr.net/zh-Hans/docs/api/intro">Dora SSR API 参考手册</a></li>
+</ul>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>申请域名相关</title>
+    <link href="https://www.harkerhand.cn/2024-04-24-14/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2024-04-24-14/</id>
+    <published>2024-04-24T14:44:03.000Z</published>
+    <updated>2024-04-24T14:44:03.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>前言</h1>
+<p>个人开设网站已经三年有余了，从最开始的本地部署、Gitee部署到现在的Github + 域名部署，不断遇到各种问题，最大的问题是各种服务的链接各不相同，难以统一记忆与管理，遂需要一个域名，通过二级转发来解决这些问题。</p>
+<p>前几日听俱乐部的小伙伴说首年的域名都很便宜，那么 <strong>域名，启动！</strong></p>
+<h1>平台选择</h1>
+<p>{% fold info @各种平台 %}</p>
+<p>{% note success %}
+<a href="https://cloud.tencent.com/">腾讯云 产业智变·云启未来 - 腾讯 (tencent.com)</a>
+{% endnote %}</p>
+<p>{% note success %}
+<a href="https://cn.aliyun.com/">阿里云-计算，为了无法计算的价值 (aliyun.com)</a>
+{% endnote %}</p>
+<p>{% endfold %}</p>
+<p><em>不一一列举了，有很多</em></p>
+<p>我选择了腾讯云，国内使用体验较好。{% label primary @.online %}的顶级域名首年只需要不到10元。</p>
+<p>购买后及时完成认证，备案与否自由选择。</p>
+<h1>配置DNS解析</h1>
+<p>可配置值有一下几种</p>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>记录类型</th>
+<th>线路类型</th>
+<th>记录值</th>
+<th>权重</th>
+<th>TTL</th>
+<th>备注</th>
+</tr>
+</thead>
+</table>
+<h2>主机记录</h2>
+<p>即二级域名，比如<code>www</code>.baidu.com与<code>pan</code>.baidu.com的区别就是前缀的二级域名，这样可以使一个域名被多个服务使用。</p>
+<h2>记录类型</h2>
+<p>常用的只有以下三种</p>
+<ul>
+<li>
+<p>{% label primary @A %} ：指向一个IPv4地址</p>
+</li>
+<li>
+<p>{% label primary @CNAME %} ：指向一个域名</p>
+</li>
+<li>
+<p>{% label primary @AAAA %} ：指向一个IPv6地址</p>
+</li>
+</ul>
+<h2>线路类型</h2>
+<p>与转发路径与转发服务器偏好有关，一般默认即可。</p>
+<h2>记录值</h2>
+<p><code>主机记录</code>.<code>域名</code>指向的地址，类型由<code>记录类型</code>决定。</p>
+<h2>权重</h2>
+<p>范围1-100，数字越大优先级越高。</p>
+<h2>TTL</h2>
+<p>生存时间，一般设置为600。</p>
+<h2>备注</h2>
+<p>字面意思，就是备注，似乎没有字数限制，也就是说你可以在这里发癫！</p>
+<h2>本人DNS备份</h2>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>记录类型</th>
+<th>线路类型</th>
+<th>记录值</th>
+<th>权重</th>
+<th>TTL</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@</td>
+<td>CNAME</td>
+<td>默认</td>
+<td>harkerhand.github.io.</td>
+<td>99</td>
+<td>600</td>
+<td></td>
+</tr>
+<tr>
+<td>www</td>
+<td>CNAME</td>
+<td>默认</td>
+<td>harkerhand.github.io.</td>
+<td>100</td>
+<td>600</td>
+<td></td>
+</tr>
+<tr>
+<td>waline</td>
+<td>CNAME</td>
+<td>默认</td>
+<td>cname.vercel-dns.com.</td>
+<td>3</td>
+<td>600</td>
+<td>waline评论</td>
+</tr>
+<tr>
+<td>image</td>
+<td>CNAME</td>
+<td>默认</td>
+<td>telegraph-image-bhq.pages.dev.</td>
+<td>4</td>
+<td>600</td>
+<td>tele图床</td>
+</tr>
+<tr>
+<td><code>Bing认证</code></td>
+<td>CNAME</td>
+<td>默认</td>
+<td>verify.bing.com.</td>
+<td>1</td>
+<td>600</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.harkerhand.online/">Where Is Mountain</a></p>
+<p><a href="https://waline.harkerhand.online/">Waline Example</a></p>
+<p><a href="https://image.harkerhand.online/">Telegraph-Image|免费图床</a></p>
+<p><em>所有服务均无内容审查，请勿传播非法内容</em></p>
+<h1>一些问题的解决</h1>
+<h2>waline评论</h2>
+<p>服务运行在Vercel，其域名<code>vercel.app</code>在国内无法访问，所以在前文中没有使用这个评论服务。</p>
+<p>然而，通过自己的域名对其服务进行转发，即可通过DNS服务商来绕过流量屏蔽，大大提高了访问速度。</p>
+<h2>基于Telegraph的图床</h2>
+<p>服务运行在CloudFlare，国内虽可以访问，但速度并不理想，同理可使用域名转发进行加速。</p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>进行Hexo大版本更新</title>
+    <link href="https://www.harkerhand.cn/2024-03-04-13/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2024-03-04-13/</id>
+    <published>2024-03-04T01:15:23.000Z</published>
+    <updated>2024-03-04T01:15:23.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>前言</h1>
+<p>昨晚偶然打开了 package.json，发现 hexo 版本为 6.3.0，遂决定升至最新 v7.1.1。</p>
+<h1>遭遇错误</h1>
+<p>执行报错</p>
+<pre><code>npm update hexo-cli -g
+</code></pre>
+<blockquote>
+<hr />
+<p>重启解决 99% 的问题，剩下 1% 用重装</p>
+<hr />
+</blockquote>
+<p>秉持这个思想，我选择重装</p>
+<h1>操作步骤</h1>
+<h2>备份</h2>
+<p>备份旧版本的文章，格式，Hexo及Fluid的配置文件</p>
+<h2>卸载</h2>
+<p>执行</p>
+<pre><code>npm uninstall hexo-cli -g
+</code></pre>
+<p>并进入 C:\Users\UserName\AppData\Roaming\npm 路径检查卸载是否彻底</p>
+<h2>安装本体</h2>
+<p>执行</p>
+<pre><code>npm install hexo -g
+</code></pre>
+<p>并进入 C:\Users\HarkerHand\AppData\Roaming\npm\node_modules\hexo\package.json 查找 <code>version</code> 字段，版本为 v7.1.1 即为安装成功</p>
+<p>Git Bash cd 进入博客文件夹，需要清空</p>
+<p>执行</p>
+<pre><code>hexo init
+</code></pre>
+<h2>模块及主题恢复</h2>
+<p><em>以下在 init 的文件夹中操作</em></p>
+<ul>
+<li>
+<p><a href="https://github.com/xcodebuild/hexo-asset-image">hexo-asset-image</a></p>
+<p>执行</p>
+<pre><code>npm install hexo-asset-image --save
+</code></pre>
+<p>在 <code>_config.yml</code> 中设置 <code>post_asset_folder: true</code></p>
+</li>
+<li>
+<p><a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a></p>
+<p>执行</p>
+<pre><code>npm install hexo-deployer-git --save
+</code></pre>
+</li>
+<li>
+<p><a href="https://github.com/hexojs/hexo-server">hexo-server</a></p>
+<p>执行</p>
+<pre><code>npm install hexo-server --save
+</code></pre>
+</li>
+<li>
+<p><a href="https://github.com/fluid-dev/hexo-theme-fluid">hexo-theme-fluid</a></p>
+<p>执行</p>
+<pre><code>npm install hexo-theme-fluid --save
+</code></pre>
+</li>
+</ul>
+<h1>补充</h1>
+<p>在更新主题时原配置被完全覆盖，提醒大家做好备份</p>
+<p><strong>数据无价！！！</strong></p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>CloudFlare+telegraph图床部署</title>
+    <link href="https://www.harkerhand.cn/2024-03-04-12/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2024-03-04-12/</id>
+    <published>2024-03-03T18:59:43.000Z</published>
+    <updated>2024-03-03T18:59:43.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>提醒</h1>
+<p>本文封面及所涉及的所有图片均来自云端图床，故随时存在无法访问的风险</p>
+<h1>部署</h1>
+<h2>Fork 项目</h2>
+<p>将此项目Fork进自己的仓库 <a href="https://github.com/cf-pages/Telegraph-Image">Telegraph-Image</a></p>
+<h2>部署CloudFlare</h2>
+<p>使用 Pages 服务部署该仓库</p>
+<p>创建KV : img_url</p>
+<p>命名空间 img_url = img_url</p>
+<p>环境变量 BASIC_USER BASIC_PASS 后台管理用户名，密码</p>
+<p>部署后得到前端网址</p>
+<p>后缀 /admin 进入后台管理</p>
+<h1>效果</h1>
+<p>公开使用：</p>
+<p><a href="https://telegraph-image-bhq.pages.dev">Pic-Url</a> <em>源链</em></p>
+<p><a href="https://image.harkerhand.cn">Image</a> <em>转发链</em></p>
+<table>
+<thead>
+<tr>
+<th>&lt;img src="https://image.harkerhand.cn/file/d75a74b5acb3470accf7c.jpg"  /&gt;<strong>Knife is short, I use python</strong></th>
+<th>&lt;img src="https://image.harkerhand.cn/file/1e6d8b6f0f776fb6d77c2.jpg" style="zoom:90%;" /&gt;</th>
+</tr>
+</thead>
+</table>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>基于Twikoo的博客评论搭建</title>
+    <link href="https://www.harkerhand.cn/2024-03-03-11/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2024-03-03-11/</id>
+    <published>2024-03-03T15:06:11.000Z</published>
+    <updated>2024-03-03T15:06:11.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>写在前面</h1>
+<p>寒假期间，好友章隐基于<a href="https://cn.wordpress.org/">WordPress</a>搭建了自己的博客<a href="http://117.72.35.48/">彰隐的个人博客</a>，包含有评论系统，十分有趣，故决定给自己的站点也增加这一服务。</p>
+<p>本站基于<a href="https://hexo.io/zh-cn/index.html">Hexo</a>搭建，在GitHub Pages和Gitee Pages双端部署，使用<a href="https://fluid-dev.github.io/hexo-fluid-docs/">Fluid</a>主题进行美化，功能丰富，内置了许多主题插件使用。</p>
+<p>打开 node_modules/hexo-theme-fluid/_config.yml 并查找 comment 字段，可以看到</p>
+<pre><code># 评论插件
+# Comment plugin
+comments:
+  enable: true
+  # 指定的插件，需要同时设置对应插件的必要参数
+  # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
+  type: twikoo
+</code></pre>
+<p>将<code>enable</code>字段改为<code>true</code>并将<code>type</code>字段改为对应的评论服务即可</p>
+<h1>评论系统的挑选</h1>
+<h2>Valine</h2>
+<p><a href="https://valine.js.org/">Valine</a>诞生于2017年8月7日，是一款基于<a href="https://leancloud.cn/">LeanCloud</a>的快速、简洁且高效的无后端评论系统。</p>
+<p>其无后端的性质导致了评论难以管理，故放弃</p>
+<h2>Waline</h2>
+<p>显然，<a href="https://waline.js.org/">Waline</a>是对Valine的一个继承，它具有后端。</p>
+<p>推荐的后端部署渠道有Vercel，CloudeBase等，在我的账号与设备上出现了不可预知的错误，另外vecel.app域名在国内无法正常访问，会出现Failed to fetch错误。</p>
+<p>较为繁琐但免费高效的Netlify部署，以我无法注册账号宣告失败。</p>
+<p>很可惜，Waline也无法使用。</p>
+<h2>Twikoo</h2>
+<p>这便是本文的主角，<a href="https://twikoo.js.org/">Twikoo | 一个简洁、安全、免费的静态网站评论系统</a>。</p>
+<p>我选择了 <a href="https://www.hugging-face.org/">Hugging Face</a> 部署，与Netlify类似，完全免费并且在国内拥有不错的访问速度，其数据库位于 <a href="https://www.mongodb.com/zh-cn">MongoDB</a> ，可以使用 Google 账号快速登陆，不存在注册账号问题，并且同样免费。</p>
+<p>获取环境ID后填入_config.yml中的</p>
+<pre><code>twikoo:
+  envID: Here!!!
+</code></pre>
+<h1>效果展示</h1>
+<p><img src="./comment.png" alt="comment" /></p>
+<p>本文下方的评论区同理，如果你使用的是移动设备，布局会略有不同</p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>浅尝Github Actions</title>
+    <link href="https://www.harkerhand.cn/2024-03-03-10/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2024-03-03-10/</id>
+    <published>2024-03-02T17:03:45.000Z</published>
+    <updated>2024-03-02T17:03:45.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>前情提要</h1>
+<p>本人正在进行C++课程的学习，每次作业组成为若干编程题目，每个题目需要包括测试文件.cpp，类的声明头文件.h，类的实现文件.cpp</p>
+<p>大致的文件树在此列出</p>
+<ul>
+<li>001
+<ul>
+<li>exp01
+<ul>
+<li>ex1.cpp</li>
+<li>Complex.h</li>
+<li>Complex.cpp</li>
+</ul>
+</li>
+<li>exp02</li>
+<li>...</li>
+</ul>
+</li>
+<li>002
+<ul>
+<li>exp01</li>
+<li>...</li>
+</ul>
+</li>
+<li>...</li>
+</ul>
+<p><strong>作业提交格式 :</strong> 将上述文件全部打包为.zip文件发送至指定邮箱</p>
+<p><strong>需求 :</strong> 排除本地调试生成的.exe文件，自动打包</p>
+<p><em>注 : 作者使用git来进行本地与<a href="https://gitee.com/harkerhand/homework2">云端仓库</a>的链接，.gitignore文件包含了*.exe</em></p>
+<h1>Github Actions 简介</h1>
+<p>GitHub Actions 是一种持续集成和持续交付 (CI/CD) 平台，可用于自动执行生成、测试和部署管道。 您可以创建工作流程来构建和测试存储库的每个拉取请求，或将合并的拉取请求部署到生产环境。</p>
+<p>GitHub Actions 不仅仅是 DevOps，还允许您在存储库中发生其他事件时运行工作流程。 例如，您可以运行工作流程，以便在有人在您的存储库中创建新问题时自动添加相应的标签。</p>
+<p>GitHub 提供 Linux、Windows 和 macOS 虚拟机来运行工作流程，或者您可以在自己的数据中心或云基础架构中托管自己的自托管运行器。</p>
+<h1>环境准备</h1>
+<ul>
+<li>创建GitHub仓库</li>
+<li>在 <strong>Settings--Actions--General</strong> 中更改 <strong>Actions permissions</strong> 为 <strong>Allow all actions and reusable workflows</strong>，点击 <strong>Save</strong> 保存</li>
+<li>更改相同路径下的 <strong>Workflow permissions</strong> 为 <strong>Read and write permissions</strong>，并勾选 <strong>Allow GitHub Actions to create and approve pull requests</strong>，点击 <strong>Save</strong> 保存</li>
+</ul>
+<h1>编写Actions文件</h1>
+<p>在Actions选项卡中，选择 <strong>set up a workflow yourself</strong></p>
+<p>进入编辑界面，文件路径为 /.github/workflows/main.yml，文件名可自定义</p>
+<h2>语法</h2>
+<pre><code>name: zip
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: zip
+      run: |
+        for file in ./*
+        do
+          zip -r ./${file}/${file}.zip ${file}
+        done
+    - name: list files
+      run:
+        ls -R
+    - name: commit
+      run: |
+        git config --global user.name "harkerhand"
+        git config --global user.email "harkerhand@outlook.com"
+        git add .
+        git commit -m "zip" -a
+    - name: push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+</code></pre>
+<ul>
+<li>name 为流程名</li>
+<li>on 代表触发条件</li>
+<li>jobs 为流程动作</li>
+<li>build 为子流程名，可以有多个</li>
+<li>runs-on 指定了脚本运行的环境，这是一个枚举类型</li>
+<li>steps 为具体流程，数组类型</li>
+<li>uses 使用打包好的流程，这里是从远程仓库拉取至虚拟机</li>
+<li>name 为步骤名，可省略</li>
+<li>run 内为执行命令，多行脚本需要添加 |</li>
+<li>使用shell命令打包并列出文件（便于后期维护）</li>
+<li>在push之前设置虚拟机的git用户名和邮箱</li>
+<li>uses 使用打包好的push流程</li>
+</ul>
+<p><em>Tips : 需要在个人设置中生成名为 GITHUB_TOKEN 的 token</em></p>
+<h1>测试</h1>
+<p>直接在GitHub更改.yml文件即被视为push，触发Actions</p>
+<p>转到Actions选项卡，出现类似<img src="./actions_result.png" alt="actions result" /></p>
+<p>即为成功，库文件夹中出现对应.zip文件</p>
+<h1>文档</h1>
+<p><a href="https://docs.github.com/zh/actions">GitHub Actions 文档 - GitHub 文档</a></p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>Hexo提交百度搜索引擎收录</title>
+    <link href="https://www.harkerhand.cn/2023-03-14-9/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2023-03-14-9/</id>
+    <published>2023-03-14T15:01:30.000Z</published>
+    <updated>2023-03-14T15:01:30.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>百度资源平台添加网站</h1>
+<p>访问<a href="https://ziyuan.baidu.com/">百度搜索资源平台官网</a>, 注册或者登陆百度账号</p>
+<p>依次选择<strong>用户中心</strong> <strong>站点管理</strong>, 添加你的网站</p>
+<h1>设置主动推送</h1>
+<h2>安装插件<a href="%5Bhuiwang/hexo-baidu-url-submit%5D(https://github.com/huiwang/hexo-baidu-url-submit)">^1</a></h2>
+<pre><code>npm install hexo-baidu-url-submit --save
+</code></pre>
+<h2>配置_config.yaml</h2>
+<pre><code>baidu_url_submit:
+	count: 1 //每次提交多少个新链接
+	host: //域名
+	token: //在百度站长平台获取
+	path: baidu_urls.txt
+</code></pre>
+<p><em>其中token在 <strong>站点管理</strong> <strong>资源提交</strong> <strong>普通收录</strong> 中</em></p>
+<h2>加入新的deployer</h2>
+<pre><code>deploy:
+//这里是之前的配置
+- type: baidu_url_submitter
+</code></pre>
+<h2>最后部署</h2>
+<p>运行</p>
+<pre><code>hexo g -d
+</code></pre>
+<p>出现形如</p>
+<pre><code>{"remain":2951,"success":19}
+</code></pre>
+<p>表示成功</p>
+<h1>原理介绍</h1>
+<pre><code>hexo g
+</code></pre>
+<p>产生一个文本文件, 包含新连接</p>
+<pre><code>hexo d
+</code></pre>
+<p>读取链接, 提交至百度引擎</p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>VS Code中C++环境配置</title>
+    <link href="https://www.harkerhand.cn/2023-03-12-8/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2023-03-12-8/</id>
+    <published>2023-03-12T09:12:34.000Z</published>
+    <updated>2023-03-12T09:12:34.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>前言</h1>
+<p>前几日身边有人开始学习C语言, 便又重新拾起了自己的兴趣</p>
+<p>但已经许久没有使用VS Code来调试运行C++程序, 本文记录我重新配置环境的过程</p>
+<h1>Steps</h1>
+<h2>VS Code的下载安装</h2>
+<p>由于国内下载速度极为缓慢, 甚至网站都无法打开, 我推荐两种方法</p>
+<ul>
+<li>
+<p>使用CDN加速</p>
+<p>参考文章<a href="https://zhuanlan.zhihu.com/p/112215618">国内下载VS Code速度慢问题解决 - 知乎</a></p>
+<p>将下载地址.net及之前的部分换成<code>vscode.cdn.azure.cn</code>即可高速下载</p>
+</li>
+<li>
+<p>使用国内下载站</p>
+<p><a href="https://pc.qq.com/detail/16/detail_22856.html">腾讯软件中心</a></p>
+<p>缺点是版本无法自选,但起码能用</p>
+</li>
+</ul>
+<p>安装过程无需多言,按需勾选</p>
+<h2>VS Code简单设置</h2>
+<ul>
+<li>
+<p>汉化</p>
+<p>安装插件<a href="https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-zh-hans">Chinese Language Pack</a></p>
+<p>重启即可得到中文页面</p>
+</li>
+<li>
+<p>安装必要插件</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++</a></p>
+</li>
+<li>
+<p>个人推荐插件</p>
+<p>如果你要用VS Code来编辑Markdown文档, 需要安装插件<a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">Markdown All in One</a>和<a href="https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced">Markdown Preview Enhanced</a></p>
+<p>另外,我个人推荐一款主题<a href="https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme">One Dark Pro</a>, 安装完成后使用Ctrl+K/Ctrl+T使用</p>
+</li>
+</ul>
+<h2>Mingw的安装</h2>
+<ul>
+<li>
+<p>安装包获取</p>
+<p><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download">Download mingw-w64-install.exe</a></p>
+</li>
+<li>
+<p>安装选项如图</p>
+<p><img src="./install.png" alt="" /></p>
+</li>
+<li>
+<p>离线安装方法</p>
+<p><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z/download">Download x86_64-8.1.0-release-win32-seh</a></p>
+<p>解压到任意目录即可</p>
+</li>
+<li>
+<p>配置环境变量</p>
+<p>将安装目录下的bin文件夹加入系统Path</p>
+</li>
+</ul>
+<h2>调试配置</h2>
+<h3>c_cpp_properties.json配置</h3>
+<ul>
+<li>Ctrl+Shift+P打开命令 选择C/C++编辑配置</li>
+<li>选择cpp文件所在文件夹</li>
+<li>指定编译器路径</li>
+<li>选择windows-gcc-x64</li>
+<li>标准选择C11/C++17</li>
+</ul>
+<h3>tasks.json配置</h3>
+<ul>
+<li>
+<p>在.vscode文件夹内新建tasks.json文件</p>
+</li>
+<li>
+<p>将下列代码复制进入</p>
+</li>
+</ul>
+<pre><code>  {
+      "version": "2.0.0",
+      "tasks": [
+          {
+              "type": "shell",
+              "label": "g++.exe 生成活动文件",
+              "command": "E:\\mingw64\\bin\\g++.exe",//路径
+              "args": [
+                  "-g",
+                  "${file}",
+                  "-o",
+                  "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe"//把exe放入bin/
+              ],
+              "options": {
+                  "cwd": "E:\\mingw64\\bin\\"//路径
+              },
+              "problemMatcher": [
+                  "$gcc"
+              ],
+              "group": "build"
+          },
+          {
+              "type": "cppbuild",
+              "label": "C/C++: g++.exe 生成活动文件",
+              "command": "E:\\mingw64\\bin\\g++.exe",//路径
+              "args": [
+                  "-fdiagnostics-color=always",
+                  "-g",
+                  "${file}",
+                  "-o",
+                  "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe"//运行exe
+              ],
+              "options": {
+                  "cwd": "${fileDirname}"
+              },
+              "problemMatcher": [
+                  "$gcc"
+              ],
+              "group": {
+                  "kind": "build",
+                  "isDefault": true
+              },
+              "detail": "调试器生成的任务。"
+          }
+      ]
+  }
+</code></pre>
+<h3>launch.json配置</h3>
+<ul>
+<li>
+<p>在.vscode文件夹内新建launch.json文件</p>
+</li>
+<li>
+<p>将下列代码复制进入</p>
+</li>
+</ul>
+<pre><code>{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "(gdb) 启动",
+            "preLaunchTask": "g++.exe 生成活动文件",//调试前执行的任务
+            "type": "cppdbg",//配置类型，只能为cppdbg
+            "request": "launch",//请求配置类型，可以为launch（启动）或attach（附加）
+            "program": "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe",//exe路径
+            "args": [],//调试传递参数
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,//true显示外置的控制台窗口，false显示内置终端
+            "MIMode": "gdb",
+            "miDebuggerPath": "E:\\mingw64\\bin\\gdb.exe",//路径
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<h2>调试运行</h2>
+<ul>
+<li>
+<p>新建一个cpp文件</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    cout &lt;&lt; "Hello World!";
+    return 0;
+}
+</code></pre>
+</li>
+<li>
+<p>F5运行</p>
+<p>gdb输出到调试控制台</p>
+<p>程序输出到集成终端</p>
+<p><img src="./00002.png" alt="" /></p>
+</li>
+</ul>
+<p><em>注: 喜欢小黑框可以自行更改, 前文有注释</em></p>
+<h1>结语</h1>
+<p>vscode是功能强大的工具, 善于利用上限极高</p>
+<p>不过如果小白入门, 还是推荐使用集成式IDE</p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>Markdown入门</title>
+    <link href="https://www.harkerhand.cn/2023-03-11-7/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2023-03-11-7/</id>
+    <published>2023-03-10T19:10:48.000Z</published>
+    <updated>2023-03-10T19:10:48.000Z</updated>
+    <summary></summary>
+    <content type="html"><![CDATA[<h1>前言</h1>
+<h2>什么是Markdown?</h2>
+<blockquote>
+<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，Markdown文件的后缀名便是“.md”。</p>
+</blockquote>
+<h2>工欲善其事，必先利其器！</h2>
+<p>作者使用Visual Studio Code进行编辑
+安装插件<a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">Markdown All in One</a>和<a href="https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced">Markdown Preview Enhanced</a></p>
+<h2>注意</h2>
+<p>本文并非<a href="https://markdown.com.cn/basic-syntax/">Markdown官方教程</a>，仅介绍个人常用语法</p>
+<hr />
+<h1>基本语法</h1>
+<h2>标题</h2>
+<table>
+<thead>
+<tr>
+<th>Markdown语法</th>
+<th>预览效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td># Heading level 1</td>
+<td>&lt;h1&gt;Heading level 1&lt;/h1&gt;</td>
+</tr>
+<tr>
+<td>## Heading level 2</td>
+<td>&lt;h2&gt;Heading level 2&lt;/h2&gt;</td>
+</tr>
+<tr>
+<td><strong>···</strong></td>
+<td><strong>···</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Tips:总共有六级，在#后加上空格保证兼容性</em></p>
+<h2>强调</h2>
+<h4>粗体</h4>
+<table>
+<thead>
+<tr>
+<th>Markdown语法</th>
+<th>预览效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thin **Bold**</td>
+<td>Thin &lt;strong&gt;Bold&lt;/strong&gt;</td>
+</tr>
+<tr>
+<td>Thin __Bold__</td>
+<td>Thin &lt;strong&gt;Bold&lt;/strong&gt;</td>
+</tr>
+</tbody>
+</table>
+<h4>斜体</h4>
+<table>
+<thead>
+<tr>
+<th>Markdown语法</th>
+<th>预览效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Straight *Italic*</td>
+<td>Straight &lt;em&gt;Italic&lt;/em&gt;</td>
+</tr>
+<tr>
+<td>Straight _Italic_</td>
+<td>Straight &lt;em&gt;Italic&lt;/em&gt;</td>
+</tr>
+</tbody>
+</table>
+<p><em>Tips:表示又粗又斜时连续使用三个***</em></p>
+<h2>引用</h2>
+<p>&lt;strong&gt;</p>
+<p>&gt; 引用1
+&gt;&gt; 引用2</p>
+<p>&lt;/strong&gt;</p>
+<blockquote>
+<p>引用1</p>
+<blockquote>
+<p>引用2</p>
+</blockquote>
+</blockquote>
+<p><em>Tips:空格保证兼容性，多级之间需要分隔</em></p>
+<h2>代码块</h2>
+<p>&lt;strong&gt;</p>
+<p>```cpp
+#include&lt;iostream&gt;
+int main()
+{
+cout &lt;&lt; "Hello World!";
+return 0;
+}
+```</p>
+<p>&lt;/strong&gt;</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    cout &lt;&lt; "Hello World!";
+    return 0;
+}
+</code></pre>
+<h2>链接</h2>
+<p>&lt;strong&gt;</p>
+<p>[Where is Mountain](<code>https://harker299.gitee.io</code>)</p>
+<p>&lt;/strong&gt;</p>
+<p><a href="%60https://harker299.gitee.io%60">Where is Mountain</a></p>
+<h2>图片</h2>
+<p>&lt;strong&gt;</p>
+<p>![这是图片](路径或url "图片描述")</p>
+<p>&lt;/strong&gt;</p>
+<hr />
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="经验分享"></category>
+  </entry>
+  <entry>
+    <title>Simple Guides for Mizuki</title>
+    <link href="https://www.harkerhand.cn/2020-09-01-6/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2020-09-01-6/</id>
+    <published>2020-09-01T00:00:06.000Z</published>
+    <updated>2020-09-01T00:00:06.000Z</updated>
+    <summary>How to use this blog template.</summary>
+    <content type="html"><![CDATA[<p>This blog template is built with <a href="https://astro.build/">Astro</a>. For the things that are not mentioned in this guide, you may find the answers in the <a href="https://docs.astro.build/">Astro Docs</a>.</p>
+<h2>Front-matter of Posts</h2>
+<pre><code>---
+title: My First Blog Post
+published: 2023-09-09
+description: This is the first post of my new Astro blog.
+image: ./cover.jpg
+tags: [Foo, Bar]
+category: Front-end
+draft: false
+---
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>The title of the post.</td>
+</tr>
+<tr>
+<td><code>published</code></td>
+<td>The date the post was published.</td>
+</tr>
+<tr>
+<td><code>pinned</code></td>
+<td>Whether this post is pinned to the top of the post list.</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>The priority of the pinned post. Smaller value means higher priority (0, 1, 2...).</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>A short description of the post. Displayed on index page.</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>The cover image path of the post.&lt;br/&gt;1. Start with <code>http://</code> or <code>https://</code>: Use web image&lt;br/&gt;2. Start with <code>/</code>: For image in <code>public</code> dir&lt;br/&gt;3. With none of the prefixes: Relative to the markdown file</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>The tags of the post.</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>The category of the post.</td>
+</tr>
+<tr>
+<td><code>licenseName</code></td>
+<td>The license name for the post content.</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>The author of the post.</td>
+</tr>
+<tr>
+<td><code>sourceLink</code></td>
+<td>The source link or reference for the post content.</td>
+</tr>
+<tr>
+<td><code>draft</code></td>
+<td>If this post is still a draft, which won't be displayed.</td>
+</tr>
+</tbody>
+</table>
+<h2>Where to Place the Post Files</h2>
+<p>Your post files should be placed in <code>src/content/posts/</code> directory. You can also create sub-directories to better organize your posts and assets.</p>
+<pre><code>src/content/posts/
+├── post-1.md
+└── post-2/
+    ├── cover.png
+    └── index.md
+</code></pre>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="Guides"></category>
+  </entry>
+  <entry>
+    <title>Markdown Extended Features</title>
+    <link href="https://www.harkerhand.cn/2020-09-01-4/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2020-09-01-4/</id>
+    <published>2020-09-01T00:00:03.000Z</published>
+    <updated>2020-09-02T00:00:00.000Z</updated>
+    <summary>Read more about Markdown features in Mizuki</summary>
+    <content type="html"><![CDATA[<h2>GitHub Repository Cards</h2>
+<p>You can add dynamic cards that link to GitHub repositories, on page load, the repository information is pulled from the GitHub API.</p>
+<p>::github{repo="matsuzaka-yuki/Mizuki"}</p>
+<p>Create a GitHub repository card with the code <code>::github{repo="matsuzaka-yuki/Mizuki"}</code>.</p>
+<pre><code>::github{repo="matsuzaka-yuki/Mizuki"}
+</code></pre>
+<h2>Admonitions</h2>
+<p>Following types of admonitions are supported: <code>note</code> <code>tip</code> <code>important</code> <code>warning</code> <code>caution</code></p>
+<p>:::note
+Highlights information that users should take into account, even when skimming.
+:::</p>
+<p>:::tip
+Optional information to help a user be more successful.
+:::</p>
+<p>:::important
+Crucial information necessary for users to succeed.
+:::</p>
+<p>:::warning
+Critical content demanding immediate user attention due to potential risks.
+:::</p>
+<p>:::caution
+Negative potential consequences of an action.
+:::</p>
+<h3>Basic Syntax</h3>
+<pre><code>:::note
+Highlights information that users should take into account, even when skimming.
+:::
+
+:::tip
+Optional information to help a user be more successful.
+:::
+</code></pre>
+<h3>Custom Titles</h3>
+<p>The title of the admonition can be customized.</p>
+<p>:::note[MY CUSTOM TITLE]
+This is a note with a custom title.
+:::</p>
+<pre><code>:::note[MY CUSTOM TITLE]
+This is a note with a custom title.
+:::
+</code></pre>
+<h3>GitHub Syntax</h3>
+<blockquote>
+<p>[!TIP]
+<a href="https://github.com/orgs/community/discussions/16925">The GitHub syntax</a> is also supported.</p>
+</blockquote>
+<pre><code>&gt; [!NOTE]
+&gt; The GitHub syntax is also supported.
+
+&gt; [!TIP]
+&gt; The GitHub syntax is also supported.
+</code></pre>
+<h3>Spoiler</h3>
+<p>You can add spoilers to your text. The text also supports <strong>Markdown</strong> syntax.</p>
+<p>The content :spoiler[is hidden <strong>ayyy</strong>]!</p>
+<pre><code>The content :spoiler[is hidden **ayyy**]!</code></pre>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="Examples"></category>
+  </entry>
+  <entry>
+    <title>Markdown Mermaid</title>
+    <link href="https://www.harkerhand.cn/2020-09-01-3/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2020-09-01-3/</id>
+    <published>2020-09-01T00:00:02.000Z</published>
+    <updated>2020-09-01T00:00:02.000Z</updated>
+    <summary>A simple example of a Markdown blog post with Mermaid.</summary>
+    <content type="html"><![CDATA[<h1>Complete Guide to Markdown with Mermaid Diagrams</h1>
+<p>This article demonstrates how to create various complex diagrams using Mermaid in Markdown documents, including flowcharts, sequence diagrams, Gantt charts, class diagrams, and state diagrams.</p>
+<h2>Flowchart Example</h2>
+<p>Flowcharts are excellent for representing processes or algorithm steps.</p>
+<pre><code>graph TD
+    A[Start] --&gt; B{Condition Check}
+    B --&gt;|Yes| C[Process Step 1]
+    B --&gt;|No| D[Process Step 2]
+    C --&gt; E[Subprocess]
+    D --&gt; E
+    subgraph E [Subprocess Details]
+        E1[Substep 1] --&gt; E2[Substep 2]
+        E2 --&gt; E3[Substep 3]
+    end
+    E --&gt; F{Another Decision}
+    F --&gt;|Option 1| G[Result 1]
+    F --&gt;|Option 2| H[Result 2]
+    F --&gt;|Option 3| I[Result 3]
+    G --&gt; J[End]
+    H --&gt; J
+    I --&gt; J
+</code></pre>
+<h2>Sequence Diagram Example</h2>
+<p>Sequence diagrams show interactions between objects over time.</p>
+<pre><code>sequenceDiagram
+    participant User
+    participant WebApp
+    participant Server
+    participant Database
+
+    User-&gt;&gt;WebApp: Submit Login Request
+    WebApp-&gt;&gt;Server: Send Auth Request
+    Server-&gt;&gt;Database: Query User Credentials
+    Database--&gt;&gt;Server: Return User Data
+    Server--&gt;&gt;WebApp: Return Auth Result
+    
+    alt Auth Successful
+        WebApp-&gt;&gt;User: Show Welcome Page
+        WebApp-&gt;&gt;Server: Request User Data
+        Server-&gt;&gt;Database: Get User Preferences
+        Database--&gt;&gt;Server: Return Preferences
+        Server--&gt;&gt;WebApp: Return User Data
+        WebApp-&gt;&gt;User: Load Personalized Interface
+    else Auth Failed
+        WebApp-&gt;&gt;User: Show Error Message
+        WebApp-&gt;&gt;User: Prompt Re-entry
+    end
+</code></pre>
+<h2>Gantt Chart Example</h2>
+<p>Gantt charts are perfect for displaying project schedules and timelines.</p>
+<pre><code>gantt
+    title Website Development Project Timeline
+    dateFormat  YYYY-MM-DD
+    axisFormat  %m/%d
+    
+    section Design Phase
+    Requirements Analysis      :a1, 2023-10-01, 7d
+    UI Design                 :a2, after a1, 10d
+    Prototype Creation        :a3, after a2, 5d
+    
+    section Development Phase
+    Frontend Development      :b1, 2023-10-20, 15d
+    Backend Development       :b2, after a2, 18d
+    Database Design           :b3, after a1, 12d
+    
+    section Testing Phase
+    Unit Testing              :c1, after b1, 8d
+    Integration Testing       :c2, after b2, 10d
+    User Acceptance Testing   :c3, after c2, 7d
+    
+    section Deployment
+    Production Deployment     :d1, after c3, 3d
+    Launch                    :milestone, after d1, 0d
+</code></pre>
+<h2>Class Diagram Example</h2>
+<p>Class diagrams show the static structure of a system, including classes, attributes, methods, and their relationships.</p>
+<pre><code>classDiagram
+    class User {
+        +String username
+        +String password
+        +String email
+        +Boolean active
+        +login()
+        +logout()
+        +updateProfile()
+    }
+    
+    class Article {
+        +String title
+        +String content
+        +Date publishDate
+        +Boolean published
+        +publish()
+        +edit()
+        +delete()
+    }
+    
+    class Comment {
+        +String content
+        +Date commentDate
+        +addComment()
+        +deleteComment()
+    }
+    
+    class Category {
+        +String name
+        +String description
+        +addArticle()
+        +removeArticle()
+    }
+    
+    User "1" -- "*" Article : writes
+    User "1" -- "*" Comment : posts
+    Article "1" -- "*" Comment : has
+    Article "1" -- "*" Category : belongs to
+</code></pre>
+<h2>State Diagram Example</h2>
+<p>State diagrams show the sequence of states an object goes through during its life cycle.</p>
+<pre><code>stateDiagram-v2
+    [*] --&gt; Draft
+    
+    Draft --&gt; UnderReview : submit
+    UnderReview --&gt; Draft : reject
+    UnderReview --&gt; Approved : approve
+    Approved --&gt; Published : publish
+    Published --&gt; Archived : archive
+    Published --&gt; Draft : retract
+    
+    state Published {
+        [*] --&gt; Active
+        Active --&gt; Hidden : temporarily hide
+        Hidden --&gt; Active : restore
+        Active --&gt; [*]
+        Hidden --&gt; [*]
+    }
+    
+    Archived --&gt; [*]
+</code></pre>
+<h2>Pie Chart Example</h2>
+<p>Pie charts are ideal for displaying proportions and percentage data.</p>
+<pre><code>pie title Website Traffic Sources Analysis
+    "Search Engines" : 45.6
+    "Direct Access" : 30.1
+    "Social Media" : 15.3
+    "Referral Links" : 6.4
+    "Other Sources" : 2.6
+</code></pre>
+<h2>Conclusion</h2>
+<p>Mermaid is a powerful tool for creating various types of diagrams in Markdown documents. This article demonstrated how to use flowcharts, sequence diagrams, Gantt charts, class diagrams, state diagrams, and pie charts. These diagrams can help you express complex concepts, processes, and data structures more clearly.</p>
+<p>To use Mermaid, simply specify the mermaid language in a code block and describe the diagram using concise text syntax. Mermaid will automatically convert these descriptions into beautiful visual diagrams.</p>
+<p>Try using Mermaid diagrams in your next technical blog post or project documentation - they will make your content more professional and easier to understand!</p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="Examples"></category>
+  </entry>
+  <entry>
+    <title>Markdown Tutorial</title>
+    <link href="https://www.harkerhand.cn/2020-09-01-2/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2020-09-01-2/</id>
+    <published>2020-09-01T00:00:01.000Z</published>
+    <updated>2020-09-01T00:00:01.000Z</updated>
+    <summary>A simple example of a Markdown blog post.</summary>
+    <content type="html"><![CDATA[<h1>Markdown Tutorial</h1>
+<p>A markdown example shows how to write a markdown file. This document integrates core syntax and extensions (GMF).</p>
+<ul>
+<li><a href="#block-elements">Block Elements</a>
+<ul>
+<li><a href="#paragraphs-and-line-breaks">Paragraphs and Line Breaks</a></li>
+<li><a href="#headers">Headers</a></li>
+<li><a href="#blockquotes">Blockquotes</a></li>
+<li><a href="#lists">Lists</a></li>
+<li><a href="#code-blocks">Code Blocks</a></li>
+<li><a href="#horizontal-rules">Horizontal Rules</a></li>
+<li><a href="#table">Table</a></li>
+</ul>
+</li>
+<li><a href="#span-elements">Span Elements</a>
+<ul>
+<li><a href="#links">Links</a></li>
+<li><a href="#emphasis">Emphasis</a></li>
+<li><a href="#code">Code</a></li>
+<li><a href="#images">Images</a></li>
+<li><a href="#strikethrough">Strikethrough</a></li>
+</ul>
+</li>
+<li><a href="#miscellaneous">Miscellaneous</a>
+<ul>
+<li><a href="#automatic-links">Automatic Links</a></li>
+<li><a href="#backslash-escapes">Backslash Escapes</a></li>
+</ul>
+</li>
+<li><a href="#inline-html">Inline HTML</a></li>
+</ul>
+<h2>Block Elements</h2>
+<h3>Paragraphs and Line Breaks</h3>
+<h4>Paragraphs</h4>
+<p>HTML Tag: <code>&lt;p&gt;</code></p>
+<p>One or more blank lines. (A blank line is a line containing nothing but <strong>spaces</strong> or <strong>tabs</strong> is considered blank.)</p>
+<p>Code:</p>
+<pre><code>This will be
+inline.
+
+This is second paragraph.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>This will be
+inline.</p>
+<p>This is second paragraph.</p>
+<hr />
+<h4>Line Breaks</h4>
+<p>HTML Tag: <code>&lt;br /&gt;</code></p>
+<p>End a line with <strong>two or more spaces</strong>.</p>
+<p>Code:</p>
+<pre><code>This will be not
+inline.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>This will be not<br />
+inline.</p>
+<hr />
+<h3>Headers</h3>
+<p>Markdown supports two styles of headers, Setext and atx.</p>
+<h4>Setext</h4>
+<p>HTML Tags: <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code></p>
+<p>"Underlined" using <strong>equal signs (=)</strong> as <code>&lt;h1&gt;</code> and <strong>dashes (-)</strong> as <code>&lt;h2&gt;</code> in any number.</p>
+<p>Code:</p>
+<pre><code>This is an H1
+=============
+This is an H2
+-------------
+</code></pre>
+<p>Preview:</p>
+<hr />
+<h1>This is an H1</h1>
+<h2>This is an H2</h2>
+<hr />
+<h4>atx</h4>
+<p>HTML Tags: <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code></p>
+<p>Uses 1-6 <strong>hash characters (#)</strong> at the start of the line, corresponding to <code>&lt;h1&gt;</code> - <code>&lt;h6&gt;</code>.</p>
+<p>Code:</p>
+<pre><code># This is an H1
+## This is an H2
+###### This is an H6
+</code></pre>
+<p>Preview:</p>
+<hr />
+<h1>This is an H1</h1>
+<h2>This is an H2</h2>
+<h6>This is an H6</h6>
+<hr />
+<p>Optionally, you may "close" atx-style headers. The closing hashes <strong>don't need to match</strong> the number of hashes used to open the header.</p>
+<p>Code:</p>
+<pre><code># This is an H1 #
+## This is an H2 ##
+### This is an H3 ######
+</code></pre>
+<p>Preview:</p>
+<hr />
+<h1>This is an H1</h1>
+<h2>This is an H2</h2>
+<h3>This is an H3</h3>
+<hr />
+<h3>Blockquotes</h3>
+<p>HTML Tag: <code>&lt;blockquote&gt;</code></p>
+<p>Markdown uses email-style <strong>&gt;</strong> characters for blockquoting. It looks best if you hard wrap the text and put a &gt; before every line.</p>
+<p>Code:</p>
+<pre><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+&gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+&gt; Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+&gt;
+&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+&gt; id sem consectetuer libero luctus adipiscing.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<blockquote>
+<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
+<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.</p>
+</blockquote>
+<hr />
+<p>Markdown allows you to be lazy and only put the &gt; before the first line of a hard-wrapped paragraph.</p>
+<p>Code:</p>
+<pre><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+&gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<blockquote>
+<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
+</blockquote>
+<blockquote>
+<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.</p>
+</blockquote>
+<hr />
+<p>Blockquotes can be nested (i.e. a blockquote-in-a-blockquote) by adding additional levels of &gt;.</p>
+<p>Code:</p>
+<pre><code>&gt; This is the first level of quoting.
+&gt;
+&gt; &gt; This is nested blockquote.
+&gt;
+&gt; Back to the first level.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<blockquote>
+<p>This is the first level of quoting.</p>
+<blockquote>
+<p>This is nested blockquote.</p>
+</blockquote>
+<p>Back to the first level.</p>
+</blockquote>
+<hr />
+<p>Blockquotes can contain other Markdown elements, including headers, lists, and code blocks.</p>
+<p>Code:</p>
+<pre><code>&gt; ## This is a header.
+&gt;
+&gt; 1.   This is the first list item.
+&gt; 2.   This is the second list item.
+&gt;
+&gt; Here's some example code:
+&gt;
+&gt;     return shell_exec("echo $input | $markdown_script");
+</code></pre>
+<p>Preview:</p>
+<hr />
+<blockquote>
+<h2>This is a header.</h2>
+<ol>
+<li>This is the first list item.</li>
+<li>This is the second list item.</li>
+</ol>
+<p>Here's some example code:</p>
+<pre><code>return shell_exec("echo $input | $markdown_script");
+</code></pre>
+</blockquote>
+<hr />
+<h3>Lists</h3>
+<p>Markdown supports ordered (numbered) and unordered (bulleted) lists.</p>
+<h4>Unordered</h4>
+<p>HTML Tag: <code>&lt;ul&gt;</code></p>
+<p>Unordered lists use <strong>asterisks (*)</strong>, <strong>pluses (+)</strong>, and <strong>hyphens (-)</strong>.</p>
+<p>Code:</p>
+<pre><code>*   Red
+*   Green
+*   Blue
+</code></pre>
+<p>Preview:</p>
+<hr />
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<hr />
+<p>is equivalent to:</p>
+<p>Code:</p>
+<pre><code>+   Red
++   Green
++   Blue
+</code></pre>
+<p>and:</p>
+<p>Code:</p>
+<pre><code>-   Red
+-   Green
+-   Blue
+</code></pre>
+<h4>Ordered</h4>
+<p>HTML Tag: <code>&lt;ol&gt;</code></p>
+<p>Ordered lists use numbers followed by periods:</p>
+<p>Code:</p>
+<pre><code>1.  Bird
+2.  McHale
+3.  Parish
+</code></pre>
+<p>Preview:</p>
+<hr />
+<ol>
+<li>Bird</li>
+<li>McHale</li>
+<li>Parish</li>
+</ol>
+<hr />
+<p>It's possible to trigger an ordered list by accident, by writing something like this:</p>
+<p>Code:</p>
+<pre><code>1986. What a great season.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<ol>
+<li>What a great season.</li>
+</ol>
+<hr />
+<p>You can <strong>backslash-escape (\)</strong> the period:</p>
+<p>Code:</p>
+<pre><code>1986\. What a great season.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>1986. What a great season.</p>
+<hr />
+<h4>Indented</h4>
+<h5>Blockquote</h5>
+<p>To put a blockquote within a list item, the blockquote's &gt; delimiters need to be indented:</p>
+<p>Code:</p>
+<pre><code>*   A list item with a blockquote:
+
+    &gt; This is a blockquote
+    &gt; inside a list item.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<ul>
+<li>
+<p>A list item with a blockquote:</p>
+<blockquote>
+<p>This is a blockquote
+inside a list item.</p>
+</blockquote>
+</li>
+</ul>
+<hr />
+<h5>Code Block</h5>
+<p>To put a code block within a list item, the code block needs to be indented twice — <strong>8 spaces</strong> or <strong>two tabs</strong>:</p>
+<p>Code:</p>
+<pre><code>*   A list item with a code block:
+
+        &lt;code goes here&gt;
+</code></pre>
+<p>Preview:</p>
+<hr />
+<ul>
+<li>
+<p>A list item with a code block:</p>
+<pre><code>&lt;code goes here&gt;
+</code></pre>
+</li>
+</ul>
+<hr />
+<h5>Nested List</h5>
+<p>Code:</p>
+<pre><code>* A
+  * A1
+  * A2
+* B
+* C
+</code></pre>
+<p>Preview:</p>
+<hr />
+<ul>
+<li>A
+<ul>
+<li>A1</li>
+<li>A2</li>
+</ul>
+</li>
+<li>B</li>
+<li>C</li>
+</ul>
+<hr />
+<h3>Code Blocks</h3>
+<p>HTML Tag: <code>&lt;pre&gt;</code></p>
+<p>Indent every line of the block by at least <strong>4 spaces</strong> or <strong>1 tab</strong>.</p>
+<p>Code:</p>
+<pre><code>This is a normal paragraph:
+
+    This is a code block.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>This is a normal paragraph:</p>
+<pre><code>This is a code block.
+</code></pre>
+<hr />
+<p>A code block continues until it reaches a line that is not indented (or the end of the article).</p>
+<p>Within a code block, <strong><em>ampersands (&amp;)</em></strong> and angle <strong>brackets (&lt; and &gt;)</strong> are automatically converted into HTML entities.</p>
+<p>Code:</p>
+<pre><code>    &lt;div class="footer"&gt;
+        &amp;copy; 2004 Foo Corporation
+    &lt;/div&gt;
+</code></pre>
+<p>Preview:</p>
+<hr />
+<pre><code>&lt;div class="footer"&gt;
+    &amp;copy; 2004 Foo Corporation
+&lt;/div&gt;
+</code></pre>
+<hr />
+<p>Following sections Fenced Code Blocks and Syntax Highlighting are extensions, you can use the other way to write the code block.</p>
+<h4>Fenced Code Blocks</h4>
+<p>Just wrap your code in <code>```</code> (as shown below) and you won't need to indent it by four spaces.</p>
+<p>Code:</p>
+<pre><code>Here's an example:
+
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>Here's an example:</p>
+<pre><code>function test() {
+  console.log("notice the blank line before this function?");
+}
+</code></pre>
+<hr />
+<h4>Syntax Highlighting</h4>
+<p>In your fenced block, add an optional language identifier and we'll run it through syntax highlighting (<a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml">Support Languages</a>).</p>
+<p>Code:</p>
+<pre><code>```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
+</code></pre>
+<p>Preview:</p>
+<hr />
+<pre><code>require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+</code></pre>
+<hr />
+<h3>Horizontal Rules</h3>
+<p>HTML Tag: <code>&lt;hr /&gt;</code>
+Places <strong>three or more hyphens (-), asterisks (*), or underscores (_)</strong> on a line by themselves. You may use spaces between the hyphens or asterisks.</p>
+<p>Code:</p>
+<pre><code>* * *
+***
+*****
+- - -
+---------------------------------------
+___
+</code></pre>
+<p>Preview:</p>
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<h3>Table</h3>
+<p>HTML Tag: <code>&lt;table&gt;</code></p>
+<p>It's an extension.</p>
+<p>Separates column by <strong>pipe (|)</strong> and header by <strong>dashes (-)</strong>, and uses <strong>colon (:)</strong> for alignment.</p>
+<p>The outer <strong>pipes (|)</strong> and alignment are optional. There are <strong>3 delimiters</strong> each cell at least for separating header.</p>
+<p>Code:</p>
+<pre><code>| Left | Center | Right |
+|:-----|:------:|------:|
+|aaa   |bbb     |ccc    |
+|ddd   |eee     |fff    |
+
+ A | B
+---|---
+123|456
+
+
+A |B
+--|--
+12|45
+</code></pre>
+<p>Preview:</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Left</th>
+<th>Center</th>
+<th>Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aaa</td>
+<td>bbb</td>
+<td>ccc</td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>eee</td>
+<td>fff</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>123</td>
+<td>456</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12</td>
+<td>45</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Span Elements</h2>
+<h3>Links</h3>
+<p>HTML Tag: <code>&lt;a&gt;</code></p>
+<p>Markdown supports two style of links: inline and reference.</p>
+<h4>Inline</h4>
+<p>Inline link format like this: <code>[Link Text](URL "Title")</code></p>
+<p>Title is optional.</p>
+<p>Code:</p>
+<pre><code>This is [an example](http://example.com/ "Title") inline link.
+
+[This link](http://example.net/) has no title attribute.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>This is <a href="http://example.com/">an example</a> inline link.</p>
+<p><a href="http://example.net/">This link</a> has no title attribute.</p>
+<hr />
+<p>If you're referring to a local resource on the same server, you can use relative paths:</p>
+<p>Code:</p>
+<pre><code>See my [About](/about/) page for details.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>See my <a href="/about/">About</a> page for details.</p>
+<hr />
+<h4>Reference</h4>
+<p>You could predefine link references. Format like this: <code>[id]: URL "Title"</code></p>
+<p>Title is also optional. And the you refer the link, format like this: <code>[Link Text][id]</code></p>
+<p>Code:</p>
+<pre><code>[id]: http://example.com/  "Optional Title Here"
+This is [an example][id] reference-style link.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>This is <a href="http://example.com/">an example</a> reference-style link.</p>
+<hr />
+<p>That is:</p>
+<ul>
+<li>Square brackets containing the link identifier (<strong>not case sensitive</strong>, optionally indented from the left margin using up to three spaces);</li>
+<li>followed by a colon;</li>
+<li>followed by one or more spaces (or tabs);</li>
+<li>followed by the URL for the link;</li>
+<li>The link URL may, optionally, be surrounded by angle brackets.</li>
+<li>optionally followed by a title attribute for the link, enclosed in double or single quotes, or enclosed in parentheses.</li>
+</ul>
+<p>The following three link definitions are equivalent:</p>
+<p>Code:</p>
+<pre><code>[foo]: http://example.com/  "Optional Title Here"
+[foo]: http://example.com/  'Optional Title Here'
+[foo]: http://example.com/  (Optional Title Here)
+[foo]: &lt;http://example.com/&gt;  "Optional Title Here"
+</code></pre>
+<p>Uses an empty set of square brackets, the link text itself is used as the name.</p>
+<p>Code:</p>
+<pre><code>[Google]: http://google.com/
+[Google][]
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p><a href="http://google.com/">Google</a></p>
+<hr />
+<h3>Emphasis</h3>
+<p>HTML Tags: <code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code></p>
+<p>Markdown treats <strong>asterisks (*)</strong> and <strong>underscores (_)</strong> as indicators of emphasis. <strong>One delimiter</strong> will be <code>&lt;em&gt;</code>; *<em>double delimiters</em> will be <code>&lt;strong&gt;</code>.</p>
+<p>Code:</p>
+<pre><code>*single asterisks*
+
+_single underscores_
+
+**double asterisks**
+
+__double underscores__
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p><em>single asterisks</em></p>
+<p><em>single underscores</em></p>
+<p><strong>double asterisks</strong></p>
+<p><strong>double underscores</strong></p>
+<hr />
+<p>But if you surround an * or _ with spaces, it'll be treated as a literal asterisk or underscore.</p>
+<p>You can backslash escape it:</p>
+<p>Code:</p>
+<pre><code>\*this text is surrounded by literal asterisks\*
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>*this text is surrounded by literal asterisks*</p>
+<hr />
+<h3>Code</h3>
+<p>HTML Tag: <code>&lt;code&gt;</code></p>
+<p>Wraps it with <strong>backtick quotes (`)</strong>.</p>
+<p>Code:</p>
+<pre><code>Use the `printf()` function.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>Use the <code>printf()</code> function.</p>
+<hr />
+<p>To include a literal backtick character within a code span, you can use <strong>multiple backticks</strong> as the opening and closing delimiters:</p>
+<p>Code:</p>
+<pre><code>``There is a literal backtick (`) here.``
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p><code>There is a literal backtick (`) here.</code></p>
+<hr />
+<p>The backtick delimiters surrounding a code span may include spaces — one after the opening, one before the closing. This allows you to place literal backtick characters at the beginning or end of a code span:</p>
+<p>Code:</p>
+<pre><code>A single backtick in a code span: `` ` ``
+
+A backtick-delimited string in a code span: `` `foo` ``
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>A single backtick in a code span: <code>`</code></p>
+<p>A backtick-delimited string in a code span: <code>`foo`</code></p>
+<hr />
+<h3>Images</h3>
+<p>HTML Tag: <code>&lt;img /&gt;</code></p>
+<p>Markdown uses an image syntax that is intended to resemble the syntax for links, allowing for two styles: inline and reference.</p>
+<h4>Inline</h4>
+<p>Inline image syntax looks like this: <code>![Alt text](URL "Title")</code></p>
+<p>Title is optional.</p>
+<p>Code:</p>
+<pre><code>![Alt text](/path/to/img.jpg)
+
+![Alt text](/path/to/img.jpg "Optional title")
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p><img src="https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp" alt="Alt text" /></p>
+<p><img src="https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp" alt="Alt text" title="Optional title" /></p>
+<hr />
+<p>That is:</p>
+<ul>
+<li>An exclamation mark: !;</li>
+<li>followed by a set of square brackets, containing the alt attribute text for the image;</li>
+<li>followed by a set of parentheses, containing the URL or path to the image, and an optional title attribute enclosed in double or single quotes.</li>
+</ul>
+<h4>Reference</h4>
+<p>Reference-style image syntax looks like this: <code>![Alt text][id]</code></p>
+<p>Code:</p>
+<pre><code>[img id]: https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp  "Optional title attribute"
+![Alt text][img id]
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p><img src="https://s2.loli.net/2024/08/20/5fszgXeOxmL3Wdv.webp" alt="Alt text" title="Optional title attribute" /></p>
+<hr />
+<h3>Strikethrough</h3>
+<p>HTML Tag: <code>&lt;del&gt;</code></p>
+<p>It's an extension.</p>
+<p>GFM adds syntax to strikethrough text.</p>
+<p>Code:</p>
+<pre><code>~~Mistaken text.~~
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p><s>Mistaken text.</s></p>
+<hr />
+<h2>Miscellaneous</h2>
+<h3>Automatic Links</h3>
+<p>Markdown supports a shortcut style for creating "automatic" links for URLs and email addresses: simply surround the URL or email address with angle brackets.</p>
+<p>Code:</p>
+<pre><code>&lt;http://example.com/&gt;
+
+&lt;address@example.com&gt;
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p><a href="http://example.com/">http://example.com/</a></p>
+<p><a href="mailto:address@example.com">address@example.com</a></p>
+<hr />
+<p>GFM will autolink standard URLs.</p>
+<p>Code:</p>
+<pre><code>https://github.com/emn178/markdown
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>https://github.com/emn178/markdown</p>
+<hr />
+<h3>Backslash Escapes</h3>
+<p>Markdown allows you to use backslash escapes to generate literal characters which would otherwise have special meaning in Markdown's formatting syntax.</p>
+<p>Code:</p>
+<pre><code>\*literal asterisks\*
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>*literal asterisks*</p>
+<hr />
+<p>Markdown provides backslash escapes for the following characters:</p>
+<p>Code:</p>
+<pre><code>\   backslash
+`   backtick
+*   asterisk
+_   underscore
+{}  curly braces
+[]  square brackets
+()  parentheses
+#   hash mark
++   plus sign
+-   minus sign (hyphen)
+.   dot
+!   exclamation mark
+</code></pre>
+<h2>Inline HTML</h2>
+<p>For any markup that is not covered by Markdown's syntax, you simply use HTML itself. There's no need to preface it or delimit it to indicate that you're switching from Markdown to HTML; you just use the tags.</p>
+<p>Code:</p>
+<pre><code>This is a regular paragraph.
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Foo&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+This is another regular paragraph.
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>This is a regular paragraph.</p>
+<p>&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;Foo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</p>
+<p>This is another regular paragraph.</p>
+<hr />
+<p>Note that Markdown formatting syntax is <strong>not processed within block-level HTML tags</strong>.</p>
+<p>Unlike block-level HTML tags, Markdown syntax is <strong>processed within span-level tags</strong>.</p>
+<p>Code:</p>
+<pre><code>&lt;span&gt;**Work**&lt;/span&gt;
+
+&lt;div&gt;
+    **No Work**
+&lt;/div&gt;
+</code></pre>
+<p>Preview:</p>
+<hr />
+<p>&lt;span&gt;<strong>Work</strong>&lt;/span&gt;</p>
+<p>&lt;div&gt;
+<strong>No Work</strong>
+&lt;/div&gt;</p>
+<hr />
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="Examples"></category>
+  </entry>
+  <entry>
+    <title>Include Video in the Posts</title>
+    <link href="https://www.harkerhand.cn/2020-09-01-1/" rel="alternate" type="text/html"/>
+    <id>https://www.harkerhand.cn/2020-09-01-1/</id>
+    <published>2020-09-01T00:00:00.000Z</published>
+    <updated>2020-09-01T00:00:00.000Z</updated>
+    <summary>This post demonstrates how to include embedded video in a blog post.</summary>
+    <content type="html"><![CDATA[<p>Just copy the embed code from YouTube or other platforms, and paste it in the markdown file.</p>
+<pre><code>---
+title: Include Video in the Post
+published: 2023-10-19
+// ...
+---
+
+&lt;iframe width="100%" height="468" src="https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_" title="YouTube video player" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+</code></pre>
+<h2>YouTube</h2>
+<p>&lt;iframe width="100%" height="468" src="https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen&gt;&lt;/iframe&gt;</p>
+<h2>Bilibili</h2>
+<p>&lt;iframe width="100%" height="468" src="//player.bilibili.com/player.html?bvid=BV1fK4y1s7Qf&amp;p=1&amp;autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" &amp;autoplay=0&gt; &lt;/iframe&gt;</p>
+]]></content>
+    <author>
+      <name>何山</name>
+    </author>
+    <category term="Examples"></category>
+  </entry>
+</feed>
