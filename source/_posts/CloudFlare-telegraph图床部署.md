@@ -6,7 +6,7 @@ tags:
 - 图床
 categories: 经验分享
 cover:
-index_img: https://image.harkerhand.online/file/5d0e3cb00e7e03672e347.png
+index_img: https://image.harkerhand.cn/file/5d0e3cb00e7e03672e347.png
 banner_img:
 ---
 
