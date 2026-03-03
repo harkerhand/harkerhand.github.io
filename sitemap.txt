@@ -1,4 +1,6 @@
 https://www.harkerhand.cn/ConsistentHashing/
+https://www.harkerhand.cn/dynTrait/
+https://www.harkerhand.cn/RustFFI/
 https://www.harkerhand.cn/io/
 https://www.harkerhand.cn/CloudFlare-telegraph%E5%9B%BE%E5%BA%8A%E9%83%A8%E7%BD%B2/
 https://www.harkerhand.cn/%E6%9F%90%E7%A7%91%E5%AD%A6%E7%9A%84%E8%B6%85%E9%BB%91%E9%AD%94%E6%B3%95/
@@ -8,7 +10,6 @@ https://www.harkerhand.cn/%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3
 https://www.harkerhand.cn/%E8%BF%9B%E8%A1%8CHexo%E5%A4%A7%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0/
 https://www.harkerhand.cn/about/index.html
 https://www.harkerhand.cn/Markdown%E5%85%A5%E9%97%A8/
-https://www.harkerhand.cn/RustFFI/
 https://www.harkerhand.cn/VS-Code%E4%B8%ADCPP%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/
 https://www.harkerhand.cn/%E4%BD%BF%E7%94%A8DoraSSR%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%912048%E6%B8%B8%E6%88%8FDemo/
 https://www.harkerhand.cn/%E5%9B%BD%E5%86%85%E9%AB%98%E9%80%9F%E5%9B%BE%E5%BA%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Vika/
@@ -52,6 +53,7 @@ https://www.harkerhand.cn/tags/FFI/
 https://www.harkerhand.cn/tags/shell/
 https://www.harkerhand.cn/tags/terminal/
 https://www.harkerhand.cn/tags/VS-Code/
+https://www.harkerhand.cn/tags/rust/
 https://www.harkerhand.cn/tags/Lua/
 https://www.harkerhand.cn/tags/DoraSSR/
 https://www.harkerhand.cn/tags/Clash/
@@ -64,3 +66,4 @@ https://www.harkerhand.cn/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/
 https://www.harkerhand.cn/categories/%E7%AE%97%E6%B3%95/
 https://www.harkerhand.cn/categories/CCF-NOI/
 https://www.harkerhand.cn/categories/OpenJudge/
+https://www.harkerhand.cn/categories/TechMagic/

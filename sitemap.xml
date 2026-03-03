@@ -11,9 +11,27 @@
   </url>
   
   <url>
+    <loc>https://www.harkerhand.cn/dynTrait/</loc>
+    
+    <lastmod>2026-03-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.harkerhand.cn/RustFFI/</loc>
+    
+    <lastmod>2026-03-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.harkerhand.cn/io/</loc>
     
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2026-03-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -84,15 +102,6 @@
   
   <url>
     <loc>https://www.harkerhand.cn/Markdown%E5%85%A5%E9%97%A8/</loc>
-    
-    <lastmod>2025-11-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.harkerhand.cn/RustFFI/</loc>
     
     <lastmod>2025-11-03</lastmod>
     
@@ -458,6 +467,13 @@
   </url>
   
   <url>
+    <loc>https://www.harkerhand.cn/tags/rust/</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.harkerhand.cn/tags/Lua/</loc>
     <lastmod>2026-03-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -538,6 +554,13 @@
   
   <url>
     <loc>https://www.harkerhand.cn/categories/OpenJudge/</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.harkerhand.cn/categories/TechMagic/</loc>
     <lastmod>2026-03-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
