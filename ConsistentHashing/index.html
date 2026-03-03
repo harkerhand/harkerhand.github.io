@@ -21,24 +21,24 @@
   <meta name="author" content="harkerhand">
   <meta name="keywords" content="harkerhand,C++,tech">
   
-    <meta name="description" content="写在前面下文代码中会用到一些函数 在此处做出声明 1234567891011121314151617181920212223242526272829303132333435363738394041void swap01(int *a, int *b) &#x2F;&#x2F; 传入地址&#123;    int temp &#x3D; *a; &#x2F;&#x2F; *解引用    *a &#x3D; *b;    *b &#x3D; temp;&#125;voi">
+    <meta name="description" content="背景假设在分布式负载均衡场景中，对于一些输入，我们希望尽可能均匀的将其分配到 n 个不同的节点。常规的哈希算法通常使用简单的哈希函数与取模来得到下标。$$\text{index} &#x3D; hash(input) \ % \ n$$但当节点扩缩容时，即 n 的大小变化时，一个显而易见的问题是。对于相同的 input，得到的 index 是不同的。 从数学上来看，即使 index 发生变化，这样">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++从入门到放弃">
-<meta property="og:url" content="https://www.harkerhand.cn/C-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/index.html">
+<meta property="og:title" content="一致性哈希">
+<meta property="og:url" content="https://www.harkerhand.cn/ConsistentHashing/index.html">
 <meta property="og:site_name" content="Where Is Mountain">
-<meta property="og:description" content="写在前面下文代码中会用到一些函数 在此处做出声明 1234567891011121314151617181920212223242526272829303132333435363738394041void swap01(int *a, int *b) &#x2F;&#x2F; 传入地址&#123;    int temp &#x3D; *a; &#x2F;&#x2F; *解引用    *a &#x3D; *b;    *b &#x3D; temp;&#125;voi">
+<meta property="og:description" content="背景假设在分布式负载均衡场景中，对于一些输入，我们希望尽可能均匀的将其分配到 n 个不同的节点。常规的哈希算法通常使用简单的哈希函数与取模来得到下标。$$\text{index} &#x3D; hash(input) \ % \ n$$但当节点扩缩容时，即 n 的大小变化时，一个显而易见的问题是。对于相同的 input，得到的 index 是不同的。 从数学上来看，即使 index 发生变化，这样">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.harkerhand.cn/img/cpp.png">
-<meta property="article:published_time" content="2023-03-14T14:44:37.000Z">
-<meta property="article:modified_time" content="2025-11-03T05:49:18.742Z">
+<meta property="og:image" content="https://www.harkerhand.cn/ConsistentHashing/hash.png">
+<meta property="article:published_time" content="2026-03-03T06:10:20.000Z">
+<meta property="article:modified_time" content="2026-03-03T07:57:33.968Z">
 <meta property="article:author" content="harkerhand">
-<meta property="article:tag" content="C++">
+<meta property="article:tag" content="密码学">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.harkerhand.cn/img/cpp.png">
+<meta name="twitter:image" content="https://www.harkerhand.cn/ConsistentHashing/hash.png">
   
   
   
-  <title>C++从入门到放弃 - Where Is Mountain</title>
+  <title>一致性哈希 - Where Is Mountain</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="C++从入门到放弃"></span>
+            <span id="subtitle" data-typed-text="一致性哈希"></span>
           
         </div>
 
@@ -245,8 +245,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-14 22:44" pubdate>
-          2023年3月14日
+        <time datetime="2026-03-03 14:10" pubdate>
+          2026年3月3日
         </time>
       </span>
     
@@ -257,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          462 字
+          1.5k 字
         
       </span>
     
@@ -268,7 +268,7 @@
         
         
         
-          5 分钟
+          15 分钟
         
       </span>
     
@@ -361,7 +361,7 @@
       
         <a href="/C-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" title="C++从入门到放弃"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">C++从入门到放弃</span>
         </a>
       
@@ -424,7 +424,7 @@
       
         <a href="/ConsistentHashing/" title="一致性哈希"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">一致性哈希</span>
         </a>
       
@@ -528,12 +528,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">C++从入门到放弃</h1>
+            <h1 id="seo-header">一致性哈希</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年11月3日 下午
+                    本文最后更新于 2026年3月3日 下午
                   
                 
               </p>
@@ -541,35 +541,57 @@
             
               <div class="markdown-body">
                 
-                <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>下文代码中会用到一些函数</p>
-<p>在此处做出声明</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap01</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span> <span class="hljs-comment">// 传入地址</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> temp = *a; <span class="hljs-comment">// *解引用</span><br>    *a = *b;<br>    *b = temp;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bubble</span><span class="hljs-params">(<span class="hljs-type">int</span> *arr, <span class="hljs-type">int</span> len)</span> <span class="hljs-comment">// 对数组进行冒泡排序</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; len - i - <span class="hljs-number">1</span>; j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (arr[j] &gt; arr[j + <span class="hljs-number">1</span>])<br>            &#123;<br>                <span class="hljs-built_in">swap01</span>(arr + j, arr + j + <span class="hljs-number">1</span>);<br>                <span class="hljs-comment">// 数组的变量名可以直接加法表示后面的某一位</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">person</span><br>&#123;<br>    <span class="hljs-comment">// 结构体 自定义数据类型</span><br>    <span class="hljs-comment">// 例子</span><br>    string name;<br>    <span class="hljs-type">short</span> age;<br>    <span class="hljs-type">bool</span> sex;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap02</span><span class="hljs-params">(person *a, person *b)</span> <span class="hljs-comment">// 交换结构体</span></span><br><span class="hljs-function"></span>&#123;<br>    person temp = *a;<br>    *a = *b;<br>    *b = temp;<br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">person</span> people[<span class="hljs-number">2</span>] = &#123;<br>    &#123;<span class="hljs-string">&quot;boy&quot;</span>, <span class="hljs-number">16</span>, <span class="hljs-number">1</span>&#125;,<br>    &#123;<span class="hljs-string">&quot;girl&quot;</span>, <span class="hljs-number">14</span>, <span class="hljs-number">0</span>&#125;&#125;;<br></code></pre></td></tr></table></figure>
+                <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>假设在分布式负载均衡场景中，对于一些输入，我们希望尽可能均匀的将其分配到 n 个不同的节点。常规的哈希算法通常使用简单的哈希函数与取模来得到下标。<br>$$<br>\text{index} &#x3D; hash(input) \ % \ n<br>$$<br>但当节点扩缩容时，即 n 的大小变化时，一个显而易见的问题是。对于相同的 input，得到的 index 是不同的。</p>
+<p>从数学上来看，即使 index 发生变化，这样的算法在负载均衡上的表现依然是优秀的。但如果节点会有类似缓存的技术来加快计算，这样的index变化就是不可接受的，它会导致<strong>几乎所有的缓存失效</strong>。</p>
+<h1 id="一致性哈希"><a href="#一致性哈希" class="headerlink" title="一致性哈希"></a>一致性哈希</h1><p>一致性哈希的目的是解决分布式系统的数据分区问题：当分布式集群移除或者添加一个服务器时，必须尽可能小地改变已存在的服务请求与处理请求服务器之间的映射关系。</p>
+<p>简单来说就是尽可能的复用缓存，尽可能对于同一个input，得到同一个index。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>一致性哈希本质上也是一种取模算法。只不过它的模数是一个极大的数，一般是 2^32 - 1。</p>
+<p>暂且认为一致性哈希用了一个超大的桶，来规避了取模问题。现在对于相同的input，一定会得到相同的index。但这个index是用来索引节点的，现在应该如何索引？</p>
+<p>解决方案是：对节点标记也进行哈希，将节点放入桶中。在拿到input的index后，向后遍历，直到遇到第一个节点。</p>
+<p>在这样的前提下，想象这个超大的桶是一个环，各个节点将这个环分割，每个节点负责环上的一个弧。</p>
+<ul>
+<li>当插入一个节点时，其影响范围只有被其切割的那一段弧。</li>
+<li>当删除一个节点时，其影响范围只有其负责的那一段弧。</li>
+</ul>
+<p>理论上，每次扩缩容，造成的影响只有 1&#x2F;N，其中 N 是缓存总数。</p>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><p>原理是这样，那实现上呢？</p>
+<p>第一，很显然这些桶是不可能预分配内存的，太大了！但这个环，本质上也是一张（整数，节点标记）的表，同时，我们上文提到了有向后遍历的需求，那这个表就可以使用排序树（一般是红黑树）来实现，不仅解决了空间问题，还可以用二分来优化遍历的时间。</p>
+<p>第二，当节点数量不多或者我运气很差时，节点可能会聚集在这个环的某一个区间内，造成极度的负载不均衡。一个朴素的想法是，只要节点数量够多，把这个环切分的足够细，就可以极大缓解这个不均衡的问题。但实际的节点数量就那么几个，这时候就可以采用虚拟节点的方式，我们可以将一个节点视为数十个甚至数百个虚拟节点，用这些虚拟节点来哈希做，最后放入桶中的依然是同一个节点。</p>
+<p>第三，物理节点撞了怎么办。当虚拟节点足够多时，撞一两个其实不会太影响负载均衡的结果。还不放心的话，可以使用64位哈希。还不放心的话，就只能祈祷自己不是倒霉蛋了。</p>
+<h2 id="可能的优化"><a href="#可能的优化" class="headerlink" title="可能的优化"></a>可能的优化</h2><ul>
+<li>当节点变动不频繁的时候，可以不用排序树。直接 <code>vector&lt;(hash, Node)&gt;</code>，初始化结束以及增删节点时排序，查找可以使用二分，可以更好的利用CPU缓存。</li>
+</ul>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p>假设：</p>
+<ul>
+<li>物理节点（个） N</li>
+<li>虚拟节点（个&#x2F;物理节点） V</li>
+</ul>
+<p>总节点：<br>$$<br>M &#x3D; N * V<br>$$<br>操作复杂度：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查找</td>
+<td>O(log M)</td>
+</tr>
+<tr>
+<td>插入</td>
+<td>O(V log M)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>O(V log M)</td>
+</tr>
+</tbody></table>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> Node&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ConsistentHash</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">using</span> node_ptr = std::shared_ptr&lt;Node&gt;;<br>    <span class="hljs-keyword">using</span> hash_type = std::<span class="hljs-type">uint64_t</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">ConsistentHash</span><span class="hljs-params">(std::<span class="hljs-type">size_t</span> virtual_nodes = <span class="hljs-number">100</span>)</span></span><br><span class="hljs-function">        : virtual_node_count_(virtual_nodes) &#123;</span>&#125;<br><br>    <span class="hljs-comment">// 添加物理节点</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add_node</span><span class="hljs-params">(<span class="hljs-type">const</span> node_ptr&amp; node)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!node) &#123;<br>            <span class="hljs-keyword">throw</span> std::<span class="hljs-built_in">invalid_argument</span>(<span class="hljs-string">&quot;node is null&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-function">std::unique_lock <span class="hljs-title">lock</span><span class="hljs-params">(mutex_)</span></span>;<br><br>        <span class="hljs-keyword">for</span> (std::<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; virtual_node_count_; ++i) &#123;<br>            <span class="hljs-keyword">auto</span> vnode_key = <span class="hljs-built_in">make_vnode_key</span>(*node, i);<br>            ring_.<span class="hljs-built_in">emplace</span>(<span class="hljs-built_in">hash</span>(vnode_key), node);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 删除物理节点</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">remove_node</span><span class="hljs-params">(<span class="hljs-type">const</span> node_ptr&amp; node)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span>;<br><br>        <span class="hljs-function">std::unique_lock <span class="hljs-title">lock</span><span class="hljs-params">(mutex_)</span></span>;<br><br>        <span class="hljs-keyword">for</span> (std::<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; virtual_node_count_; ++i) &#123;<br>            <span class="hljs-keyword">auto</span> vnode_key = <span class="hljs-built_in">make_vnode_key</span>(*node, i);<br>            ring_.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">hash</span>(vnode_key));<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 查找 key 对应的节点</span><br>    [[nodiscard]]<br>    <span class="hljs-function">node_ptr <span class="hljs-title">get_node</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; key)</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-function">std::shared_lock <span class="hljs-title">lock</span><span class="hljs-params">(mutex_)</span></span>;<br><br>        <span class="hljs-keyword">if</span> (ring_.<span class="hljs-built_in">empty</span>()) &#123;<br>            <span class="hljs-keyword">throw</span> std::<span class="hljs-built_in">runtime_error</span>(<span class="hljs-string">&quot;Hash ring is empty&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">auto</span> h = <span class="hljs-built_in">hash</span>(key);<br>        <span class="hljs-keyword">auto</span> it = ring_.<span class="hljs-built_in">lower_bound</span>(h);<br><br>        <span class="hljs-keyword">if</span> (it == ring_.<span class="hljs-built_in">end</span>()) &#123;<br>            it = ring_.<span class="hljs-built_in">begin</span>();  <span class="hljs-comment">// 回环</span><br>        &#125;<br><br>        <span class="hljs-keyword">return</span> it-&gt;second;<br>    &#125;<br><br>    [[nodiscard]]<br>    <span class="hljs-function">std::<span class="hljs-type">size_t</span> <span class="hljs-title">node_count</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-function">std::shared_lock <span class="hljs-title">lock</span><span class="hljs-params">(mutex_)</span></span>;<br>        <span class="hljs-keyword">return</span> ring_.<span class="hljs-built_in">size</span>() / virtual_node_count_;<br>    &#125;<br><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> hash_type <span class="hljs-title">hash</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; key)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> std::hash&lt;std::string&gt;&#123;&#125;(key);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">static</span> std::string <span class="hljs-title">make_vnode_key</span><span class="hljs-params">(<span class="hljs-type">const</span> Node&amp; node, std::<span class="hljs-type">size_t</span> index)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> node.<span class="hljs-built_in">id</span>() + <span class="hljs-string">&quot;#&quot;</span> + std::<span class="hljs-built_in">to_string</span>(index);<br>    &#125;<br><br><span class="hljs-keyword">private</span>:<br>    std::<span class="hljs-type">size_t</span> virtual_node_count_;<br>    std::map&lt;hash_type, node_ptr&gt; ring_;<br>    <span class="hljs-keyword">mutable</span> std::shared_mutex mutex_;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Rust"><a href="#Rust" class="headerlink" title="Rust"></a>Rust</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ConsistentHash</span>&lt;T&gt; &#123;<br>    virtual_nodes: <span class="hljs-type">usize</span>,<br>    ring: RwLock&lt;BTreeMap&lt;<span class="hljs-type">u64</span>, Arc&lt;T&gt;&gt;&gt;,<br>&#125;<br><br><span class="hljs-keyword">impl</span>&lt;T&gt; ConsistentHash&lt;T&gt;<br><span class="hljs-keyword">where</span><br>    T: Hash + <span class="hljs-built_in">Clone</span>,<br>&#123;<br>    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">new</span>(virtual_nodes: <span class="hljs-type">usize</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-keyword">Self</span> &#123;<br>        <span class="hljs-keyword">Self</span> &#123;<br>            virtual_nodes,<br>            ring: RwLock::<span class="hljs-title function_ invoke__">new</span>(BTreeMap::<span class="hljs-title function_ invoke__">new</span>()),<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">add_node</span>(&amp;<span class="hljs-keyword">self</span>, node: Arc&lt;T&gt;) &#123;<br>        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">ring</span> = <span class="hljs-keyword">self</span>.ring.<span class="hljs-title function_ invoke__">write</span>().<span class="hljs-title function_ invoke__">unwrap</span>();<br><br>        <span class="hljs-keyword">for</span> <span class="hljs-variable">i</span> <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-keyword">self</span>.virtual_nodes &#123;<br>            <span class="hljs-keyword">let</span> <span class="hljs-variable">hash</span> = <span class="hljs-keyword">self</span>.<span class="hljs-title function_ invoke__">hash_virtual_node</span>(&amp;node, i);<br>            ring.<span class="hljs-title function_ invoke__">insert</span>(hash, Arc::<span class="hljs-title function_ invoke__">clone</span>(&amp;node));<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">remove_node</span>(&amp;<span class="hljs-keyword">self</span>, node: &amp;T) &#123;<br>        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">ring</span> = <span class="hljs-keyword">self</span>.ring.<span class="hljs-title function_ invoke__">write</span>().<span class="hljs-title function_ invoke__">unwrap</span>();<br><br>        <span class="hljs-keyword">for</span> <span class="hljs-variable">i</span> <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-keyword">self</span>.virtual_nodes &#123;<br>            <span class="hljs-keyword">let</span> <span class="hljs-variable">hash</span> = <span class="hljs-keyword">self</span>.<span class="hljs-title function_ invoke__">hash_virtual_node_value</span>(node, i);<br>            ring.<span class="hljs-title function_ invoke__">remove</span>(&amp;hash);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_node</span>&lt;K: Hash&gt;(&amp;<span class="hljs-keyword">self</span>, key: &amp;K) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Option</span>&lt;Arc&lt;T&gt;&gt; &#123;<br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">ring</span> = <span class="hljs-keyword">self</span>.ring.<span class="hljs-title function_ invoke__">read</span>().<span class="hljs-title function_ invoke__">unwrap</span>();<br><br>        <span class="hljs-keyword">if</span> ring.<span class="hljs-title function_ invoke__">is_empty</span>() &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">let</span> <span class="hljs-variable">hash</span> = <span class="hljs-keyword">self</span>.<span class="hljs-title function_ invoke__">hash</span>(key);<br><br>        <span class="hljs-comment">// 找到第一个 &gt;= hash 的节点</span><br>        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">iter</span> = ring.<span class="hljs-title function_ invoke__">range</span>(hash..);<br><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>((_, node)) = iter.<span class="hljs-title function_ invoke__">next</span>() &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Some</span>(Arc::<span class="hljs-title function_ invoke__">clone</span>(node));<br>        &#125;<br><br>        <span class="hljs-comment">// 回环</span><br>        ring.<span class="hljs-title function_ invoke__">values</span>().<span class="hljs-title function_ invoke__">next</span>().<span class="hljs-title function_ invoke__">map</span>(Arc::clone)<br>    &#125;<br><br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">hash</span>&lt;K: Hash&gt;(&amp;<span class="hljs-keyword">self</span>, key: &amp;K) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">u64</span> &#123;<br>        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">hasher</span> = DefaultHasher::<span class="hljs-title function_ invoke__">new</span>();<br>        key.<span class="hljs-title function_ invoke__">hash</span>(&amp;<span class="hljs-keyword">mut</span> hasher);<br>        hasher.<span class="hljs-title function_ invoke__">finish</span>()<br>    &#125;<br><br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">hash_virtual_node</span>(&amp;<span class="hljs-keyword">self</span>, node: &amp;Arc&lt;T&gt;, index: <span class="hljs-type">usize</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">u64</span> &#123;<br>        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">hasher</span> = DefaultHasher::<span class="hljs-title function_ invoke__">new</span>();<br>        node.<span class="hljs-title function_ invoke__">hash</span>(&amp;<span class="hljs-keyword">mut</span> hasher);<br>        index.<span class="hljs-title function_ invoke__">hash</span>(&amp;<span class="hljs-keyword">mut</span> hasher);<br>        hasher.<span class="hljs-title function_ invoke__">finish</span>()<br>    &#125;<br><br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">hash_virtual_node_value</span>(&amp;<span class="hljs-keyword">self</span>, node: &amp;T, index: <span class="hljs-type">usize</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">u64</span> &#123;<br>        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">hasher</span> = DefaultHasher::<span class="hljs-title function_ invoke__">new</span>();<br>        node.<span class="hljs-title function_ invoke__">hash</span>(&amp;<span class="hljs-keyword">mut</span> hasher);<br>        index.<span class="hljs-title function_ invoke__">hash</span>(&amp;<span class="hljs-keyword">mut</span> hasher);<br>        hasher.<span class="hljs-title function_ invoke__">finish</span>()<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
-
-
-
-
-
-<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><h2 id="一般"><a href="#一般" class="headerlink" title="一般"></a>一般</h2><p>int *p;</p>
-<p>声明一个指针, 指针保存的是地址</p>
-<p>声明时 * 表示指针, 引用时 * 表示解引用</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>;<br><span class="hljs-built_in">swap01</span>(&amp;a, &amp;b); <span class="hljs-comment">// &amp; 表示取地址</span><br>cout &lt;&lt; <span class="hljs-string">&quot;a = &quot;</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot; b = &quot;</span> &lt;&lt; b &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
-
-<h2 id="const修饰"><a href="#const修饰" class="headerlink" title="const修饰"></a>const修饰</h2><p>  const修饰指针, 指向可以改, 值不能改</p>
-<p>  const修饰常量, 指向不可改, 值可以改</p>
-<p>  const也可以两者都修饰</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> *p1 = &amp;a;<br>p1 = &amp;b;<br><span class="hljs-type">int</span> *<span class="hljs-type">const</span> p2 = &amp;b;<br>*p2 = a;<br></code></pre></td></tr></table></figure>
-
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>指针和数组</p>
-<p>int arr[4] &#x3D; {1, 2, 3, 4};</p>
-<p>arr即为首个元素的地址</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> arr[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>&#125;;<br><span class="hljs-type">int</span> len = <span class="hljs-built_in">sizeof</span>(arr) / <span class="hljs-built_in">sizeof</span>(arr[<span class="hljs-number">0</span>]);<br><span class="hljs-built_in">bubble</span>(arr, len);<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>&#123;<br>    cout &lt;&lt; <span class="hljs-string">&quot;arr[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span> &lt;&lt; arr[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><p>创建一个函数,  交换两个人的信息</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">swap02</span>(people, people + <span class="hljs-number">1</span>); <span class="hljs-comment">// 传入地址 people是数组</span><br>cout &lt;&lt; <span class="hljs-string">&quot;people[0].name = &quot;</span> &lt;&lt; people[<span class="hljs-number">0</span>].name &lt;&lt; <span class="hljs-string">&quot; people[1].name = &quot;</span> &lt;&lt; people[<span class="hljs-number">1</span>].name &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
-<p>指针使用 -&gt; 访问结构体中的元素</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cout &lt;&lt; <span class="hljs-string">&quot;people[0].name = &quot;</span> &lt;&lt; people-&gt;name &lt;&lt; <span class="hljs-string">&quot; people[1].name = &quot;</span> &lt;&lt; (people + <span class="hljs-number">1</span>)-&gt;name &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -602,7 +624,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/C/" class="print-no-link">#C++</a>
+        <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" class="print-no-link">#密码学</a>
       
     </div>
   
@@ -614,8 +636,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>C++从入门到放弃</div>
-      <div>https://www.harkerhand.cn/C-从入门到放弃/</div>
+      <div>一致性哈希</div>
+      <div>https://www.harkerhand.cn/ConsistentHashing/</div>
     </div>
     <div class="license-meta">
       
@@ -627,13 +649,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月14日</div>
+          <div>2026年3月3日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年11月3日</div>
+          <div>2026年3月3日</div>
         </div>
       
       
@@ -676,18 +698,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/OJ/8465/" title="8465.马走日">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">8465.马走日</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E5%9B%BD%E5%86%85%E9%AB%98%E9%80%9F%E5%9B%BE%E5%BA%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Vika/" title="国内高速图床解决方案--Vika">
-                        <span class="hidden-mobile">国内高速图床解决方案--Vika</span>
+                      <a href="/io/" title="几种IO方式">
+                        <span class="hidden-mobile">几种IO方式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
