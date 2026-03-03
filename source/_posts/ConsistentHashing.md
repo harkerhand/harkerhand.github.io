@@ -2,7 +2,7 @@
 title: 一致性哈希
 date: 2026-03-03 14:10:20
 tags: 密码学
-categories: 经验分享
+categories: TechMagic
 index_img: ./ConsistentHashing/hash.png
 banner_img:
 ---

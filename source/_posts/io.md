@@ -2,7 +2,7 @@
 title: 几种IO方式
 date: 2026-03-02 14:34:01
 tags: 
-categories: 经验分享 
+categories: TechMagic 
 index_img: ./io/demux.png
 banner_img:
 ---
