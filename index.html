@@ -256,7 +256,13 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/learn-std/" target="_self">
+          <img src="/./learn-std/rustdocs.png" srcset="/img/loading.gif" lazyload alt="Rust数据结构源码实现">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h2 class="index-header">
         
         <a href="/learn-std/" target="_self">
@@ -265,7 +271,7 @@
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/learn-std/" target="_self">
+      <a class="index-excerpt " href="/learn-std/" target="_self">
         <div>
           解析Rust部分数据结构的源码实现需要注意的是，为了方便，对源码的一些实现有改写 Vec从单纯的数据结构设计上，大概如下 12345678910111213pub struct Vec&lt;T, A: Allocator = Global&gt; &#123;    buf: RawVec&lt;T, A&gt;,    len: usize,&#125;pub(crate) struct Ra
         </div>
