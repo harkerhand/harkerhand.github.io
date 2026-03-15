@@ -5,8 +5,9 @@ tags:
 - C++
 - Rust
 categories: TechMagic
-index_img:
+index_img: ./learn-std/rustdocs.png
 banner_img:
+math: true
 ---
 
 
@@ -247,7 +248,7 @@ impl<A> RawVecInner<A> {
 
 因为内存是未初始化的，所以会使用 `ptr::write` 直接向内存写数据。我们具体关注扩容逻辑，
 $$
-new\_cap = max(old\_cap * 2, old\_cap + needed, min_non_zero_cap)
+\text{new_cap} = max(\text{old_cap} * 2, \text{old_cap} + \text{needed}, \text{min_non_zero_cap})
 $$
 指数倍增，并且会使用类型大小来选择保底扩容大小；具体的内存分配部分，使用alloc提供的能力，尽可能的进行原地扩展（不保证）。
 
@@ -372,11 +373,11 @@ struct RawTableInner {
 }
 ```
 
-| **字段**      | **作用**       | **深度解析**                                                 |
-| ------------- | -------------- | ------------------------------------------------------------ |
+| **字段**      | **作用**       | **深度解析**                                                                                     |
+| ------------- | -------------- | ------------------------------------------------------------------------------------------------ |
 | `bucket_mask` | 快速取模       | 桶的数量永远是 $2^n$，所以 `hash & bucket_mask` 效果等同于 `hash % capacity`，但位运算速度极快。 |
-| `growth_left` | 扩容阈值       | 记录还能插入多少元素。当它降到 0 时，触发 `rehash` 扩容，防止哈希冲突过多导致性能下降。 |
-| `ctrl`        | 标记控制区起点 | 使用SIMD加速哈希匹配判断                                     |
+| `growth_left` | 扩容阈值       | 记录还能插入多少元素。当它降到 0 时，触发 `rehash` 扩容，防止哈希冲突过多导致性能下降。          |
+| `ctrl`        | 标记控制区起点 | 使用SIMD加速哈希匹配判断                                                                         |
 
 ### with_capacity
 
