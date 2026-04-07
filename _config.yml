@@ -110,3 +110,17 @@ deploy:
 
 archive_generator:
   per_page: 7
+
+# RSS Feed 配置
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: favicon.ico # 可选，你的图标路径
+  autodiscovery: true
+  template:
