@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo_circle.png">
+  <link rel="icon" href="/img/logo_circle.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="harkerhand">
+  <meta name="keywords" content="harkerhand,C++,tech">
+  
+    <meta name="description" content="写 Rust 写到一定阶段，你会发现“宏”几乎绕不过去。 从 println!、vec! 到 #[tokio::main]、#[derive(Debug)]，它们都在编译期改写代码，只是方式不同。本文对各类宏进行深入解析，带你从 macro_rules! 的模式匹配到过程宏的 TokenStream 转换，全面理解 Rust 宏的强大与灵活。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust宏：从macro_rules到过程宏">
+<meta property="og:url" content="https://www.harkerhand.cn/rustmacro/index.html">
+<meta property="og:site_name" content="Where Is Mountain">
+<meta property="og:description" content="写 Rust 写到一定阶段，你会发现“宏”几乎绕不过去。 从 println!、vec! 到 #[tokio::main]、#[derive(Debug)]，它们都在编译期改写代码，只是方式不同。本文对各类宏进行深入解析，带你从 macro_rules! 的模式匹配到过程宏的 TokenStream 转换，全面理解 Rust 宏的强大与灵活。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.harkerhand.cn/rustmacro/rustdocs.png">
+<meta property="article:published_time" content="2026-04-17T10:40:45.000Z">
+<meta property="article:modified_time" content="2026-04-17T10:46:56.699Z">
+<meta property="article:author" content="harkerhand">
+<meta property="article:tag" content="rust">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.harkerhand.cn/rustmacro/rustdocs.png">
+  
+  
+  
+  <title>Rust宏：从macro_rules到过程宏 - Where Is Mountain</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.harkerhand.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"CDX6IWyV2uLXpC5LxeP6cafw-gzGzoHsz","app_key":"d0eP6B1k5eQ1gkPrZuCkF0E8","server_url":"https://cdx6iwyv.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Where Is Mountain" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>何处为山</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Rust宏：从macro_rules到过程宏"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        harkerhand
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-04-17 18:40" pubdate>
+          2026年4月17日
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="TechMagic"
+        id="heading-257f041d8d9ae750aaff5b59630fddca" role="tab" data-toggle="collapse" href="#collapse-257f041d8d9ae750aaff5b59630fddca"
+        aria-expanded="true"
+      >
+        TechMagic
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-257f041d8d9ae750aaff5b59630fddca"
+           role="tabpanel" aria-labelledby="heading-257f041d8d9ae750aaff5b59630fddca">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/Rust%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" title="Rust 核心机制与易错题目深度解析"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Rust 核心机制与易错题目深度解析</span>
+        </a>
+      
+    
+      
+      
+        <a href="/RustFFI/" title="RustFFI"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">RustFFI</span>
+        </a>
+      
+    
+      
+      
+        <a href="/rustmacro/" title="Rust宏：从macro_rules到过程宏"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Rust宏：从macro_rules到过程宏</span>
+        </a>
+      
+    
+      
+      
+        <a href="/learn-std/" title="Rust数据结构源码实现"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Rust数据结构源码实现</span>
+        </a>
+      
+    
+      
+      
+        <a href="/ConsistentHashing/" title="一致性哈希"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">一致性哈希</span>
+        </a>
+      
+    
+      
+      
+        <a href="/io/" title="几种IO方式"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">几种IO方式</span>
+        </a>
+      
+    
+      
+      
+        <a href="/dynTrait/" title="谈谈Rust动态派发"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">谈谈Rust动态派发</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Rust宏：从macro_rules到过程宏</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年4月17日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>写 Rust 写到一定阶段，你会发现“宏”几乎绕不过去。</p>
+<p>从 <code>println!</code>、<code>vec!</code> 到 <code>#[tokio::main]</code>、<code>#[derive(Debug)]</code>，它们都在编译期改写代码，只是方式不同。本文对各类宏进行深入解析，带你从 <code>macro_rules!</code> 的模式匹配到过程宏的 TokenStream 转换，全面理解 Rust 宏的强大与灵活。</p>
+<span id="more"></span>
+<h2 id="声明宏"><a href="#声明宏" class="headerlink" title="声明宏"></a>声明宏</h2><h3 id="例1：println"><a href="#例1：println" class="headerlink" title="例1：println!"></a>例1：println!</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-built_in">macro_rules!</span> println &#123;<br>    () =&gt; &#123;<br>        $crate::<span class="hljs-built_in">print!</span>(<span class="hljs-string">&quot;\n&quot;</span>)<br>    &#125;;<br>    ($($arg:tt)*) =&gt; &#123;&#123;<br>        $crate::io::_print($crate::format_args_nl!($($arg)*));<br>    &#125;&#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>macro_rules!</code> 类似于一个巨大的 <code>match</code> 语句，对于第一种模式，<code>println!()</code> 没有参数，直接输出一个换行符；对于第二种模式，<code>println!()</code> 接受任意数量的参数，并将它们传递给 <code>format_args_nl!</code> 宏进行格式化，然后调用 <code>_print</code> 函数输出结果。</p>
+<p><code>$($arg:tt)*</code> 是一个特殊的语法，<code>tt</code> 代表一个 token tree，可以匹配任意的 Rust 代码片段。<code>$()*</code> 表示匹配零个或多个这样的 token tree，并将它们捕获到一个变量 <code>$arg</code> 中。</p>
+<p><code>$crate</code> 是一个特殊的变量，指向当前宏所在的 crate。这使得宏能够正确地引用 crate 内部的项，无论宏被调用的位置在哪里。</p>
+<h3 id="例2：lazy-static"><a href="#例2：lazy-static" class="headerlink" title="例2：lazy_static!"></a>例2：lazy_static!</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-built_in">macro_rules!</span> lazy_static &#123;<br>    ($(<span class="hljs-meta">#[$attr:meta]</span>)* <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> $N:ident : $T:ty = $e:expr; $($t:tt)*) =&gt; &#123;<br>        <span class="hljs-comment">// use `()` to explicitly forward the information about private items</span><br>        __lazy_static_internal!($(<span class="hljs-meta">#[$attr]</span>)* () <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> $N : $T = $e; $($t)*);<br>    &#125;;<br>    ($(<span class="hljs-meta">#[$attr:meta]</span>)* <span class="hljs-keyword">pub</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> $N:ident : $T:ty = $e:expr; $($t:tt)*) =&gt; &#123;<br>        __lazy_static_internal!($(<span class="hljs-meta">#[$attr]</span>)* (<span class="hljs-keyword">pub</span>) <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> $N : $T = $e; $($t)*);<br>    &#125;;<br>    ($(<span class="hljs-meta">#[$attr:meta]</span>)* <span class="hljs-title function_ invoke__">pub</span> ($($vis:tt)+) <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> $N:ident : $T:ty = $e:expr; $($t:tt)*) =&gt; &#123;<br>        __lazy_static_internal!($(<span class="hljs-meta">#[$attr]</span>)* (<span class="hljs-title function_ invoke__">pub</span> ($($vis)+)) <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> $N : $T = $e; $($t)*);<br>    &#125;;<br>    () =&gt; ()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>lazy_static!</code> 宏定义了三种模式，分别用于处理不同的可见性修饰符（无修饰符、<code>pub</code> 修饰符和带有自定义可见性的 <code>pub</code> 修饰符）。每种模式都将捕获的参数传递给一个内部宏 <code>__lazy_static_internal!</code>，并使用 <code>()</code> 来显式地转发关于私有项的信息。</p>
+<p><code>$(#[$attr:meta])*</code> 用于匹配零个或多个属性（如 <code>#[derive(Debug)]</code>），<code>$N:ident</code> 匹配一个标识符作为静态变量的名称，<code>$T:ty</code> 匹配一个类型，<code>$e:expr</code> 匹配一个表达式作为静态变量的初始化值，<code>$($t:tt)*</code> 匹配剩余的 token tree 以允许定义多个静态变量。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-built_in">macro_rules!</span> __lazy_static_internal &#123;<br>    <span class="hljs-comment">// optional visibility restrictions are wrapped in `()` to allow for</span><br>    <span class="hljs-comment">// explicitly passing otherwise implicit information about private items</span><br>    ($(<span class="hljs-meta">#[$attr:meta]</span>)* ($($vis:tt)*) <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> $N:ident : $T:ty = $e:expr; $($t:tt)*) =&gt; &#123;<br>        __lazy_static_internal!(@MAKE TY, $(<span class="hljs-meta">#[$attr]</span>)*, ($($vis)*), $N);<br>        __lazy_static_internal!(@TAIL, $N : $T = $e);<br>        lazy_static!($($t)*);<br>    &#125;;<br>    (@TAIL, $N:ident : $T:ty = $e:expr) =&gt; &#123;<br>        <span class="hljs-keyword">impl</span> $crate::__Deref <span class="hljs-keyword">for</span> $N &#123;<br>            <span class="hljs-keyword">type</span> <span class="hljs-title class_">Target</span> = $T;<br>            <span class="hljs-keyword">fn</span> <span class="hljs-title function_">deref</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;$T &#123;<br>                <span class="hljs-meta">#[inline(always)]</span><br>                <span class="hljs-keyword">fn</span> <span class="hljs-title function_">__static_ref_initialize</span>() <span class="hljs-punctuation">-&gt;</span> $T &#123; $e &#125;<br><br>                <span class="hljs-meta">#[inline(always)]</span><br>                <span class="hljs-keyword">fn</span> <span class="hljs-title function_">__stability</span>() <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-symbol">&#x27;static</span> $T &#123;<br>                    __lazy_static_create!(LAZY, $T);<br>                    LAZY.<span class="hljs-title function_ invoke__">get</span>(__static_ref_initialize)<br>                &#125;<br>                __stability()<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">impl</span> $crate::LazyStatic <span class="hljs-keyword">for</span> $N &#123;<br>            <span class="hljs-keyword">fn</span> <span class="hljs-title function_">initialize</span>(lazy: &amp;<span class="hljs-keyword">Self</span>) &#123;<br>                <span class="hljs-keyword">let</span> <span class="hljs-variable">_</span> = &amp;**lazy;<br>            &#125;<br>        &#125;<br>    &#125;;<br>    <span class="hljs-comment">// `vis` is wrapped in `()` to prevent parsing ambiguity</span><br>    (@MAKE TY, $(<span class="hljs-meta">#[$attr:meta]</span>)*, ($($vis:tt)*), $N:ident) =&gt; &#123;<br>        <span class="hljs-meta">#[allow(missing_copy_implementations)]</span><br>        <span class="hljs-meta">#[allow(non_camel_case_types)]</span><br>        <span class="hljs-meta">#[allow(dead_code)]</span><br>        $(<span class="hljs-meta">#[$attr]</span>)*<br>        $($vis)* <span class="hljs-keyword">struct</span> $N &#123;__private_field: ()&#125;<br>        <span class="hljs-meta">#[doc(hidden)]</span><br>        <span class="hljs-meta">#[allow(non_upper_case_globals)]</span><br>        $($vis)* <span class="hljs-keyword">static</span> $N: $N = $N &#123;__private_field: ()&#125;;<br>    &#125;;<br>    () =&gt; ()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>前面的模式是递归调用来处理多个静态变量的定义，同时使用 <code>@TAIL</code> 和 <code>@MAKE</code> 来分别处理静态变量的实现和结构体定义。</p>
+<p><code>@MAKE</code> 模式定义了一个零大小同名结构体来表示静态变量，并创建一个同名静态实例。</p>
+<p><code>@TAIL</code> 模式实现了 <code>Deref</code> 和 <code>LazyStatic</code> trait，前者允许通过自动解引用访问静态变量的对应类型的值，并且在 <code>deref</code> 的实现中处理初始化，后者提供了一个 <code>initialize</code> 方法来显式地触发静态变量的初始化。</p>
+<h3 id="例3-vec"><a href="#例3-vec" class="headerlink" title="例3: vec!"></a>例3: vec!</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-built_in">macro_rules!</span> vec &#123;<br>    () =&gt; (<br>        $crate::vec::<span class="hljs-type">Vec</span>::<span class="hljs-title function_ invoke__">new</span>()<br>    );<br>    ($elem:expr; $n:expr) =&gt; (<br>        $crate::vec::<span class="hljs-title function_ invoke__">from_elem</span>($elem, $n)<br>    );<br>    ($($x:expr),+ $(,)?) =&gt; (<br>        $crate::boxed::<span class="hljs-title function_ invoke__">box_assume_init_into_vec_unsafe</span>(<br>            $crate::intrinsics::<span class="hljs-title function_ invoke__">write_box_via_move</span>($crate::boxed::<span class="hljs-type">Box</span>::<span class="hljs-title function_ invoke__">new_uninit</span>(), [$($x),+])<br>        )<br>    );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>第一个模式匹配 <code>vec!()</code>，没有参数时返回一个新的空 <code>Vec</code>。</p>
+<p>第二个模式匹配 <code>vec![elem; n]</code>，接受一个元素和一个数量，使用 <code>from_elem</code> 函数创建一个包含 <code>n</code> 个 <code>elem</code> 的 <code>Vec</code>。</p>
+<p>第三个模式匹配 <code>vec![x1, x2, ...]</code>，接受一个或多个表达式，并使用一些内部函数来创建一个包含这些元素的 <code>Vec</code>。这里使用了 <code>box_assume_init_into_vec_unsafe</code> 和 <code>write_box_via_move</code> 来高效地构建 <code>Vec</code>，避免了不必要的复制。</p>
+<h2 id="过程宏"><a href="#过程宏" class="headerlink" title="过程宏"></a>过程宏</h2><p>输入 TokenStream，输出 TokenStream。</p>
+<h3 id="属性宏-例：my-tokio-main"><a href="#属性宏-例：my-tokio-main" class="headerlink" title="属性宏 例：my tokio main"></a>属性宏 例：my tokio main</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-meta">#[proc_macro_attribute]</span> <span class="hljs-comment">// 声明这是一个属性宏</span><br><span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">my_tokio_main</span>(_attr: TokenStream, item: TokenStream) <span class="hljs-punctuation">-&gt;</span> TokenStream &#123;<br>    <span class="hljs-comment">// 1. 解析输入的函数（item 是你写的 async fn main）</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">input_fn</span> = parse_macro_input!(item <span class="hljs-keyword">as</span> ItemFn);<br><br>    <span class="hljs-comment">// 保存函数名（通常是 main）</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">name</span> = &amp;input_fn.sig.ident;<br>    <span class="hljs-comment">// 保存函数体</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">body</span> = &amp;input_fn.block;<br>    <span class="hljs-comment">// 保存函数的属性、可见性等</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">attrs</span> = &amp;input_fn.attrs;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">vis</span> = &amp;input_fn.vis;<br><br>    <span class="hljs-comment">// 2. 生成替换代码</span><br>    <span class="hljs-comment">// 我们把异步函数变成同步函数，并在内部启动运行时</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">expanded</span> = quote! &#123;<br>        #(#attrs)*<br>        #vis <span class="hljs-keyword">fn</span> #<span class="hljs-title function_ invoke__">name</span>() &#123;<br>            <span class="hljs-comment">// 这里模拟 tokio 的启动逻辑</span><br>            <span class="hljs-keyword">let</span> <span class="hljs-variable">rt</span> = tokio::runtime::Runtime::<span class="hljs-title function_ invoke__">new</span>().<span class="hljs-title function_ invoke__">unwrap</span>();<br>            rt.<span class="hljs-title function_ invoke__">block_on</span>(<span class="hljs-keyword">async</span> &#123;<br>                #body<br>            &#125;);<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-comment">// 3. 返回生成的标记流</span><br>    TokenStream::<span class="hljs-title function_ invoke__">from</span>(expanded)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>实际上的 <code>#[tokio::main]</code> 比这个例子复杂得多，因为它需要处理不同的运行时选项（如 <code>multi_thread</code>、<code>current_thread</code> 等），并且要确保生成的代码能够正确地处理异步函数的输入参数和返回值。</p>
+<p>但这个例子展示了属性宏的基本结构：解析输入的函数，生成新的代码，并返回一个新的 <code>TokenStream</code>。通过这种方式，我们可以在编译时修改函数的行为，实现类似于 <code>#[tokio::main]</code> 的功能。</p>
+<p>其中 <code>syn</code> crate 用于解析 Rust 代码，<code>quote</code> crate 用于生成 Rust 代码。</p>
+<p>使用上，举个例子</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-meta">#[my_macros::my_tokio_main]</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>; <span class="hljs-number">2</span>];<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Hello, world! a = &#123;&#125;, b = &#123;:?&#125;&quot;</span>, a, b);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>其展开后会变成</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-meta">#[my_macros::my_tokio_main]</span><br><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">rt</span> = tokio::runtime::Runtime::<span class="hljs-title function_ invoke__">new</span>().<span class="hljs-title function_ invoke__">unwrap</span>();<br>    rt.<span class="hljs-title function_ invoke__">block_on</span>(<span class="hljs-keyword">async</span> &#123;<br>        &#123;<br>            <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = ::alloc::vec::<span class="hljs-title function_ invoke__">from_elem</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);<br>            &#123;<br>                ::std::io::_print(<br>                    <span class="hljs-built_in">format_args!</span>(<span class="hljs-string">&quot;Hello, world! a = &#123;0&#125;, b = &#123;1:?&#125;\n&quot;</span>, a, b),<br>                );<br>            &#125;;<br>        &#125;<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="派生宏-例：derive-LazyGetter"><a href="#派生宏-例：derive-LazyGetter" class="headerlink" title="派生宏 例：derive(LazyGetter)"></a>派生宏 例：derive(LazyGetter)</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs rust"><br><span class="hljs-meta">#[proc_macro_derive(LazyGetter)]</span><br><span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">lazy_getter_derive</span>(input: TokenStream) <span class="hljs-punctuation">-&gt;</span> TokenStream &#123;<br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">input_clone</span> = input.<span class="hljs-title function_ invoke__">clone</span>();<br>    <span class="hljs-comment">// 解析输入的结构体</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">derive_input</span> = parse_macro_input!(input_clone <span class="hljs-keyword">as</span> syn::DeriveInput);<br><br>    <span class="hljs-keyword">match</span> derive_input.data &#123;<br>        syn::Data::<span class="hljs-title function_ invoke__">Struct</span>(data_struct) =&gt; &#123;<br>            <span class="hljs-keyword">let</span> <span class="hljs-variable">fields</span> = data_struct.fields;<br>            <span class="hljs-keyword">let</span> <span class="hljs-variable">impls</span> = fields<br>                .<span class="hljs-title function_ invoke__">iter</span>()<br>                .<span class="hljs-title function_ invoke__">map</span>(|field| &#123;<br>                    <span class="hljs-keyword">let</span> <span class="hljs-variable">field_name</span> = &amp;field.ident;<br>                    <span class="hljs-keyword">let</span> <span class="hljs-variable">field_type</span> = &amp;field.ty;<br>                    <span class="hljs-keyword">let</span> <span class="hljs-variable">setter_ident</span> = format_ident!(<span class="hljs-string">&quot;set_&#123;&#125;&quot;</span>, field_name.<span class="hljs-title function_ invoke__">as_ref</span>().<span class="hljs-title function_ invoke__">unwrap</span>());<br>                    <span class="hljs-keyword">let</span> <span class="hljs-variable">getter_ident</span> = field_name.<span class="hljs-title function_ invoke__">as_ref</span>().<span class="hljs-title function_ invoke__">unwrap</span>();<br>                    <span class="hljs-keyword">let</span> <span class="hljs-variable">inner_type</span> = <span class="hljs-title function_ invoke__">get_inner_type_from_option</span>(field_type)<br>                        .<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">&quot;Field must be of type Option&lt;T&gt;&quot;</span>);<br>                    quote! &#123;<br>                        <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> #<span class="hljs-title function_ invoke__">setter_ident</span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, value: #inner_type) &#123;<br>                            <span class="hljs-keyword">self</span>.#field_name = <span class="hljs-title function_ invoke__">Some</span>(value);<br>                        &#125;<br><br>                        <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> #<span class="hljs-title function_ invoke__">getter_ident</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;#inner_type &#123;<br>                            <span class="hljs-keyword">self</span>.#field_name.<span class="hljs-title function_ invoke__">as_ref</span>().<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">&quot;Field is not initialized&quot;</span>)<br>                        &#125;<br>                    &#125;<br>                &#125;)<br>                .collect::&lt;<span class="hljs-type">Vec</span>&lt;_&gt;&gt;();<br>            <span class="hljs-keyword">let</span> <span class="hljs-variable">struct_name</span> = derive_input.ident;<br>            quote! &#123;<br>                <span class="hljs-keyword">impl</span> #struct_name &#123;<br>                    #(#impls)*<br>                &#125;<br>            &#125;<br>            .<span class="hljs-title function_ invoke__">into</span>()<br>        &#125;<br>        _ =&gt; &#123;<br>            <span class="hljs-comment">// 其他类型（枚举、联合）不处理</span><br>            <span class="hljs-keyword">return</span> input;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_inner_type_from_option</span>(ty: &amp;syn::Type) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Option</span>&lt;&amp;syn::Type&gt; &#123;<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">syn</span>::Type::<span class="hljs-title function_ invoke__">Path</span>(type_path) = ty &#123;<br>        <span class="hljs-keyword">if</span> type_path.path.segments.<span class="hljs-title function_ invoke__">len</span>() == <span class="hljs-number">1</span> &amp;&amp; type_path.path.segments[<span class="hljs-number">0</span>].ident == <span class="hljs-string">&quot;Option&quot;</span> &#123;<br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">syn</span>::PathArguments::<span class="hljs-title function_ invoke__">AngleBracketed</span>(args) = &amp;type_path.path.segments[<span class="hljs-number">0</span>].arguments<br>            &#123;<br>                <span class="hljs-keyword">if</span> args.args.<span class="hljs-title function_ invoke__">len</span>() == <span class="hljs-number">1</span> &#123;<br>                    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">syn</span>::GenericArgument::<span class="hljs-title function_ invoke__">Type</span>(inner_type) = &amp;args.args[<span class="hljs-number">0</span>] &#123;<br>                        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Some</span>(inner_type);<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-literal">None</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>设想了一个何意味的场景，我们有一个结构体，其中的字段都是 <code>Option&lt;T&gt;</code> 类型，我们希望通过一个派生宏自动生成对应的 getter 和 setter 方法。getter 方法会返回字段的值，如果字段未初始化（即为 <code>None</code>），则会 panic；setter 方法会接受一个值并将其包装在 <code>Some</code> 中赋值给字段。</p>
+<p>在这个例子中，<code>lazy_getter_derive</code> 函数首先解析输入的结构体，然后检查它是否是一个结构体类型。如果是结构体，它会遍历字段，生成对应的 getter 和 setter 方法，并将它们组合成一个 <code>impl</code> 块返回。如果输入的类型不是结构体（例如枚举或联合），则直接返回原始输入，表示不进行任何修改。</p>
+<p><code>get_inner_type_from_option</code> 函数用于从 <code>Option&lt;T&gt;</code> 类型中提取出 <code>T</code> 的类型，以便在生成 getter 和 setter 方法时使用正确的类型签名。</p>
+<p>使用上，我们可以这样定义一个结构体：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-meta">#[derive(my_macros::LazyGetter)]</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">MyStruct</span> &#123;<br>    a: <span class="hljs-type">Option</span>&lt;<span class="hljs-type">i32</span>&gt;,<br>    b: <span class="hljs-type">Option</span>&lt;<span class="hljs-type">Vec</span>&lt;<span class="hljs-type">i32</span>&gt;&gt;,<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>编译后会自动生成如下代码：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">MyStruct</span> &#123;<br>    a: <span class="hljs-type">Option</span>&lt;<span class="hljs-type">i32</span>&gt;,<br>    b: <span class="hljs-type">Option</span>&lt;<span class="hljs-type">Vec</span>&lt;<span class="hljs-type">i32</span>&gt;&gt;,<br>&#125;<br><span class="hljs-keyword">impl</span> <span class="hljs-title class_">MyStruct</span> &#123;<br>    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">set_a</span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, value: <span class="hljs-type">i32</span>) &#123;<br>        <span class="hljs-keyword">self</span>.a = <span class="hljs-title function_ invoke__">Some</span>(value);<br>    &#125;<br>    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">a</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">i32</span> &#123;<br>        <span class="hljs-keyword">self</span>.a.<span class="hljs-title function_ invoke__">as_ref</span>().<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">&quot;Field is not initialized&quot;</span>)<br>    &#125;<br>    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">set_b</span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, value: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">i32</span>&gt;) &#123;<br>        <span class="hljs-keyword">self</span>.b = <span class="hljs-title function_ invoke__">Some</span>(value);<br>    &#125;<br>    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">b</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">Vec</span>&lt;<span class="hljs-type">i32</span>&gt; &#123;<br>        <span class="hljs-keyword">self</span>.b.<span class="hljs-title function_ invoke__">as_ref</span>().<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">&quot;Field is not initialized&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="类函数宏-例：foreach-field-x-…"><a href="#类函数宏-例：foreach-field-x-…" class="headerlink" title="类函数宏 例：foreach!(field, |x| { … })"></a>类函数宏 例：foreach!(field, |x| { … })</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-comment">// 1. 定义一个结构体来保存解析后的参数</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ForEachInput</span> &#123;<br>    field: Expr,          <span class="hljs-comment">// 存储变量</span><br>    _comma: Token![,],    <span class="hljs-comment">// 存储逗号分隔符</span><br>    closure: ExprClosure, <span class="hljs-comment">// 存储闭包，如 |x| &#123; ... &#125;</span><br>&#125;<br><br><span class="hljs-comment">// 2. 实现 Parse Trait，告诉 syn 怎么按顺序读 Token</span><br><span class="hljs-keyword">impl</span> <span class="hljs-title class_">Parse</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">ForEachInput</span> &#123;<br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">parse</span>(input: ParseStream) <span class="hljs-punctuation">-&gt;</span> syn::<span class="hljs-type">Result</span>&lt;<span class="hljs-keyword">Self</span>&gt; &#123;<br>        <span class="hljs-title function_ invoke__">Ok</span>(ForEachInput &#123;<br>            field: input.<span class="hljs-title function_ invoke__">parse</span>()?,   <span class="hljs-comment">// 尝试解析为一个表达式（变量）</span><br>            _comma: input.<span class="hljs-title function_ invoke__">parse</span>()?,  <span class="hljs-comment">// 必须跟着一个逗号</span><br>            closure: input.<span class="hljs-title function_ invoke__">parse</span>()?, <span class="hljs-comment">// 尝试解析为一个闭包</span><br>        &#125;)<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 3. 宏入口</span><br><span class="hljs-meta">#[proc_macro]</span><br><span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">foreach</span>(input: TokenStream) <span class="hljs-punctuation">-&gt;</span> TokenStream &#123;<br>    <span class="hljs-comment">// 解析输入</span><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">ForEachInput</span> &#123; field, closure, .. &#125; = parse_macro_input!(input <span class="hljs-keyword">as</span> ForEachInput);<br><br>    <span class="hljs-keyword">let</span> <span class="hljs-variable">expanded</span> = quote! &#123;<br>        &#123;<br>            #field.<span class="hljs-title function_ invoke__">iter</span>().for_each(#closure);<br>        &#125;<br>    &#125;;<br><br>    TokenStream::<span class="hljs-title function_ invoke__">from</span>(expanded)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个例子展示了一个类函数宏 <code>foreach!</code>，它接受一个字段和一个闭包，并生成一个迭代该字段的代码块。输入的格式是 <code>foreach!(field, |x| &#123; ... &#125;)</code>，其中 <code>field</code> 是一个可迭代的变量，<code>|x| &#123; ... &#125;</code> 是一个闭包。</p>
+<p>这个宏的用例如下：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">my_vec</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br>foreach!(my_vec, |x| &#123;<br>    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Value: &#123;&#125;&quot;</span>, x);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>编译后会展开成：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">my_vec</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br>&#123;<br>    my_vec.<span class="hljs-title function_ invoke__">iter</span>().for_each(|x| &#123;<br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Value: &#123;&#125;&quot;</span>, x);<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>派生宏不可以修改原本的代码，而属性宏和类函数宏可以修改原本的代码。</p>
+<p>所以派生宏适合在结构体、枚举等类型上自动生成一些方法或实现某些 trait，而属性宏和类函数宏更适合在函数或表达式级别进行代码转换和增强。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/TechMagic/" class="category-chain-item">TechMagic</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/rust/" class="print-no-link">#rust</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Rust宏：从macro_rules到过程宏</div>
+      <div>https://www.harkerhand.cn/rustmacro/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>harkerhand</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年4月17日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年4月17日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Rust%E9%A2%98%E7%9B%AE%E8%AE%B0%E5%BD%95/" title="Rust 核心机制与易错题目深度解析">
+                        <span class="hidden-mobile">Rust 核心机制与易错题目深度解析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.min.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.harkerhand.cn/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/bmoji","https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"search":false,"reaction":true},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div>
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
