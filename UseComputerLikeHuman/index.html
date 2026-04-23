@@ -18,24 +18,26 @@
   <meta name="author" content="harkerhand">
   <meta name="keywords" content="harkerhand,C++,tech">
   
-    <meta name="description" content="在 Rust 中，多态主要通过两种方式实现：静态派发 和 动态派发。虽然泛型（静态派发）是 Rust 的首选，但在处理“异构集合”（例如一个包含不同 UI 组件的列表）时，动态派发（即 dyn Trait）则是不可或缺的利器。 然而，并不是所有的 Trait 都能开启动态派发。这篇文章简单聊聊：想要实现动态派发，Trait 必须满足哪些条件？底层又是如何运作的？ 核心概念：胖指针在 Rust 中，">
+    <meta name="description" content="人类祖先偶然发现了火，学会了使用工具；后来，他们开始主动的创造工具来满足自己的需求；再后来，他们对于工具的要求不仅仅是能用，还要好用…  那么问题来了，为什么大部分人类使用计算机的方式还停留在“偶然”阶段呢？ 我们在使用计算机时，往往是被动的接受它提供的功能和界面，而不是主动地去创造和定制它来满足我们的需求。我们习惯于使用预设的软件和操作系统，而不是自己编写代码或定制工具来解决问题。  叠甲环节">
 <meta property="og:type" content="article">
-<meta property="og:title" content="谈谈Rust动态派发">
-<meta property="og:url" content="https://www.harkerhand.cn/dynTrait/index.html">
+<meta property="og:title" content="用电脑像个人吧">
+<meta property="og:url" content="https://www.harkerhand.cn/UseComputerLikeHuman/index.html">
 <meta property="og:site_name" content="Where Is Mountain">
-<meta property="og:description" content="在 Rust 中，多态主要通过两种方式实现：静态派发 和 动态派发。虽然泛型（静态派发）是 Rust 的首选，但在处理“异构集合”（例如一个包含不同 UI 组件的列表）时，动态派发（即 dyn Trait）则是不可或缺的利器。 然而，并不是所有的 Trait 都能开启动态派发。这篇文章简单聊聊：想要实现动态派发，Trait 必须满足哪些条件？底层又是如何运作的？ 核心概念：胖指针在 Rust 中，">
+<meta property="og:description" content="人类祖先偶然发现了火，学会了使用工具；后来，他们开始主动的创造工具来满足自己的需求；再后来，他们对于工具的要求不仅仅是能用，还要好用…  那么问题来了，为什么大部分人类使用计算机的方式还停留在“偶然”阶段呢？ 我们在使用计算机时，往往是被动的接受它提供的功能和界面，而不是主动地去创造和定制它来满足我们的需求。我们习惯于使用预设的软件和操作系统，而不是自己编写代码或定制工具来解决问题。  叠甲环节">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.harkerhand.cn/dynTrait/rustdocs.png">
-<meta property="article:published_time" content="2026-03-03T08:17:47.000Z">
-<meta property="article:modified_time" content="2026-04-13T06:42:52.014Z">
+<meta property="og:image" content="https://www.harkerhand.cn/UseComputerLikeHuman/logo.png">
+<meta property="article:published_time" content="2026-04-23T05:01:34.000Z">
+<meta property="article:modified_time" content="2026-04-23T06:26:37.619Z">
 <meta property="article:author" content="harkerhand">
-<meta property="article:tag" content="rust">
+<meta property="article:tag" content="harkerhand">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="tech">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.harkerhand.cn/dynTrait/rustdocs.png">
+<meta name="twitter:image" content="https://www.harkerhand.cn/UseComputerLikeHuman/logo.png">
   
   
   
-  <title>谈谈Rust动态派发 - Where Is Mountain</title>
+  <title>用电脑像个人吧 - Where Is Mountain</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +245,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="谈谈Rust动态派发"></span>
+            <span id="subtitle" data-typed-text="用电脑像个人吧"></span>
           
         </div>
 
@@ -259,8 +261,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-03 16:17" pubdate>
-          2026年3月3日
+        <time datetime="2026-04-23 13:01" pubdate>
+          2026年4月23日
         </time>
       </span>
     
@@ -271,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.1k 字
         
       </span>
     
@@ -282,7 +284,7 @@
         
         
         
-          15 分钟
+          21 分钟
         
       </span>
     
@@ -410,7 +412,7 @@
       
         <a href="/UseComputerLikeHuman/" title="用电脑像个人吧"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">用电脑像个人吧</span>
         </a>
       
@@ -419,7 +421,7 @@
       
         <a href="/dynTrait/" title="谈谈Rust动态派发"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">谈谈Rust动态派发</span>
         </a>
       
@@ -442,12 +444,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">谈谈Rust动态派发</h1>
+            <h1 id="seo-header">用电脑像个人吧</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2026年4月13日 下午
+                    本文最后更新于 2026年4月23日 下午
                   
                 
               </p>
@@ -455,101 +457,90 @@
             
               <div class="markdown-body">
                 
-                <p>在 Rust 中，多态主要通过两种方式实现：<strong>静态派发</strong> 和 <strong>动态派发</strong>。虽然泛型（静态派发）是 Rust 的首选，但在处理“异构集合”（例如一个包含不同 UI 组件的列表）时，动态派发（即 <code>dyn Trait</code>）则是不可或缺的利器。</p>
-<p>然而，并不是所有的 Trait 都能开启动态派发。这篇文章简单聊聊：想要实现动态派发，Trait 必须满足哪些条件？底层又是如何运作的？</p>
-<h1 id="核心概念：胖指针"><a href="#核心概念：胖指针" class="headerlink" title="核心概念：胖指针"></a>核心概念：胖指针</h1><p>在 Rust 中，当你将一个具体类转换为一个抹去类型的接口时，编译器实际上创建了一个<strong>胖指针</strong>。</p>
-<p>一个胖指针占据两个 <code>usize</code> 的空间：</p>
-<ol>
-<li><strong>数据指针</strong>：指向实例在内存（堆或栈）中的实际位置。</li>
-<li><strong>虚表指针</strong>：指向一个只读的内存区域，即虚函数表 (vtable)。</li>
-</ol>
-<h1 id="虚函数表到底存了什么？"><a href="#虚函数表到底存了什么？" class="headerlink" title="虚函数表到底存了什么？"></a>虚函数表到底存了什么？</h1><p>每个实现了 Trait 的类型都会对应一张唯一的 vtable。它不仅存储了方法的地址，还存储了维护类型安全的关键元数据：</p>
-<table>
-<thead>
-<tr>
-<th><strong>字段</strong></th>
-<th><strong>作用</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>析构函数</strong></td>
-<td>运行时如何销毁该对象。</td>
-</tr>
-<tr>
-<td><strong>大小</strong></td>
-<td>该对象占用的字节数，用于内存管理。</td>
-</tr>
-<tr>
-<td><strong>对齐</strong></td>
-<td>该对象的内存对齐要求。</td>
-</tr>
-<tr>
-<td><strong>方法指针群</strong></td>
-<td>按照 Trait 定义顺序排列的函数地址。</td>
-</tr>
-</tbody></table>
-<p><strong>为什么需要 <code>size</code> 和 <code>align</code>？</strong></p>
-<p>因为 <code>dyn Trait</code> 是 <code>Unsized</code>（大小不确定）的。如果没有这些元数据，当 <code>Box&lt;dyn Trait&gt;</code> 离开作用域时，运行时将不知道该释放多少内存。</p>
-<h1 id="对象安全性"><a href="#对象安全性" class="headerlink" title="对象安全性"></a>对象安全性</h1><p>如果一个 Trait 想要通过 <code>dyn</code> 关键字进行动态派发，它必须是<strong>对象安全</strong>的。以下是五大核心限制及背后的逻辑：</p>
-<ol>
-<li><p>方法必须有 <code>self</code> 接收者</p>
-<ul>
-<li>不能包含类似 <code>fn static_method()</code> 的方法。</li>
-<li>vtable 必须通过 <code>self</code> 指针找到具体对象的类型。没有 <code>self</code>，就没有胖指针，也就找不到 vtable。</li>
-</ul>
-</li>
-<li><p>禁止使用 <code>Self: Sized</code> 约束</p>
-<ul>
-<li>动态派发的设计初衷就是处理那些大小在编译时未知的类型。如果 Trait 强制要求实现者必须是 <code>Sized</code>，则与 <code>dyn Trait</code> 的本质相矛盾。</li>
-</ul>
-</li>
-<li><p>方法中禁止使用泛型参数</p>
- <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-comment">// 错误示例</span><br><span class="hljs-keyword">trait</span> <span class="hljs-title class_">Bad</span> &#123;<br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">generic</span>&lt;T&gt;(&amp;<span class="hljs-keyword">self</span>, x: T); <br>&#125;<br></code></pre></td></tr></table></figure>
-<ul>
-<li>Rust 的泛型是单态化的（编译时生成副本）。对于 <code>dyn Bad</code>，编译器无法预知运行时会传入什么 <code>T</code>，因此无法在有限大小的 vtable 中存放无限可能的函数副本。</li>
-</ul>
-</li>
-<li><p>方法返回值不能是 <code>Self</code></p>
-<ul>
-<li>由于 <code>dyn Trait</code> 抹去了具体类型，编译器在调用处无法预知 <code>Self</code> 到底占多少空间，因此无法在栈上为返回值分配内存。</li>
-</ul>
-</li>
-<li><p>禁止关联常量</p>
-<ul>
-<li>目前的 vtable 结构仅设计用于存储函数指针和基础元数据，不支持存储关联常量。</li>
-</ul>
-</li>
-</ol>
-<h1 id="正确与错误的使用姿势"><a href="#正确与错误的使用姿势" class="headerlink" title="正确与错误的使用姿势"></a>正确与错误的使用姿势</h1><h2 id="错误：违反对象安全"><a href="#错误：违反对象安全" class="headerlink" title="错误：违反对象安全"></a>错误：违反对象安全</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">trait</span> <span class="hljs-title class_">Cloneable</span> &#123;<br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">clone</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-keyword">Self</span>; <span class="hljs-comment">// 报错：返回了 Self</span><br>&#125;<br><br><span class="hljs-comment">// 无法创建 Vec&lt;Box&lt;dyn Cloneable&gt;&gt;</span><br></code></pre></td></tr></table></figure>
+                <blockquote>
+<p>人类祖先偶然发现了火，学会了使用工具；后来，他们开始主动的创造工具来满足自己的需求；再后来，他们对于工具的要求不仅仅是能用，还要好用…</p>
+</blockquote>
+<p>那么问题来了，为什么<strong>大部分人类使用计算机的方式还停留在“偶然”阶段</strong>呢？</p>
+<p>我们在使用计算机时，往往是被动的接受它提供的功能和界面，而不是主动地去创造和定制它来满足我们的需求。我们习惯于使用预设的软件和操作系统，而不是自己编写代码或定制工具来解决问题。</p>
+<p class="note note-warning">
+叠甲环节：本文仅从个人的角度出发，分享一些关于如何像人类一样使用计算机的思考和建议。如果对您产生了冒犯或者不适，请按下 ALT + F4。作者也会犯错，如果你有不同意见，可以在评论区攻击我。
+</p>
 
-<h2 id="正确：异构集合场景"><a href="#正确：异构集合场景" class="headerlink" title="正确：异构集合场景"></a>正确：异构集合场景</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">trait</span> <span class="hljs-title class_">Drawable</span> &#123;<br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">draw</span>(&amp;<span class="hljs-keyword">self</span>);<br>&#125;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Circle</span>;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Square</span>;<br><br><span class="hljs-keyword">impl</span> <span class="hljs-title class_">Drawable</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">Circle</span> &#123; <span class="hljs-keyword">fn</span> <span class="hljs-title function_">draw</span>(&amp;<span class="hljs-keyword">self</span>) &#123; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;圆形&quot;</span>); &#125; &#125;<br><span class="hljs-keyword">impl</span> <span class="hljs-title class_">Drawable</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">Square</span> &#123; <span class="hljs-keyword">fn</span> <span class="hljs-title function_">draw</span>(&amp;<span class="hljs-keyword">self</span>) &#123; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;正方形&quot;</span>); &#125; &#125;<br><br><span class="hljs-keyword">fn</span> <span class="hljs-title function_">render</span>(elements: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">Box</span>&lt;<span class="hljs-keyword">dyn</span> Drawable&gt;&gt;) &#123;<br>    <span class="hljs-keyword">for</span> <span class="hljs-variable">e</span> <span class="hljs-keyword">in</span> elements &#123;<br>        e.<span class="hljs-title function_ invoke__">draw</span>(); <span class="hljs-comment">// 运行时通过 vtable 查找并跳转</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="修复非对象安全的-Trait"><a href="#修复非对象安全的-Trait" class="headerlink" title="修复非对象安全的 Trait"></a>修复非对象安全的 Trait</h2><p>如果必须在 Trait 里放一个静态方法，可以通过 <code>where Self: Sized</code> 约束来“隐藏”它，使其不进入 vtable：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">trait</span> <span class="hljs-title class_">MyTrait</span> &#123;<br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">safe_method</span>(&amp;<span class="hljs-keyword">self</span>);<br>    <br>    <span class="hljs-comment">// 加上这个约束后，该方法在 dyn MyTrait 中不可用，但 Trait 整体变安全了</span><br>    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">unsafe_static</span>() <span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>好了，P话结束，正文开始。</p>
+<h1 id="前言：像人类一样使用AI"><a href="#前言：像人类一样使用AI" class="headerlink" title="前言：像人类一样使用AI"></a>前言：像人类一样使用AI</h1><p>询问技术类问题，不要使用豆包、元宝、以及各种手机自带的语音助手。</p>
+<p>我建议使用 <a target="_blank" rel="noopener" href="https://chatgpt.com/">ChatGPT</a>、<a target="_blank" rel="noopener" href="https://gemini.google.com/app">Gemini</a>、<a target="_blank" rel="noopener" href="https://chat.deepseek.com/">DeepSeek</a>、<a target="_blank" rel="noopener" href="https://aistudio.xiaomimimo.com/#/c">Mimo</a>。</p>
+<p>在使用这些工具时，组织好你的问题，尽量提供足够的上下文和细节。</p>
+<p>例如，如果你在编程方面遇到了问题，不要只是说“我的代码有问题”，而是应该描述你正在尝试实现什么功能，遇到了什么错误，以及你已经尝试了哪些解决方法。</p>
+<p>下面是一个示例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs php">我在 /home/harkerhand/codes/cpp 路径下，其中有 <span class="hljs-number">23</span>  <span class="hljs-number">23</span>.cpp 文件，我执行了 g++ ./<span class="hljs-number">23</span>.cpp -o <span class="hljs-number">23</span> 命令，但是出现了以下错误：<br><br>./<span class="hljs-number">23</span>.cpp:<span class="hljs-number">5</span>:<span class="hljs-number">34</span>: 错误：‘format’ has not been declared in ‘std’<br>    <span class="hljs-number">5</span> | using std::<span class="hljs-variable constant_">cout</span>, std::<span class="hljs-variable constant_">endl</span>, std::<span class="hljs-variable constant_">format</span>, std::<span class="hljs-variable constant_">make_tuple</span>, std::<span class="hljs-variable constant_">string</span>;<br>      |                                  ^~~~~~<br>./<span class="hljs-number">23</span>.cpp: In <span class="hljs-function"><span class="hljs-keyword">function</span> ‘<span class="hljs-title">int</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>)’:</span><br><span class="hljs-function">./23.<span class="hljs-title">cpp</span>:8:13: 错误：‘<span class="hljs-title">format</span>’在此作用域中尚未声明</span><br><span class="hljs-function">    8 |     <span class="hljs-title">cout</span> &lt;&lt; <span class="hljs-title">format</span>(<span class="hljs-params"><span class="hljs-string">&quot;The answer to the Ultimate Question of Life, The &quot;</span></span></span><br><span class="hljs-params"><span class="hljs-function">      |             ^~~~~~</span></span><br><span class="hljs-params"><span class="hljs-function"></span></span><br><span class="hljs-params"><span class="hljs-function">其中 <span class="hljs-number">23</span>.cpp 的内容如下：</span></span><br><span class="hljs-params"><span class="hljs-function"></span></span><br><span class="hljs-params"><span class="hljs-function">#<span class="hljs-keyword">include</span> &lt;format&gt;</span></span><br><span class="hljs-params"><span class="hljs-function">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span></span><br><span class="hljs-params"><span class="hljs-function">#<span class="hljs-keyword">include</span> &lt;tuple&gt;</span></span><br><span class="hljs-params"><span class="hljs-function"></span></span><br><span class="hljs-params"><span class="hljs-function">using std::<span class="hljs-variable constant_">cout</span>, std::<span class="hljs-variable constant_">endl</span>, std::<span class="hljs-variable constant_">format</span>, std::<span class="hljs-variable constant_">make_tuple</span>, std::<span class="hljs-variable constant_">string</span>;</span></span><br><span class="hljs-params"><span class="hljs-function"></span></span><br><span class="hljs-params"><span class="hljs-function"><span class="hljs-keyword">int</span> main(<span class="hljs-params"></span>) &#123;</span></span><br><span class="hljs-params"><span class="hljs-function">    cout &lt;&lt; format(<span class="hljs-params"><span class="hljs-string">&quot;The answer to the Ultimate Question of Life, The &quot;</span></span></span></span><br><span class="hljs-params"><span class="hljs-params"><span class="hljs-function">                   <span class="hljs-string">&quot;Universe, and Everything is &#123;&#125;.&quot;</span>,</span></span></span><br><span class="hljs-params"><span class="hljs-params"><span class="hljs-function">                   <span class="hljs-number">42</span></span>)</span></span><br><span class="hljs-params"><span class="hljs-function">         &lt;&lt; endl;</span></span><br><span class="hljs-params"><span class="hljs-function">    auto a = make_tuple(<span class="hljs-params">static_cast&lt;<span class="hljs-keyword">bool</span>&gt;(<span class="hljs-params"><span class="hljs-number">1</span></span>), <span class="hljs-keyword">string</span>(<span class="hljs-params"><span class="hljs-string">&quot;2&quot;</span></span>), <span class="hljs-keyword">double</span>(<span class="hljs-params"><span class="hljs-number">3</span></span>), <span class="hljs-number">4</span></span>);</span></span><br><span class="hljs-params"><span class="hljs-function">    auto [x, y, z, w] = a;</span></span><br><span class="hljs-params"><span class="hljs-function">    cout &lt;&lt; format(<span class="hljs-params"><span class="hljs-string">&quot;x = &#123;&#125;, y = &#123;&#125;, z = &#123;&#125;, w = &#123;&#125;&quot;</span>, x, y, z, w</span>) &lt;&lt; endl;</span></span><br><span class="hljs-params"><span class="hljs-function">&#125;</span></span><br><span class="hljs-params"><span class="hljs-function"></span></span><br><span class="hljs-params"><span class="hljs-function">我希望我能够成功编译并运行这个程序，输出正确的结果。</span></span><br></code></pre></td></tr></table></figure>
 
-<h1 id="当-Trait-也不够用时"><a href="#当-Trait-也不够用时" class="headerlink" title="当 Trait 也不够用时"></a>当 Trait 也不够用时</h1><p>在某些极端场景下（如插件系统、消息总线），你甚至无法预定义一个 Trait 来涵盖所有可能的类型。这时，Rust 提供了终极武器：<code>std::any::Any</code>。</p>
-<p>如果说 <code>dyn Trait</code> 是“我不知道你是谁，但我知道你能做什么”，那么 <code>dyn Any</code> 就是“我完全不知道你是谁，但我可以在运行时查你的身份证”。</p>
-<h2 id="万能容器：Box"><a href="#万能容器：Box" class="headerlink" title="万能容器：Box&lt;dyn Any&gt;"></a>万能容器：<code>Box&lt;dyn Any&gt;</code></h2><p>由于 <code>Any</code> 也是一个 Trait，它同样遵循对象安全规则。我们通常使用 <code>Box&lt;dyn Any&gt;</code> 来存储拥有所有权的任何类型：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-keyword">use</span> std::any::Any;<br><br><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">vault</span>: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">Box</span>&lt;<span class="hljs-keyword">dyn</span> Any&gt;&gt; = <span class="hljs-type">Vec</span>::<span class="hljs-title function_ invoke__">new</span>();<br>vault.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-type">Box</span>::<span class="hljs-title function_ invoke__">new</span>(<span class="hljs-number">42_i32</span>));<br>vault.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-type">Box</span>::<span class="hljs-title function_ invoke__">new</span>(<span class="hljs-type">String</span>::<span class="hljs-title function_ invoke__">from</span>(<span class="hljs-string">&quot;Rust 2026&quot;</span>)));<br><br><span class="hljs-comment">// 运行时找回类型</span><br><span class="hljs-keyword">for</span> <span class="hljs-variable">item</span> <span class="hljs-keyword">in</span> vault &#123;<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>(val) = item.downcast_ref::&lt;<span class="hljs-type">i32</span>&gt;() &#123;<br>        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;整数: &#123;&#125;&quot;</span>, val);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="TypeId-与-Downcasting"><a href="#TypeId-与-Downcasting" class="headerlink" title="TypeId 与 Downcasting"></a>TypeId 与 Downcasting</h2><p><code>dyn Any</code> 的胖指针中，vtable 包含一个关键方法：<code>type_id()</code>。</p>
+<p>本文后续内容将会比较简洁，如果你出现任何问题，请按照上面的指示去求助AI工具。</p>
+<h1 id="像人类一样使用计算机"><a href="#像人类一样使用计算机" class="headerlink" title="像人类一样使用计算机"></a>像人类一样使用计算机</h1><h2 id="像人类一样使用终端"><a href="#像人类一样使用终端" class="headerlink" title="像人类一样使用终端"></a>像人类一样使用终端</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><ul>
+<li><p>别用 CMD 了，用 PowerShell，不仅是 PowerShell，还得是 PowerShell 7。</p>
+<p>  <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/scripting/install/install-powershell-on-windows?view=powershell-7.6">在 Windows 上安装 PowerShell 7</a></p>
+</li>
+<li><p>装好之后，去 Windows Terminal 里把它设置成默认的 Shell。</p>
+</li>
+<li><p>如果你有美化需求，可以安装 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/">oh-my-posh</a>。</p>
+</li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>如果不想装双系统，还需要在 Windows 上使用 Linux 的话，无特殊需求，使用 WSL2，如果遇到其他环境问题，AI 工具应该会告诉你去装虚拟机。</p>
 <ul>
-<li><strong>原理</strong>：编译器会为每个类型生成一个唯一的 128 位哈希值（TypeId）。</li>
-<li><strong>安全检查</strong>：当你调用 <code>downcast_ref::&lt;T&gt;()</code> 时，Rust 会比较 vtable 中的 ID 与目标类型 <code>T</code> 的 ID 是否一致。如果一致，则进行指针转换；否则返回 <code>None</code>。</li>
+<li>放下 Bash，使用 Zsh。</li>
+<li>装 oh-my-zsh 来美化你的终端并提高效率。</li>
+<li>装自动补全插件，例如 zsh-autosuggestions 和 zsh-syntax-highlighting。</li>
+<li>要好看一点装 Powerlevel10k 主题。</li>
 </ul>
-<hr>
-<h2 id="能否绕过检查直接强转？"><a href="#能否绕过检查直接强转？" class="headerlink" title="能否绕过检查直接强转？"></a>能否绕过检查直接强转？</h2><p>通过 <code>unsafe</code> 确实可以跳过检查，将 <code>dyn Any</code> 的数据指针直接转换为具体类型的指针：</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-comment">// 这是一个极高性能、但也极其危险的操作</span><br><span class="hljs-keyword">let</span> <span class="hljs-variable">raw_ptr</span> = <span class="hljs-type">Box</span>::<span class="hljs-title function_ invoke__">into_raw</span>(boxed_any) <span class="hljs-keyword">as</span> *<span class="hljs-keyword">mut</span> <span class="hljs-type">i32</span>;<br><span class="hljs-keyword">let</span> <span class="hljs-variable">val</span> = <span class="hljs-keyword">unsafe</span> &#123; <span class="hljs-type">Box</span>::<span class="hljs-title function_ invoke__">from_raw</span>(raw_ptr) &#125;;<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>性能增益</strong>：消除了虚表查找和 128 位哈希值比较，减少了分支预测失败的概率。在数百万次的高频调用中，这能省下宝贵的纳秒。</li>
-<li><strong>代价</strong>：这是一场豪赌。一旦类型判断逻辑出错，<code>unsafe</code> 强转会导致UB，程序可能会在完全无关的地方莫名崩溃。</li>
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>推荐 JetBrains Mono 或 <a target="_blank" rel="noopener" href="https://github.com/subframe7536/Maple-font">Maple</a>，都是开源的等宽字体，支持编程和终端使用。</p>
+<h2 id="像人类一样使用-SSH"><a href="#像人类一样使用-SSH" class="headerlink" title="像人类一样使用 SSH"></a>像人类一样使用 SSH</h2><h3 id="配置-SSH-Config"><a href="#配置-SSH-Config" class="headerlink" title="配置 SSH Config"></a>配置 SSH Config</h3><p>配置文件应该在 <code>~/.ssh/config</code>，配置后，你可以通过 <code>ssh servername</code> 来连接服务器，而不需要每次都输入完整的命令。</p>
+<h3 id="使用密钥认证而不是密码认证"><a href="#使用密钥认证而不是密码认证" class="headerlink" title="使用密钥认证而不是密码认证"></a>使用密钥认证而不是密码认证</h3><ul>
+<li>生成 SSH 密钥对，尽量使用 Ed25519 算法。</li>
+<li>使用 <code>ssh-copy-id</code> 将公钥复制到服务器上（或者手动将公钥添加到服务器的 <code>~/.ssh/authorized_keys</code> 文件中）。</li>
 </ul>
-<h1 id="如何选择？"><a href="#如何选择？" class="headerlink" title="如何选择？"></a>如何选择？</h1><ul>
-<li>静态派发 (<code>&lt;T: Trait&gt;</code>)：适用于追求性能、函数内联和单一类型的场景。虽然会增加编译时间（代码膨胀），但运行效率最高。</li>
-<li>动态派发 (<code>dyn Trait</code>)：适用于需要灵活处理多种不同类型、减小二进制体积或需要运行时动态扩展的场景。</li>
-<li>运行时反射 (<code>dyn Any</code>)：最后的防线。允许处理完全未知的类型，通过 <code>TypeId</code> 提供运行时的类型安全保证。</li>
+<h3 id="使用-SSH-端口转发"><a href="#使用-SSH-端口转发" class="headerlink" title="使用 SSH 端口转发"></a>使用 SSH 端口转发</h3><p>如果有需求，你可以通过 SSH 端口转发来访问服务器上的服务（例如数据库、web服务）或让服务器访问你的本地服务（一般用于让服务器通过本机代理访问外部网络）。</p>
+<h3 id="使用-SSH-Agent-代理密钥"><a href="#使用-SSH-Agent-代理密钥" class="headerlink" title="使用 SSH Agent 代理密钥"></a>使用 SSH Agent 代理密钥</h3><p>假设你使用ssh密钥来认证github，在服务器中开发时，你需要在服务器中使用ssh连接github来拉取代码或者提交代码，如果你不想在服务器中存储你的私钥，你可以使用SSH Agent来代理你的密钥。</p>
+<h2 id="像人类一样使用-Git"><a href="#像人类一样使用-Git" class="headerlink" title="像人类一样使用 Git"></a>像人类一样使用 Git</h2><h3 id="仓库管理"><a href="#仓库管理" class="headerlink" title="仓库管理"></a>仓库管理</h3><ul>
+<li>使用 GitHub、GitLab 或 Bitbucket 等平台来托管你的代码仓库。</li>
+<li>代码仓库中应当存储你的源代码、文档、配置文件等与项目相关的内容，而不应该存储编译后的二进制文件、日志文件、临时文件等。</li>
+<li>使用 <code>.gitignore</code> 文件来忽略不需要版本控制的文件和目录，例如编译生成的二进制文件、日志文件、临时文件等。</li>
+<li>特别的，不要把你的 SSH 私钥或者其他敏感信息存储在代码仓库中。</li>
 </ul>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><ul>
+<li>使用分支来管理不同的功能开发、bug 修复和版本发布。</li>
+<li>不要一直在主分支（main 或 master）上开发新功能，应该在新的分支上进行开发，完成后再合并到主分支。</li>
+<li>push不上去不要 –force，先 pull 下来看看是什么问题，解决了再 push。</li>
+<li>如果你需要撤销某次提交，不要使用 <code>git reset</code>，而是使用 <code>git revert</code> 来创建一个新的提交来撤销之前的更改，这样可以保持提交历史的完整性。</li>
+<li>如果你需要在本地修改未上传的提交，可以使用 <code>git commit --amend</code> 来修改最后一次提交，或者使用 <code>git rebase -i</code> 来修改多个提交。</li>
+</ul>
+<h3 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI&#x2F;CD"></a>CI&#x2F;CD</h3><ul>
+<li>使用持续集成（CI）工具来自动化构建、测试和部署你的代码，例如 GitHub Actions、GitLab CI&#x2F;CD、Jenkins 等。</li>
+<li>配置 CI&#x2F;CD 流水线来自动化执行代码质量检查、单元测试、集成测试、部署等任务，以提高开发效率和代码质量。</li>
+<li>确保你的 CI&#x2F;CD 配置文件（例如 <code>.github/workflows/</code> 目录下的 YAML 文件）也存储在代码仓库中，以便于版本控制和团队协作。</li>
+<li>在 CI&#x2F;CD 流水线中，使用环境变量来存储敏感信息（例如 API 密钥、数据库密码等），而不是将它们直接写在代码或配置文件中。</li>
+</ul>
+<h3 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h3><ul>
+<li>使用 Git tag 来标记重要的版本，例如发布版本、里程碑版本等。</li>
+<li>在发布新版本时，创建一个新的 Git 标签，并在发布说明中描述该版本的主要更改和新功能。</li>
+<li>使用语义化版本控制来管理版本号。</li>
+</ul>
+<h2 id="像人类一样使用-Docker"><a href="#像人类一样使用-Docker" class="headerlink" title="像人类一样使用 Docker"></a>像人类一样使用 Docker</h2><h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><ul>
+<li>使用 Dockerfile 来定义你的应用程序的环境和依赖。</li>
+<li>使用多阶段构建来优化你的 Docker 镜像的大小和性能。</li>
+<li>使用官方的基础镜像来构建你的应用程序，例如 <code>python:3.10-slim</code>、<code>node:18-alpine</code> 等。</li>
+<li>在 Dockerfile 中，尽量避免使用 <code>latest</code> 标签来指定基础镜像的版本，应该明确指定版本号。</li>
+</ul>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><ul>
+<li>使用 Docker Compose 来定义和运行多容器的应用程序。</li>
+<li>使用环境变量来配置你的应用程序，而不是将配置写在代码中。</li>
+<li>使用 Docker 的卷（volumes）来持久化数据，而不是将数据存储在容器内部。</li>
+<li>使用 Docker 的网络（networks）来管理容器之间的通信，而不是使用主机网络。</li>
+<li>定期清理不再使用的 Docker 镜像、容器和卷，以节省磁盘空间。</li>
+<li>多人同机使用 Docker 时，使用不同的命名空间或者标签来区分不同用户的容器和镜像，以避免冲突和混乱。</li>
+</ul>
+<h2 id="像人类一样使用键盘"><a href="#像人类一样使用键盘" class="headerlink" title="像人类一样使用键盘"></a>像人类一样使用键盘</h2><p>现在是AI时代，你需要习惯性的点击 Tab 键。</p>
+<p>你的键盘损耗程度，应该是 Tab &gt; Enter &gt; Space &gt; 其他键。</p>
+<p>你应该尽可能在更多的地方使用 Tab 键来触发自动补全功能，这个品味是需要培养的，逐渐的你会产生“这个地方应该可以按 Tab 键”的感觉。</p>
 
                 
               </div>
@@ -580,13 +571,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/rust/" class="print-no-link">#rust</a>
-      
-    </div>
-  
 </div>
 
 
@@ -595,8 +579,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>谈谈Rust动态派发</div>
-      <div>https://www.harkerhand.cn/dynTrait/</div>
+      <div>用电脑像个人吧</div>
+      <div>https://www.harkerhand.cn/UseComputerLikeHuman/</div>
     </div>
     <div class="license-meta">
       
@@ -608,13 +592,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年3月3日</div>
+          <div>2026年4月23日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年4月13日</div>
+          <div>2026年4月23日</div>
         </div>
       
       
@@ -657,18 +641,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/learn-std/" title="Rust数据结构源码实现">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Rust数据结构源码实现</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/ConsistentHashing/" title="一致性哈希">
-                        <span class="hidden-mobile">一致性哈希</span>
+                      <a href="/rustmacro/" title="Rust宏：从macro_rules到过程宏">
+                        <span class="hidden-mobile">Rust宏：从macro_rules到过程宏</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
